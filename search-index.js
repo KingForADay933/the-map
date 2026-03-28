@@ -134,13 +134,6 @@ const SEARCH_INDEX = [
     keywords: "test exam strategy anxiety time management multiple choice essay finals standardized test ACT SAT"
   },
   {
-    title: "Academic AI Usage",
-    section: "Learning",
-    path: "learning/academic-ai.html",
-    desc: "Generative AI is real, it's not going away, and academic institutions are still figuring out how to handle it. Here's a grounded take on using it wisely.",
-    keywords: "AI ChatGPT Claude academic integrity plagiarism tools writing research ethics school"
-  },
-  {
     title: "Time Management & Productivity",
     section: "Life Skills",
     path: "life/time-management.html",
