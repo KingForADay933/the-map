@@ -100,13 +100,7 @@ const SEARCH_INDEX = [
     keywords: "career research job shadowing informational interview industries fields salary outlook BLS O*NET"
   },
   {
-    title: "Choosing a Major or Trade",
-    section: "Learning",
-    path: "learning/choosing-a-major.html",
-    desc: "Most people make one of the biggest decisions of their life with almost no information. Here's how to actually research your options before committing.",
-    keywords: "major trade career path college degree apprenticeship vocational YouTube research BLS job market passion"
-  },
-
+    title: "The College Journey",
     section: "Learning",
     path: "learning/college-journey.html",
     desc: "Whether you're heading to a four-year university, community college, or trade school, higher education is a major shift. Here's how to navigate it.",
