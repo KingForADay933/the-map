@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Budgeting — The Map</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../shared.css"/>
+  <link rel="stylesheet" href="../search.css"/>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="../index.html">The <span>Map.</span></a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../index.html#topics">All Topics</a></li>
+      <li><a href="../index.html#mission">Mission</a></li>
+    </ul>
+    <a class="nav-back" href="../index.html">← Home</a>
+    <button class="search-btn" id="searchBtn" aria-label="Search">
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <span class="search-btn-label">Search</span>
+    </button>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+      <span class="toggle-icon" id="toggleIcon">☀️</span>
+      <span class="toggle-text" id="toggleText">Light mode</span>
+    </button>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="breadcrumb">Finance</div>
+  <h1>Budgeting</h1>
+  <p class="lead">A budget isn't about restriction. It's about knowing where your money goes so you can decide where it should go instead. You set it up once, and then you just live.</p>
+</div>
+
+<article class="article">
+
+  <h2>The Core Idea</h2>
+  <p>One of the most important skills you can develop in early adulthood is budgeting. A budget is simply a plan for how you will spend and save your money. Start by tracking your income (whether from a job, a side gig, or anything else) and list your necessary expenses: rent, groceries, utilities, transportation.</p>
+  <p>You can do this by reviewing your bank statements (your bank is required to make them available to you), or by checking your bank's app for last month's transactions.</p>
+  <p>The most basic thing you can do to become more financially stable is: add up all your average monthly expenses, calculate your average monthly income, and see what the difference is. If there isn't much wiggle room, now you know that. If there is, now you have decisions to make.</p>
+
+  <div class="callout tip">
+    <span class="callout-label">Good to know</span>
+    <p>If the whole process of budgeting sounds like too much, think about it this way: you set it up once, and it's done. You won't need to change it unless you add or remove recurring expenses. After that, you have peace of mind knowing exactly what your monthly expenses total.</p>
+  </div>
+
+  <h2>Budgeting Methods</h2>
+  <p>There's no single right way to budget. Pick the method that matches how your brain works. The best budget is one you'll actually use.</p>
+
+  <h3>1. The 50/30/20 Rule</h3>
+  <p>This popular method divides your after-tax income into three buckets:</p>
+  <div class="term-grid">
+    <div class="term-card">
+      <div class="term-name">50% — Needs</div>
+      <div class="term-def">Rent, groceries, utilities, minimum debt payments, transportation. These are non-negotiables.</div>
+    </div>
+    <div class="term-card">
+      <div class="term-name">30% — Wants</div>
+      <div class="term-def">Dining out, entertainment, subscriptions, hobbies. Things that improve your life but aren't essential.</div>
+    </div>
+    <div class="term-card">
+      <div class="term-name">20% — Savings & Debt Repayment</div>
+      <div class="term-def">Emergency fund, retirement contributions, extra loan payments. Your future self.</div>
+    </div>
+  </div>
+  <p>If your necessities exceed 50%, adjust the ratios (60/20/20 is fine). The point is the discipline of the categories, not the exact numbers.</p>
+
+  <h3>2. Envelope Budgeting</h3>
+  <p>A cash-based system where you divide money into envelopes for each spending category. Once an envelope is empty, spending in that category stops for the month. Digital apps like <a href="https://goodbudget.com" target="_blank" rel="noopener">Goodbudget</a> replicate this with virtual envelopes, no cash required. Certain banks like <a href="https://www.ally.com" target="_blank" rel="noopener">Ally Bank</a> also support this style with their "Buckets" feature.</p>
+
+  <h3>3. Zero-Based Budgeting</h3>
+  <p>Every dollar is assigned a purpose, leaving zero unallocated. Income minus all planned spending and saving equals zero. Not because you spent everything, but because every dollar has a job. Apps like <a href="https://www.ynab.com" target="_blank" rel="noopener">YNAB (You Need A Budget)</a> are built around this method. Great for meticulous planners or people with irregular income.</p>
+
+  <h3>4. Pay-Yourself-First</h3>
+  <p>Before paying any bills or spending anything, automatically transfer a fixed amount (like 20%) into savings. Then live on what's left. This flips the usual order. Instead of saving whatever's left over (usually nothing), savings become non-negotiable.</p>
+
+  <h3>5. Automated Budgeting</h3>
+  <p>Set up automatic transfers to savings and auto-pay for bills. Banks like <a href="https://www.sofi.com" target="_blank" rel="noopener">SoFi</a> and <a href="https://www.ally.com" target="_blank" rel="noopener">Ally</a> offer solid automation tools. If you make savings automatic, you don't have to rely on willpower every month.</p>
+
+  <h2>Budgeting Apps Worth Knowing</h2>
+  <table class="compare-table">
+    <tr><th>App</th><th>Best For</th><th>Cost</th></tr>
+    <tr><td><a href="https://www.monarchmoney.com" target="_blank" rel="noopener">Monarch Money</a></td><td>Customizable budgets, net worth tracking</td><td>~$15/mo</td></tr>
+    <tr><td><a href="https://www.ynab.com" target="_blank" rel="noopener">YNAB</a></td><td>Zero-based budgeting</td><td>~$15/mo</td></tr>
+    <tr><td><a href="https://goodbudget.com" target="_blank" rel="noopener">Goodbudget</a></td><td>Envelope budgeting</td><td>Free / $10/mo</td></tr>
+    <tr><td><a href="https://www.rocketmoney.com" target="_blank" rel="noopener">Rocket Money</a></td><td>Canceling subscriptions, tracking spending</td><td>Free / $6–12/mo</td></tr>
+    <tr><td><a href="https://www.empower.com" target="_blank" rel="noopener">Empower</a></td><td>Investors who want a full financial picture</td><td>Free</td></tr>
+  </table>
+
+  <h2>Banks with Built-In Budgeting Tools</h2>
+  <p>You may not need a separate app at all. Many banks now include budgeting features directly:</p>
+  <ul>
+    <li><strong>Ally Bank</strong>: "Buckets" for goal-based saving, auto-categorized expenses</li>
+    <li><strong>Capital One</strong>: "Eno" assistant tracks subscriptions and spending changes</li>
+    <li><strong>SoFi</strong>: "Relay" tracks cash flow and net worth in real time</li>
+    <li><strong>Chase</strong>: "Spending Planner" visualizes spending with charts</li>
+    <li><strong>Wells Fargo</strong>: "My Money Map" auto-categorizes and compares to budget limits</li>
+  </ul>
+
+  <div class="callout">
+    <span class="callout-label">Key Takeaway</span>
+    <p>Budgets should evolve. If your income or expenses change, update the plan. A budget that reflects your life is infinitely more useful than a perfect budget you abandoned.</p>
+  </div>
+
+  <div class="disclaimer-bar">
+    <strong>Disclaimer:</strong> General information only. App pricing changes frequently, so verify current costs before subscribing.
+  </div>
+
+  <div class="related">
+    <div class="related-label">Keep reading</div>
+    <div class="related-links">
+      <a class="related-link" href="financial-literacy-overview.html">Financial Literacy Overview</a>
+      <a class="related-link" href="low-risk-investing.html">Low-Risk Investing</a>
+      <a class="related-link" href="debt-management.html">Debt Management & Credit</a>
+      <a class="related-link" href="roth-ira.html">Roth IRA & Retirement</a>
+    </div>
+  </div>
+
+</article>
+
+<footer>
+  <div class="footer-logo">The <span>Map.</span></div>
+  <div class="footer-copy">Free to use. Built with care. Not professional advice.</div>
+</footer>
+<div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Search">
+  <div class="search-modal">
+    <div class="search-input-row">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <input class="search-input" id="searchInput" type="search" placeholder="Search topics…" autocomplete="off" autocorrect="off" spellcheck="false"/>
+      <button class="search-close" id="searchClose" aria-label="Close search">Esc</button>
+    </div>
+    <div class="search-results" id="searchResults" role="listbox"></div>
+    <div class="search-footer" aria-hidden="true">
+      <span class="search-footer-hint"><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
+      <span class="search-footer-hint"><kbd>↵</kbd> open</span>
+      <span class="search-footer-hint"><kbd>Esc</kbd> close</span>
+    </div>
+  </div>
+</div>
+<script src="../search-index.js"></script>
+<script src="../shared.js"></script>
+</body>
+</html>

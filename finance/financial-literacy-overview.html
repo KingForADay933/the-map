@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Financial Literacy Overview — The Map</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root, [data-theme="dark"] {
+      --bg:             #1A1410;
+      --surface:        #221C16;
+      --surface-mid:    #2D241C;
+      --surface-hi:     #3A2E24;
+      --clay:           #C49A6C;
+      --terracotta:     #D4725A;
+      --moss:           #7A9068;
+      --text-primary:   #EDE6D6;
+      --text-secondary: #A8957A;
+      --text-dim:       #6E5E4A;
+      --border:         rgba(200,174,130,0.1);
+      --border-hover:   rgba(200,174,130,0.28);
+      --nav-bg:         rgba(26,20,16,0.85);
+    }
+
+    [data-theme="light"] {
+      --bg:             #F7F2EA;
+      --surface:        #EDE6D6;
+      --surface-mid:    #F0EBE0;
+      --surface-hi:     #D4C4A0;
+      --clay:           #9A7250;
+      --terracotta:     #C4694A;
+      --moss:           #6B7C5C;
+      --text-primary:   #2A1F14;
+      --text-secondary: #5A4030;
+      --text-dim:       #9A8070;
+      --border:         rgba(181,137,106,0.18);
+      --border-hover:   rgba(181,137,106,0.4);
+      --nav-bg:         rgba(247,242,234,0.88);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text-primary);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px; line-height: 1.7;
+      min-height: 100vh; overflow-x: hidden;
+      transition: background 0.4s, color 0.4s;
+    }
+
+    body::after {
+      content: ''; position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.055'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 9999;
+    }
+
+    /* Nav */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2.5rem; height: 64px;
+      background: var(--nav-bg);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.4s, border-color 0.4s;
+    }
+    .nav-logo {
+      font-family: 'Lora', serif; font-size: 1.25rem; font-weight: 600;
+      color: var(--text-primary); text-decoration: none; letter-spacing: -0.02em;
+    }
+    .nav-logo span { color: var(--terracotta); }
+    .nav-right { display: flex; align-items: center; gap: 1.5rem; }
+    .nav-links { display: flex; gap: 1.75rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.875rem; font-weight: 500; color: var(--text-secondary);
+      text-decoration: none; transition: color 0.25s;
+    }
+    .nav-links a:hover { color: var(--clay); }
+    .nav-back {
+      font-size: 0.8125rem; color: var(--text-dim); text-decoration: none;
+      transition: color 0.25s;
+    }
+    .nav-back:hover { color: var(--clay); }
+    .theme-toggle {
+      display: flex; align-items: center; gap: 0.5rem;
+      background: none; border: 1.5px solid var(--border); border-radius: 100px;
+      padding: 0.3rem 0.75rem 0.3rem 0.5rem; cursor: pointer;
+      color: var(--text-secondary); font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem; font-weight: 500;
+      transition: border-color 0.25s, color 0.25s, background 0.25s;
+    }
+    .theme-toggle:hover { border-color: var(--clay); color: var(--clay); }
+    .toggle-icon { font-size: 0.875rem; line-height: 1; }
+    .toggle-text { display: none; }
+    @media (min-width: 640px) { .toggle-text { display: inline; } }
+
+    /* Page Header */
+    .page-header {
+      padding: 120px 2.5rem 3rem;
+      max-width: 780px; margin: 0 auto; position: relative; z-index: 1;
+    }
+    .breadcrumb {
+      font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--terracotta); margin-bottom: 1.25rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .breadcrumb::before {
+      content: ''; display: block; width: 18px; height: 1px;
+      background: var(--terracotta); opacity: 0.5;
+    }
+    .page-header h1 {
+      font-family: 'Lora', serif;
+      font-size: clamp(2.25rem, 5vw, 3.5rem);
+      font-weight: 700; line-height: 1.1; letter-spacing: -0.03em;
+      color: var(--text-primary); margin-bottom: 1.25rem;
+      transition: color 0.4s;
+    }
+    .lead {
+      font-size: 1.125rem; color: var(--text-secondary);
+      line-height: 1.75; max-width: 620px; transition: color 0.4s;
+    }
+
+    /* Article */
+    .article {
+      max-width: 780px; margin: 0 auto;
+      padding: 0 2.5rem 6rem; position: relative; z-index: 1;
+    }
+    .article h2 {
+      font-family: 'Lora', serif; font-size: 1.625rem; font-weight: 600;
+      letter-spacing: -0.02em; color: var(--text-primary);
+      margin: 3rem 0 1rem; padding-top: 0.5rem;
+      border-top: 1px solid var(--border);
+      transition: color 0.4s, border-color 0.4s;
+    }
+    .article h3 {
+      font-family: 'Lora', serif; font-size: 1.125rem; font-weight: 600;
+      color: var(--text-primary); margin: 2rem 0 0.625rem;
+    }
+    .article p { color: var(--text-secondary); margin-bottom: 1.1rem; transition: color 0.4s; }
+    .article a {
+      color: var(--terracotta); text-decoration: underline;
+      text-decoration-color: rgba(212,114,90,0.4); text-underline-offset: 3px;
+      transition: color 0.2s;
+    }
+    .article a:hover { color: var(--clay); }
+    .article ul, .article ol {
+      color: var(--text-secondary); padding-left: 1.5rem;
+      margin-bottom: 1.25rem; display: flex; flex-direction: column; gap: 0.4rem;
+    }
+    .article strong { color: var(--text-primary); font-weight: 600; }
+    .article em { color: var(--clay); font-style: italic; }
+
+    /* Callout */
+    .callout {
+      background: var(--surface); border-left: 3px solid var(--terracotta);
+      border-radius: 0 10px 10px 0; padding: 1.25rem 1.5rem;
+      margin: 1.75rem 0; transition: background 0.4s;
+    }
+    .callout.tip  { border-color: var(--moss); }
+    .callout.warn { border-color: #C4924A; }
+    .callout p { margin-bottom: 0; }
+    .callout-label {
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--terracotta);
+      margin-bottom: 0.5rem; display: block;
+    }
+    .callout.tip .callout-label  { color: var(--moss); }
+    .callout.warn .callout-label { color: #C4924A; }
+
+    /* Term cards */
+    .term-grid { display: grid; gap: 0.875rem; margin: 1.5rem 0 2rem; }
+    .term-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.1rem 1.35rem;
+      transition: background 0.4s, border-color 0.4s;
+    }
+    .term-card:hover { border-color: var(--border-hover); background: var(--surface-mid); }
+    .term-name { font-weight: 600; color: var(--text-primary); font-size: 0.9375rem; margin-bottom: 0.2rem; }
+    .term-def { font-size: 0.875rem; color: var(--text-secondary); line-height: 1.6; }
+
+    /* Steps */
+    .steps { display: flex; flex-direction: column; gap: 1.25rem; margin: 1.5rem 0 2rem; }
+    .step {
+      display: flex; gap: 1.25rem; align-items: flex-start;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.25rem;
+      transition: background 0.4s, border-color 0.4s;
+    }
+    .step-num {
+      font-family: 'Lora', serif; font-size: 1.5rem; font-weight: 700;
+      color: var(--terracotta); opacity: 0.35; line-height: 1;
+      flex-shrink: 0; min-width: 2rem;
+    }
+    .step-content h4 { font-size: 0.9375rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.3rem; }
+    .step-content p { font-size: 0.875rem; color: var(--text-secondary); margin: 0; }
+
+    /* Related */
+    .related { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+    .related-label {
+      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--terracotta);
+      margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;
+    }
+    .related-label::before { content: ''; display: block; width: 16px; height: 1px; background: var(--terracotta); opacity: 0.5; }
+    .related-links { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+    .related-link {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.5rem 1rem; background: var(--surface); border: 1px solid var(--border);
+      border-radius: 100px; font-size: 0.8125rem; color: var(--clay);
+      text-decoration: none; transition: background 0.25s, border-color 0.25s, color 0.25s, transform 0.25s;
+    }
+    .related-link:hover { background: var(--surface-mid); border-color: var(--border-hover); color: var(--text-primary); transform: translateY(-1px); }
+    .related-link::before { content: '→'; font-size: 0.75rem; color: var(--terracotta); }
+
+    /* Disclaimer */
+    .disclaimer-bar {
+      background: var(--surface); border-left: 2px solid var(--terracotta);
+      border-radius: 0 8px 8px 0; padding: 1rem 1.25rem;
+      font-size: 0.8rem; color: var(--text-dim); font-style: italic;
+      margin-top: 3rem; transition: background 0.4s;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--surface); border-top: 1px solid var(--border);
+      padding: 2.5rem; text-align: center; position: relative; z-index: 1;
+      transition: background 0.4s, border-color 0.4s;
+    }
+    .footer-logo {
+      font-family: 'Lora', serif; font-size: 1.25rem; font-weight: 600;
+      color: var(--text-primary); margin-bottom: 0.3rem; letter-spacing: -0.02em;
+    }
+    .footer-logo span { color: var(--terracotta); }
+    .footer-copy { font-size: 0.75rem; color: var(--text-dim); margin-top: 0.5rem; }
+
+    /* Fade-in */
+    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 1.25rem; }
+      .nav-links { display: none; }
+      .page-header { padding: 100px 1.25rem 2rem; }
+      .article { padding: 0 1.25rem 4rem; }
+      footer { padding: 2rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="../index.html">The <span>Map.</span></a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../index.html#topics">All Topics</a></li>
+      <li><a href="../index.html#mission">Mission</a></li>
+    </ul>
+    <a class="nav-back" href="../index.html">← Home</a>
+    <button class="search-btn" id="searchBtn" aria-label="Search">
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <span class="search-btn-label">Search</span>
+    </button>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+      <span class="toggle-icon" id="toggleIcon">☀️</span>
+      <span class="toggle-text" id="toggleText">Light mode</span>
+    </button>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="breadcrumb">Finance</div>
+  <h1>Financial Literacy Overview</h1>
+  <p class="lead">Managing money is a skill, not something you're born knowing. Once you understand the basics, a lot of the stress around finances starts to loosen its grip.</p>
+</div>
+
+<article class="article">
+
+  <h2>What Financial Literacy Actually Means</h2>
+  <p>Financial literacy is the ability to understand and make good decisions about money. It covers how you earn it, spend it, save it, protect it, and grow it over time. You don't need a finance degree to be financially literate. You just need a working understanding of a few core concepts and the habits to apply them.</p>
+  <p>The reason most people struggle with money isn't because they don't make enough of it. It's because nobody ever sat down and explained how it works.</p>
+
+  <h2>The Foundation: Income vs. Expenses</h2>
+  <p>Everything in personal finance starts with one simple equation:</p>
+  <div class="callout">
+    <span class="callout-label">The Core Equation</span>
+    <p><strong>What you keep = What you earn − What you spend.</strong> That's it. Every financial goal (saving, investing, getting out of debt) starts with widening that gap.</p>
+  </div>
+  <p>Before you can do anything meaningful with your money, you need to know two numbers: your average monthly income and your average monthly expenses. Most people have a rough idea of one and almost no idea about the other.</p>
+
+  <h2>Building a Safety Net First</h2>
+  <p>Once you get caught up in the swing of adult life, saving money might not come naturally. It's a lot to manage rent, utilities, and transportation, all while living a lifestyle that makes you reasonably happy, and still have anything left over. But with intention, it's usually more possible than it feels.</p>
+  <p>The place to start isn't investing or paying off debt. Start with an emergency fund. Unexpected things happen to everyone: a car repair, a medical bill, a gap between jobs. Without savings to absorb those hits, one bad week can set you back months.</p>
+
+  <div class="term-grid">
+    <div class="term-card">
+      <div class="term-name">Starting goal: $500–$1,000</div>
+      <div class="term-def">Enough to cover most minor emergencies without going into debt. This is your first target, even if you can only save $25 a week to get there.</div>
+    </div>
+    <div class="term-card">
+      <div class="term-name">Long-term goal: 3–6 months of expenses</div>
+      <div class="term-def">If you lost your income tomorrow, this is how long you could survive without panic. Calculate your monthly essential expenses and multiply by 3 to 6.</div>
+    </div>
+  </div>
+
+  <h2>Where to Go From Here</h2>
+  <p>Financial literacy builds in layers. You don't need to master everything at once. Just tackle things in the right order.</p>
+
+  <div class="steps">
+    <div class="step fade-in">
+      <div class="step-num">01</div>
+      <div class="step-content">
+        <h4>Know your numbers</h4>
+        <p>Track your income and expenses for one month. Your bank app or statements make this easy. You can't manage what you can't see.</p>
+      </div>
+    </div>
+    <div class="step fade-in">
+      <div class="step-num">02</div>
+      <div class="step-content">
+        <h4>Build a budget</h4>
+        <p>Once you know your numbers, set a plan for them. A budget doesn't restrict your life. It gives you permission to spend on what matters because you've already handled what doesn't.</p>
+      </div>
+    </div>
+    <div class="step fade-in">
+      <div class="step-num">03</div>
+      <div class="step-content">
+        <h4>Build your emergency fund</h4>
+        <p>Before anything else, save a basic safety net. Park it in a high-yield savings account where it earns a little interest while it waits.</p>
+      </div>
+    </div>
+    <div class="step fade-in">
+      <div class="step-num">04</div>
+      <div class="step-content">
+        <h4>Tackle debt strategically</h4>
+        <p>Not all debt is the same. High-interest debt (credit cards, payday loans) destroys wealth. Low-interest debt is less urgent. Know which is which.</p>
+      </div>
+    </div>
+    <div class="step fade-in">
+      <div class="step-num">05</div>
+      <div class="step-content">
+        <h4>Start investing, even a little</h4>
+        <p>Once your foundation is stable, money sitting idle is slowly losing value to inflation. Start with your employer's 401(k) match, then a Roth IRA.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2>A Resource Worth Knowing</h2>
+  <p>If you want to go deeper, one of the best free resources out there is <a href="https://www.youtube.com/@MoneyGuyShow" target="_blank" rel="noopener">The Money Guy Show</a> on YouTube. Two financial advisors who break down personal finance in plain, practical language without trying to sell you anything.</p>
+
+  <div class="disclaimer-bar">
+    <strong>Disclaimer:</strong> This page provides general financial information only, not professional financial advice. Always consult a qualified financial advisor before making major financial decisions.
+  </div>
+
+  <div class="related">
+    <div class="related-label">Keep reading</div>
+    <div class="related-links">
+      <a class="related-link" href="budgeting.html">Budgeting</a>
+      <a class="related-link" href="debt-management.html">Debt Management & Credit</a>
+      <a class="related-link" href="low-risk-investing.html">Low-Risk Investing</a>
+      <a class="related-link" href="health-insurance.html">Health Insurance 101</a>
+      <a class="related-link" href="roth-ira.html">Roth IRA & Retirement</a>
+    </div>
+  </div>
+
+</article>
+
+<footer>
+  <div class="footer-logo">The <span>Map.</span></div>
+  <div class="footer-copy">Free to use. Built with care. Not professional advice.</div>
+</footer>
+
+<script>
+  (function () {
+    var html   = document.documentElement;
+    var btn    = document.getElementById('themeToggle');
+    var icon   = document.getElementById('toggleIcon');
+    var text   = document.getElementById('toggleText');
+    var themes = {
+      dark:  { icon: '\u2600\uFE0F', label: 'Light mode', next: 'light' },
+      light: { icon: '\uD83C\uDF19', label: 'Dark mode',  next: 'dark'  }
+    };
+    function apply(t) {
+      html.setAttribute('data-theme', t);
+      try { localStorage.setItem('the-map-theme', t); } catch(e) {}
+      icon.textContent = themes[t].icon;
+      text.textContent = themes[t].label;
+    }
+    var saved = 'dark';
+    try { saved = localStorage.getItem('the-map-theme') || 'dark'; } catch(e) {}
+    apply(saved);
+    btn.addEventListener('click', function () {
+      apply(themes[html.getAttribute('data-theme')].next);
+    });
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e, i) {
+        if (e.isIntersecting) {
+          setTimeout(function() { e.target.classList.add('visible'); }, i * 70);
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(function(el) { obs.observe(el); });
+  })();
+</script>
+
+</body>
+</html>

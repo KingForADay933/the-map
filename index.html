@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Map — A Roadmap to Adulthood</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="search.css"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── Theme Tokens ── */
+    :root, [data-theme="dark"] {
+      --bg:             #1A1410;
+      --surface:        #221C16;
+      --surface-mid:    #2D241C;
+      --surface-hi:     #3A2E24;
+
+      --sand:           #C8AE82;
+      --clay:           #C49A6C;
+      --terracotta:     #D4725A;
+      --moss:           #7A9068;
+
+      --text-primary:   #EDE6D6;
+      --text-secondary: #A8957A;
+      --text-dim:       #6E5E4A;
+
+      --border:         rgba(200, 174, 130, 0.1);
+      --border-hover:   rgba(200, 174, 130, 0.28);
+
+      --hero-glow-a:    rgba(212, 114, 90, 0.12);
+      --hero-glow-b:    rgba(196, 154, 108, 0.08);
+      --hero-glow-c:    rgba(122, 144, 104, 0.08);
+      --card-hover-glow:rgba(212, 114, 90, 0.06);
+
+      --nav-bg:         rgba(26, 20, 16, 0.85);
+      --mission-bg:     var(--surface);
+      --btn-primary-hover: #E08060;
+      --btn-primary-shadow: rgba(212, 114, 90, 0.25);
+      --btn-primary-shadow-hover: rgba(212, 114, 90, 0.35);
+
+      --toggle-track:   #3A2E24;
+      --toggle-icon:    '☀️';
+      --toggle-label:   'Light mode';
+    }
+
+    [data-theme="light"] {
+      --bg:             #F7F2EA;
+      --surface:        #EDE6D6;
+      --surface-mid:    #F0EBE0;
+      --surface-hi:     #D4C4A0;
+
+      --sand:           #B5896A;
+      --clay:           #9A7250;
+      --terracotta:     #C4694A;
+      --moss:           #6B7C5C;
+
+      --text-primary:   #2A1F14;
+      --text-secondary: #5A4030;
+      --text-dim:       #9A8070;
+
+      --border:         rgba(181, 137, 106, 0.18);
+      --border-hover:   rgba(181, 137, 106, 0.4);
+
+      --hero-glow-a:    rgba(212, 164, 120, 0.35);
+      --hero-glow-b:    rgba(237, 230, 214, 0.5);
+      --hero-glow-c:    transparent;
+      --card-hover-glow:transparent;
+
+      --nav-bg:         rgba(247, 242, 234, 0.88);
+      --mission-bg:     #3D2E1E;
+      --btn-primary-hover: #A85038;
+      --btn-primary-shadow: rgba(196, 105, 74, 0.3);
+      --btn-primary-shadow-hover: rgba(61, 46, 30, 0.25);
+
+      --toggle-track:   #D4C4A0;
+      --toggle-icon:    '🌙';
+      --toggle-label:   'Dark mode';
+    }
+
+    /* ── Base ── */
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-primary);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      min-height: 100vh;
+      overflow-x: hidden;
+      transition: background-color 0.4s ease, color 0.4s ease;
+    }
+
+    /* Grain texture */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.055'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2.5rem;
+      height: 64px;
+      background: var(--nav-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.4s ease, border-color 0.4s ease;
+    }
+
+    .nav-logo {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+      transition: color 0.3s;
+    }
+    .nav-logo span { color: var(--terracotta); }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.25s;
+    }
+    .nav-links a:hover { color: var(--clay); }
+
+    /* ── Theme Toggle ── */
+    .theme-toggle {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: none;
+      border: 1.5px solid var(--border);
+      border-radius: 100px;
+      padding: 0.3rem 0.75rem 0.3rem 0.5rem;
+      cursor: pointer;
+      color: var(--text-secondary);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      transition: border-color 0.25s, color 0.25s, background 0.25s;
+      white-space: nowrap;
+    }
+    .theme-toggle:hover {
+      border-color: var(--clay);
+      color: var(--clay);
+      background: rgba(196, 154, 108, 0.06);
+    }
+
+    .toggle-icon {
+      font-size: 0.875rem;
+      line-height: 1;
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .theme-toggle:hover .toggle-icon { transform: rotate(20deg) scale(1.15); }
+
+    .toggle-text { display: none; }
+    @media (min-width: 640px) { .toggle-text { display: inline; } }
+
+    /* ── Hero ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 80px 2.5rem 0;
+      overflow: hidden;
+    }
+
+    /* Glow A — right orb */
+    .hero-glow-a {
+      position: absolute;
+      right: -80px; top: 50%;
+      transform: translateY(-50%);
+      width: 700px; height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 40% 40%,
+        var(--hero-glow-a) 0%,
+        var(--hero-glow-b) 35%,
+        transparent 65%);
+      pointer-events: none;
+      transition: background 0.6s ease;
+    }
+
+    /* Glow B — bottom-left ambient */
+    .hero-glow-b {
+      position: absolute;
+      left: -200px; bottom: -100px;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--hero-glow-c), transparent 60%);
+      pointer-events: none;
+      transition: background 0.6s ease;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.1s forwards;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 24px; height: 1px;
+      background: var(--terracotta);
+      opacity: 0.6;
+    }
+
+    .hero h1 {
+      font-family: 'Lora', Georgia, serif;
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--text-primary);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.2s forwards;
+      transition: color 0.4s ease;
+    }
+    .hero h1 em { font-style: italic; color: var(--terracotta); }
+
+    .hero-desc {
+      font-size: 1.125rem;
+      color: var(--text-secondary);
+      max-width: 520px;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.35s forwards;
+      line-height: 1.75;
+      transition: color 0.4s ease;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.5s forwards;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.875rem 1.75rem;
+      background: var(--terracotta);
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 4px 24px var(--btn-primary-shadow);
+    }
+    .btn-primary:hover {
+      background: var(--btn-primary-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px var(--btn-primary-shadow-hover);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.875rem 1.75rem;
+      background: transparent;
+      color: var(--sand);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      border-radius: 100px;
+      border: 1.5px solid var(--border-hover);
+      text-decoration: none;
+      transition: border-color 0.3s, color 0.3s, transform 0.3s, background 0.3s;
+    }
+    .btn-secondary:hover {
+      border-color: var(--clay);
+      color: var(--clay);
+      background: rgba(196, 154, 108, 0.06);
+      transform: translateY(-2px);
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2.5rem; left: 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      opacity: 0;
+      animation: fadeUp 0.7s 0.9s forwards;
+    }
+    .scroll-hint::before {
+      content: '';
+      display: block;
+      width: 1px; height: 40px;
+      background: linear-gradient(to bottom, transparent, var(--terracotta));
+      animation: scrollLine 2.5s 1.5s infinite;
+    }
+    @keyframes scrollLine {
+      0%, 100% { opacity: 0.3; transform: scaleY(1); }
+      50% { opacity: 0.8; transform: scaleY(0.6); }
+    }
+
+    /* ── Sections ── */
+    .section-wrap {
+      position: relative;
+      z-index: 1;
+      padding: 5rem 2.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 20px; height: 1px;
+      background: var(--terracotta);
+      opacity: 0.5;
+    }
+
+    .section-title {
+      font-family: 'Lora', Georgia, serif;
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+      transition: color 0.4s;
+    }
+
+    .section-sub {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      max-width: 560px;
+      margin-bottom: 3rem;
+      line-height: 1.7;
+      transition: color 0.4s;
+    }
+
+    /* ── Topic Cards ── */
+    .topics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .topic-card {
+      position: relative;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.75rem;
+      text-decoration: none;
+      color: inherit;
+      overflow: hidden;
+      transition:
+        transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        box-shadow 0.3s,
+        border-color 0.3s,
+        background 0.4s;
+    }
+
+    /* Inner glow on hover (dark only) */
+    .topic-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 12px;
+      background: radial-gradient(circle at 30% 20%, var(--card-hover-glow), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+
+    /* Bottom accent bar */
+    .topic-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(to right, var(--terracotta), var(--clay));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .topic-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+      border-color: var(--border-hover);
+      background: var(--surface-mid);
+    }
+    .topic-card:hover::before { transform: scaleX(1); }
+    .topic-card:hover::after  { opacity: 1; }
+
+    .topic-icon { font-size: 2rem; margin-bottom: 1rem; display: block; line-height: 1; }
+
+    .topic-title {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+      transition: color 0.4s;
+      position: relative; z-index: 1;
+    }
+
+    .topic-desc {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+      transition: color 0.4s;
+      position: relative; z-index: 1;
+    }
+
+    .topic-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      position: relative; z-index: 1;
+    }
+
+    .topic-link {
+      font-size: 0.8125rem;
+      color: var(--clay);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: color 0.25s, gap 0.25s;
+    }
+    .topic-link::before {
+      content: '→';
+      font-size: 0.75rem;
+      color: var(--terracotta);
+      opacity: 0.7;
+      transition: transform 0.25s, opacity 0.25s;
+      flex-shrink: 0;
+    }
+    .topic-link:hover { color: var(--text-primary); }
+    .topic-link:hover::before { transform: translateX(3px); opacity: 1; }
+
+    /* ── Divider ── */
+    .divider {
+      position: relative; z-index: 1;
+      width: 100%; height: 1px;
+      background: linear-gradient(to right, transparent, var(--surface-hi), transparent);
+    }
+
+    /* ── Mission Strip ── */
+    .mission-strip {
+      background: var(--mission-bg);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 5rem 2.5rem;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      transition: background 0.4s ease;
+    }
+    .mission-strip::before {
+      content: '';
+      position: absolute;
+      right: 0; top: 0; bottom: 0; width: 50%;
+      background: radial-gradient(ellipse at right center, rgba(212, 114, 90, 0.06), transparent 60%);
+      pointer-events: none;
+    }
+    .mission-strip-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      position: relative;
+    }
+    .mission-strip h2 {
+      font-family: 'Lora', Georgia, serif;
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    /* Light mode: mission strip is dark bark, so text flips */
+    [data-theme="light"] .mission-strip h2 { color: #EDE6D6; }
+    [data-theme="light"] .mission-strip p   { color: #C8AE82; }
+    [data-theme="dark"]  .mission-strip h2  { color: var(--text-primary); }
+    [data-theme="dark"]  .mission-strip p   { color: var(--text-secondary); }
+
+    .mission-strip h2 em { font-style: italic; color: var(--terracotta); }
+    .mission-strip p {
+      font-size: 0.9375rem;
+      line-height: 1.8;
+      margin-bottom: 1rem;
+      transition: color 0.4s;
+    }
+    .mission-strip p:last-child { margin-bottom: 0; }
+
+    /* ── Quick Start ── */
+    .quickstart {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+
+    .qs-card {
+      background: var(--surface);
+      border-radius: 12px;
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+      text-decoration: none;
+      color: var(--text-primary);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      transition:
+        background 0.3s,
+        border-color 0.3s,
+        transform 0.3s,
+        box-shadow 0.3s;
+    }
+    .qs-card:hover {
+      background: var(--surface-mid);
+      border-color: var(--border-hover);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+    }
+
+    .qs-number {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 2.25rem;
+      font-weight: 700;
+      color: var(--terracotta);
+      opacity: 0.25;
+      line-height: 1;
+    }
+
+    .qs-title {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      transition: color 0.4s;
+    }
+
+    .qs-desc {
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+      transition: color 0.4s;
+    }
+
+    /* ── Disclaimer ── */
+    .disclaimer {
+      background: var(--surface);
+      border-left: 2px solid var(--terracotta);
+      border-radius: 0 12px 12px 0;
+      padding: 1.25rem 1.5rem;
+      margin-top: 3rem;
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+      font-style: italic;
+      max-width: 700px;
+      transition: background 0.4s, color 0.4s;
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      color: var(--text-secondary);
+      padding: 3rem 2.5rem;
+      text-align: center;
+      position: relative; z-index: 1;
+      transition: background 0.4s, border-color 0.4s;
+    }
+    .footer-inner { max-width: 1100px; margin: 0 auto; }
+
+    .footer-logo {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.4rem;
+      letter-spacing: -0.02em;
+      transition: color 0.4s;
+    }
+    .footer-tagline {
+      font-size: 0.875rem;
+      color: var(--text-dim);
+      margin-bottom: 2rem;
+      transition: color 0.4s;
+    }
+    .footer-nav {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+      list-style: none;
+    }
+    .footer-nav a {
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.25s;
+    }
+    .footer-nav a:hover { color: var(--clay); }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      transition: color 0.4s;
+    }
+
+    /* ── Animations ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      nav { padding: 0 1.25rem; }
+      .nav-links { display: none; }
+      .hero { padding: 100px 1.25rem 2rem; min-height: 90vh; }
+      .hero-glow-a, .hero-glow-b { display: none; }
+      .section-wrap { padding: 3.5rem 1.25rem; }
+      .mission-strip { padding: 3.5rem 1.25rem; }
+      .mission-strip-inner { grid-template-columns: 1fr; gap: 2rem; }
+      footer { padding: 2.5rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <a class="nav-logo" href="index.html">The <span>Map.</span></a>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="#topics">Topics</a></li>
+        <li><a href="#mission">Mission</a></li>
+        <li><a href="#start">Where to Start</a></li>
+      </ul>
+      <button class="search-btn" id="searchBtn" aria-label="Search">
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <span class="search-btn-label">Search</span>
+    </button>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <span class="toggle-icon" id="toggleIcon">☀️</span>
+        <span class="toggle-text" id="toggleText">Light mode</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-glow-a"></div>
+    <div class="hero-glow-b"></div>
+    <div class="hero-inner">
+      <span class="hero-eyebrow">A Roadmap to Adulthood</span>
+      <h1>You weren't<br>given a <em>manual.</em><br>Here's one.</h1>
+      <p class="hero-desc">
+        The Map is a free, accessible guide to the things nobody taught you, from building a budget to filing your taxes, finding your first apartment to landing a job you actually want.
+      </p>
+      <div class="hero-cta">
+        <a href="#topics" class="btn-primary">Explore Topics</a>
+        <a href="#start" class="btn-secondary">Where do I start?</a>
+      </div>
+    </div>
+    <div class="scroll-hint">Scroll</div>
+  </div>
+
+  <!-- Topics -->
+  <div class="section-wrap" id="topics">
+    <p class="section-label">What's inside</p>
+    <h2 class="section-title">Every topic that matters.</h2>
+    <p class="section-sub">Four sections covering the core areas of adult life. Pick wherever you need help most.</p>
+
+    <div class="topics-grid">
+
+      <div class="topic-card fade-in">
+        <span class="topic-icon">💰</span>
+        <div class="topic-title">Finance</div>
+        <p class="topic-desc">Money is the foundation everything else rests on. Learn to manage it before it manages you.</p>
+        <div class="topic-links">
+          <a class="topic-link" href="finance/financial-literacy-overview.html">Financial Literacy Overview</a>
+          <a class="topic-link" href="finance/budgeting.html">Budgeting</a>
+          <a class="topic-link" href="finance/low-risk-investing.html">Low-Risk Investing</a>
+          <a class="topic-link" href="finance/filing-taxes.html">Filing Taxes</a>
+          <a class="topic-link" href="finance/debt-management.html">Debt Management & Credit</a>
+          <a class="topic-link" href="finance/roth-ira.html">Roth IRA & Retirement</a>
+          <a class="topic-link" href="finance/health-insurance.html">Health Insurance 101</a>
+          <a class="topic-link" href="finance/buying-a-car.html">Buying a Car</a>
+        </div>
+      </div>
+
+      <div class="topic-card fade-in">
+        <span class="topic-icon">💼</span>
+        <div class="topic-title">Career Development</div>
+        <p class="topic-desc">Getting a job, keeping it, growing in it, and making sure you're being paid what you're worth.</p>
+        <div class="topic-links">
+          <a class="topic-link" href="career/job-hunting.html">Job Hunting</a>
+          <a class="topic-link" href="career/resume.html">Building a Strong Resume</a>
+          <a class="topic-link" href="career/interview-skills.html">Interview Skills</a>
+          <a class="topic-link" href="career/networking.html">Networking & Professional Relationships</a>
+          <a class="topic-link" href="career/career-research.html">Career Research</a>
+          <a class="topic-link" href="career/salary-negotiation.html">Salary Negotiation & Job Offers</a>
+        </div>
+      </div>
+
+      <div class="topic-card fade-in">
+        <span class="topic-icon">📚</span>
+        <div class="topic-title">Learning</div>
+        <p class="topic-desc">How to get through school, study effectively, and keep learning long after graduation.</p>
+        <div class="topic-links">
+          <a class="topic-link" href="learning/college-journey.html">The College Journey</a>
+          <a class="topic-link" href="learning/continued-learning.html">Continued Learning</a>
+          <a class="topic-link" href="learning/effective-learning.html">Effective Learning Techniques</a>
+          <a class="topic-link" href="learning/test-taking.html">Test-Taking Strategies</a>
+          <a class="topic-link" href="learning/academic-ai.html">Academic AI Usage</a>
+        </div>
+      </div>
+
+      <div class="topic-card fade-in">
+        <span class="topic-icon">🏠</span>
+        <div class="topic-title">Life Skills</div>
+        <p class="topic-desc">The practical, day-to-day skills that make independent adult life actually work.</p>
+        <div class="topic-links">
+          <a class="topic-link" href="life/time-management.html">Time Management & Productivity</a>
+          <a class="topic-link" href="life/managing-emotions.html">Managing Emotions, Anxiety & Stress</a>
+          <a class="topic-link" href="life/cooking.html">Cooking 101</a>
+          <a class="topic-link" href="life/nutrition.html">Nutrition Basics</a>
+          <a class="topic-link" href="life/finding-housing.html">Finding a Place to Live</a>
+          <a class="topic-link" href="life/setting-up-your-place.html">Setting Up Your First Place</a>
+          <a class="topic-link" href="life/car-maintenance.html">Car Maintenance</a>
+          <a class="topic-link" href="life/learning-to-drive.html">Learning to Drive</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="disclaimer">
+      <strong>Disclaimer:</strong> This site provides general advice and information only. It is not a substitute for professional financial, legal, or medical guidance. Always consult qualified experts when making major decisions.
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Mission -->
+  <div class="mission-strip" id="mission">
+    <div class="mission-strip-inner">
+      <div>
+        <h2>Built for the people <em>nobody handed a map.</em></h2>
+      </div>
+      <div>
+        <p>The goal of this site is to provide a roadmap to adulthood for young people in our communities, an accessible resource of advice and objective information on the subjects that matter most.</p>
+        <p>Whether it's budgeting, job hunting, finding a place to live, or simply learning to cook a meal, this is the guide we all should have gotten but didn't.</p>
+        <p>All of it is free. All of it is written in plain language. None of it requires you to already know what you're doing.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Where to Start -->
+  <div class="section-wrap" id="start">
+    <p class="section-label">New here?</p>
+    <h2 class="section-title fade-in">Not sure where to begin?</h2>
+    <p class="section-sub fade-in">Here are four high-impact pages to start with, no matter where you are in life right now.</p>
+
+    <div class="quickstart">
+      <a class="qs-card fade-in" href="finance/budgeting.html">
+        <div class="qs-number">01</div>
+        <div class="qs-title">Budgeting</div>
+        <p class="qs-desc">Understand where your money actually goes and take control of it.</p>
+      </a>
+      <a class="qs-card fade-in" href="career/resume.html">
+        <div class="qs-number">02</div>
+        <div class="qs-title">Building a Resume</div>
+        <p class="qs-desc">Even with no experience, you have more to offer than you think.</p>
+      </a>
+      <a class="qs-card fade-in" href="finance/health-insurance.html">
+        <div class="qs-number">03</div>
+        <div class="qs-title">Health Insurance 101</div>
+        <p class="qs-desc">One of the most confusing parts of adulthood, decoded.</p>
+      </a>
+      <a class="qs-card fade-in" href="life/managing-emotions.html">
+        <div class="qs-number">04</div>
+        <div class="qs-title">Managing Stress & Anxiety</div>
+        <p class="qs-desc">The mental load of adulting is real. Here's how to carry it.</p>
+      </a>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">The Map.</div>
+      <div class="footer-tagline">A roadmap to adulthood, for everyone.</div>
+      <ul class="footer-nav">
+        <li><a href="#topics">Finance</a></li>
+        <li><a href="#topics">Career</a></li>
+        <li><a href="#topics">Learning</a></li>
+        <li><a href="#topics">Life Skills</a></li>
+        <li><a href="#mission">Mission</a></li>
+      </ul>
+      <p class="footer-copy">Free to use. Built with care. Not professional advice.</p>
+    </div>
+  </footer>
+
+  <div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Search">
+  <div class="search-modal">
+    <div class="search-input-row">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <input class="search-input" id="searchInput" type="search" placeholder="Search topics…" autocomplete="off" autocorrect="off" spellcheck="false"/>
+      <button class="search-close" id="searchClose" aria-label="Close search">Esc</button>
+    </div>
+    <div class="search-results" id="searchResults" role="listbox"></div>
+    <div class="search-footer" aria-hidden="true">
+      <span class="search-footer-hint"><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
+      <span class="search-footer-hint"><kbd>↵</kbd> open</span>
+      <span class="search-footer-hint"><kbd>Esc</kbd> close</span>
+    </div>
+  </div>
+</div>
+<script src="search-index.js"></script>
+  <script src="shared.js"></script>
+
+</body>
+</html>

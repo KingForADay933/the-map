@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Health Insurance 101 — The Map</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../shared.css"/>
+  <link rel="stylesheet" href="../search.css"/>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="../index.html">The <span>Map.</span></a>
+  <div class="nav-right">
+    <ul class="nav-links"><li><a href="../index.html#topics">All Topics</a></li><li><a href="../index.html#mission">Mission</a></li></ul>
+    <a class="nav-back" href="../index.html">← Home</a>
+    <button class="search-btn" id="searchBtn" aria-label="Search">
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <span class="search-btn-label">Search</span>
+    </button>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><span class="toggle-icon" id="toggleIcon">☀️</span><span class="toggle-text" id="toggleText">Light mode</span></button>
+  </div>
+</nav>
+<div class="page-header">
+  <div class="breadcrumb">Finance</div>
+  <h1>Health Insurance 101</h1>
+  <p class="lead">Health insurance is one of the most confusing parts of adult life, and one of the most important. A single ER visit without coverage can cost thousands. Here's how it actually works.</p>
+</div>
+<article class="article">
+
+  <h2>Why It Matters</h2>
+  <p>Most people don't think about health insurance until they need it. By then, it's too late to avoid a massive bill. Even if you're young and healthy, unexpected things happen: a broken bone, appendicitis, a car accident. Insurance protects you from those costs spiraling into debt that follows you for years.</p>
+  <p>Beyond emergencies, insurance makes routine care (checkups, prescriptions, mental health) affordable, which helps you stay healthy and catch problems early.</p>
+
+  <h2>Key Terms Decoded</h2>
+  <div class="term-grid">
+    <div class="term-card"><div class="term-name">Premium</div><div class="term-def">Your monthly payment for coverage, whether you use it or not. Think of it like a subscription fee for access to the insurance.</div></div>
+    <div class="term-card"><div class="term-name">Deductible</div><div class="term-def">The amount you pay out of pocket each year before insurance starts covering costs. A $1,500 deductible means you pay the first $1,500 of medical bills yourself.</div></div>
+    <div class="term-card"><div class="term-name">Copay</div><div class="term-def">A fixed fee for a specific service, like $25 every time you see your doctor, regardless of what the visit actually costs.</div></div>
+    <div class="term-card"><div class="term-name">Coinsurance</div><div class="term-def">After your deductible, you and insurance share costs. At 20% coinsurance, you pay 20% of the bill and insurance pays 80%.</div></div>
+    <div class="term-card"><div class="term-name">Out-of-Pocket Maximum</div><div class="term-def">The most you'll ever pay in a year. Once you hit this number, insurance covers 100% of everything else. This is your financial safety net.</div></div>
+    <div class="term-card"><div class="term-name">In-Network vs. Out-of-Network</div><div class="term-def">In-network providers have negotiated rates with your insurer, so you pay less. Out-of-network haven't, so costs are higher and may not be covered at all.</div></div>
+  </div>
+
+  <h2>Plan Types</h2>
+  <h3>HMO — Health Maintenance Organization</h3>
+  <p>Requires a primary care physician (PCP) who coordinates all your care. You need referrals to see specialists, and care must be in-network except for emergencies. Generally lower premiums and out-of-pocket costs, less flexibility.</p>
+  <p><em>Best for:</em> People who want lower costs and don't mind having one doctor manage their care.</p>
+  <h3>PPO — Preferred Provider Organization</h3>
+  <p>More flexibility: you can see any doctor without a referral and can go out-of-network (at higher cost). Generally higher premiums. More freedom to choose providers.</p>
+  <p><em>Best for:</em> People who want to keep existing doctors or see specialists directly.</p>
+  <h3>HDHP — High-Deductible Health Plan</h3>
+  <p>Higher deductible, lower monthly premium. Often paired with a Health Savings Account (HSA), a tax-free account you can use for medical expenses now or invest for the future.</p>
+  <p><em>Best for:</em> Generally healthy people who want lower monthly costs and the ability to build an HSA.</p>
+
+  <h2>How to Get Covered</h2>
+  <div class="steps">
+    <div class="step fade-in"><div class="step-num">01</div><div class="step-content"><h4>Through an employer</h4><p>The most common route. Your employer covers part of the premium; you pay the rest through your paycheck. Enroll within your new hire window (usually 30 days). Don't miss it.</p></div></div>
+    <div class="step fade-in"><div class="step-num">02</div><div class="step-content"><h4>Stay on a parent's plan (until 26)</h4><p>Under the ACA, you can stay on a parent's plan until you turn 26 regardless of where you live or whether you're in school. Often the easiest and cheapest option if available.</p></div></div>
+    <div class="step fade-in"><div class="step-num">03</div><div class="step-content"><h4>Healthcare.gov Marketplace</h4><p>If you're uninsured, shop at <a href="https://healthcare.gov" target="_blank" rel="noopener">Healthcare.gov</a>. Depending on your income, you may qualify for subsidies that significantly reduce your premium. Open enrollment runs November 1 – January 15 each year.</p></div></div>
+    <div class="step fade-in"><div class="step-num">04</div><div class="step-content"><h4>Medicaid</h4><p>If your income is below a certain threshold, you may qualify for free or very low-cost coverage through Medicaid. Eligibility varies by state. Check your state's Medicaid site or Healthcare.gov.</p></div></div>
+  </div>
+
+  <h2>How to Compare Plans (Don't Just Pick the Cheapest Premium)</h2>
+  <p>The lowest monthly premium often isn't the best deal. Here's how to compare properly:</p>
+  <ul>
+    <li><strong>Estimate your total annual cost:</strong> annual premium + expected out-of-pocket spending</li>
+    <li><strong>Check your doctors are in-network</strong> before enrolling</li>
+    <li><strong>Look at the out-of-pocket maximum</strong>, your worst-case number</li>
+    <li><strong>Check prescription coverage</strong> if you take regular medication</li>
+  </ul>
+
+  <div class="callout tip"><span class="callout-label">Good to know</span><p>Preventive care (annual physicals, recommended screenings, vaccinations) is typically covered at 100% with no copay under ACA-compliant plans. Use it.</p></div>
+
+  <div class="disclaimer-bar"><strong>Disclaimer:</strong> Health insurance rules and options vary by state and change annually. Verify current options at Healthcare.gov or with a licensed insurance broker.</div>
+  <div class="related"><div class="related-label">Keep reading</div><div class="related-links">
+    <a class="related-link" href="financial-literacy-overview.html">Financial Literacy Overview</a>
+    <a class="related-link" href="budgeting.html">Budgeting</a>
+  </div></div>
+</article>
+<footer><div class="footer-logo">The <span>Map.</span></div><div class="footer-copy">Free to use. Built with care. Not professional advice.</div></footer>
+<div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Search">
+  <div class="search-modal">
+    <div class="search-input-row">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <input class="search-input" id="searchInput" type="search" placeholder="Search topics…" autocomplete="off" autocorrect="off" spellcheck="false"/>
+      <button class="search-close" id="searchClose" aria-label="Close search">Esc</button>
+    </div>
+    <div class="search-results" id="searchResults" role="listbox"></div>
+    <div class="search-footer" aria-hidden="true">
+      <span class="search-footer-hint"><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
+      <span class="search-footer-hint"><kbd>↵</kbd> open</span>
+      <span class="search-footer-hint"><kbd>Esc</kbd> close</span>
+    </div>
+  </div>
+</div>
+<script src="../search-index.js"></script>
+<script src="../shared.js"></script>
+</body></html>

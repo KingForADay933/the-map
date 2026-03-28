@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Academic AI Usage — The Map</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../shared.css"/>
+  <link rel="stylesheet" href="../search.css"/>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="../index.html">The <span>Map.</span></a>
+  <div class="nav-right">
+    <ul class="nav-links"><li><a href="../index.html#topics">All Topics</a></li><li><a href="../index.html#mission">Mission</a></li></ul>
+    <a class="nav-back" href="../index.html">← Home</a>
+    <button class="search-btn" id="searchBtn" aria-label="Search">
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <span class="search-btn-label">Search</span>
+    </button>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><span class="toggle-icon" id="toggleIcon">☀️</span><span class="toggle-text" id="toggleText">Light mode</span></button>
+  </div>
+</nav>
+<div class="page-header">
+  <div class="breadcrumb">Learning</div>
+  <h1>Academic AI Usage</h1>
+  <p class="lead">Generative AI is real, it's not going away, and academic institutions are still figuring out how to handle it. Here's a grounded take on how to use it without hurting yourself in the process.</p>
+</div>
+<article class="article">
+
+  <h2>The Honest Starting Point</h2>
+  <p>This page isn't going to take a stance on whether AI usage in school is ethical, smart, or a good idea in general. That's a genuinely complex conversation with reasonable people on all sides, and it's one you'll need to work out for yourself based on your values and your institution's policies.</p>
+  <p>What this page will say clearly: it's always better for 100% of the effort on an academic assignment to come from you. That's what the assignment is for. The world is changing, schools are adapting, but that doesn't remove your responsibility to show up with your own work.</p>
+
+  <h2>The Core Principle: Enhance, Don't Replace</h2>
+  <p>The most useful way to think about AI as a student is this: AI should enhance your ability to learn and work. It should not replace your work.</p>
+  <p>It's tempting to let a tool do the heavy lifting. But when you outsource the thinking to AI, you also outsource the learning. And you're there to learn, not just to produce an output that looks like learning happened.</p>
+
+  <div class="callout">
+    <span class="callout-label">A useful test</span>
+    <p>If it would be ethical to get help from another person on this task, it's probably ethical to get that kind of help from AI. That standard will never include submitting a single unedited word of AI-generated output as your own work.</p>
+  </div>
+
+  <h2>Ways AI Can Legitimately Help You Learn</h2>
+  <ul>
+    <li><strong>Brainstorming angles for a paper.</strong> Ask AI to suggest different approaches to your topic, then develop one of your own in your own voice.</li>
+    <li><strong>Explaining concepts differently.</strong> If a textbook explanation isn't clicking, ask an AI to explain it another way or give you an analogy. Then close the chat and make sure you can explain it back in your own words.</li>
+    <li><strong>Generating practice problems.</strong> AI can create custom quizzes, practice scenarios, or sample questions to test your understanding of a subject.</li>
+    <li><strong>Reviewing for clarity.</strong> Getting feedback on whether your writing is clear and readable (not having AI rewrite it for you) is a reasonable use.</li>
+    <li><strong>Researching starting points.</strong> AI can point you toward topics and sources worth investigating, but those sources still require human review and verification before you cite them.</li>
+  </ul>
+
+  <h2>What to Avoid</h2>
+  <ul>
+    <li>Submitting AI-generated text as your own work, in any amount</li>
+    <li>Using AI to complete take-home tests or assignments explicitly designated as individual work</li>
+    <li>Citing AI-generated sources (AI can hallucinate citations that don't exist)</li>
+    <li>Using AI in ways your institution explicitly prohibits. Know your school's policy.</li>
+  </ul>
+
+  <h2>Know Your School's Policy</h2>
+  <p>AI policies vary enormously from school to school and even professor to professor. Some instructors welcome it for certain tasks. Others prohibit any use. Some require disclosure. The only way to know is to read the syllabus carefully and ask directly if something is unclear.</p>
+  <p>Assuming it's allowed when you haven't confirmed it is a risk not worth taking. The consequences for academic dishonesty can follow you far beyond the class.</p>
+
+  <div class="callout tip">
+    <span class="callout-label">The long view</span>
+    <p>The skills you build by doing the hard work yourself (writing, analyzing, arguing, synthesizing information) are the skills that will serve you for the rest of your life. AI can assist those skills. It can't build them for you.</p>
+  </div>
+
+  <div class="related"><div class="related-label">Keep reading</div><div class="related-links">
+    <a class="related-link" href="effective-learning.html">Effective Learning Techniques</a>
+    <a class="related-link" href="continued-learning.html">Continued Learning</a>
+    <a class="related-link" href="test-taking.html">Test-Taking Strategies</a>
+  </div></div>
+
+</article>
+<footer><div class="footer-logo">The <span>Map.</span></div><div class="footer-copy">Free to use. Built with care. Not professional advice.</div></footer>
+<div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Search">
+  <div class="search-modal">
+    <div class="search-input-row">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <input class="search-input" id="searchInput" type="search" placeholder="Search topics…" autocomplete="off" autocorrect="off" spellcheck="false"/>
+      <button class="search-close" id="searchClose" aria-label="Close search">Esc</button>
+    </div>
+    <div class="search-results" id="searchResults" role="listbox"></div>
+    <div class="search-footer" aria-hidden="true">
+      <span class="search-footer-hint"><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
+      <span class="search-footer-hint"><kbd>↵</kbd> open</span>
+      <span class="search-footer-hint"><kbd>Esc</kbd> close</span>
+    </div>
+  </div>
+</div>
+<script src="../search-index.js"></script>
+<script src="../shared.js"></script>
+</body></html>
