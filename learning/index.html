@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Learning — The Map</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../../shared.css"/>
+  <link rel="stylesheet" href="../../search.css"/>
+  <style>
+    .section-hero { padding: 120px 2.5rem 4rem; max-width: 780px; margin: 0 auto; }
+    .section-hero .breadcrumb {
+      font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--terracotta); margin-bottom: 1.25rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .section-hero .breadcrumb::before { content: ''; display: block; width: 18px; height: 1px; background: var(--terracotta); opacity: 0.5; }
+    .section-hero .breadcrumb a { color: var(--terracotta); text-decoration: none; }
+    .section-hero .breadcrumb a:hover { color: var(--clay); }
+    .section-icon { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
+    .section-hero h1 { font-family: 'Lora', serif; font-size: clamp(2.25rem, 5vw, 3.5rem); font-weight: 700; line-height: 1.1; letter-spacing: -0.03em; color: var(--text-primary); margin-bottom: 1.25rem; }
+    .section-hero .lead { font-size: 1.125rem; color: var(--text-secondary); line-height: 1.75; max-width: 620px; }
+    .guides-wrap { max-width: 780px; margin: 0 auto; padding: 0 2.5rem 6rem; }
+    .guides-label { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--terracotta); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.6rem; }
+    .guides-label::before { content: ''; display: block; width: 20px; height: 1px; background: var(--terracotta); opacity: 0.5; }
+    .guides-grid { display: flex; flex-direction: column; gap: 0.75rem; }
+    .guide-card { display: flex; align-items: flex-start; gap: 1.25rem; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.375rem 1.5rem; text-decoration: none; transition: background 0.2s, border-color 0.2s, transform 0.25s cubic-bezier(0.25,0.46,0.45,0.94); }
+    .guide-card:hover { background: var(--surface-mid); border-color: var(--border-hover); transform: translateX(4px); }
+    .guide-arrow { font-size: 0.875rem; color: var(--terracotta); flex-shrink: 0; margin-top: 0.25rem; transition: transform 0.2s; }
+    .guide-card:hover .guide-arrow { transform: translateX(3px); }
+    .guide-info { flex: 1; }
+    .guide-title { font-family: 'Lora', serif; font-size: 1.0625rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.3rem; letter-spacing: -0.01em; transition: color 0.2s; }
+    .guide-card:hover .guide-title { color: var(--clay); }
+    .guide-desc { font-size: 0.875rem; color: var(--text-secondary); line-height: 1.55; }
+    @media (max-width: 768px) { .section-hero { padding: 100px 1.25rem 2.5rem; } .guides-wrap { padding: 0 1.25rem 4rem; } }
+  </style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="../../index.html">The <span>Map.</span></a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../../index.html#topics">All Topics</a></li>
+      <li><a href="../../index.html#mission">Mission</a></li>
+    </ul>
+    <a class="nav-back" href="../../index.html">← Home</a>
+    <button class="search-btn" id="searchBtn" aria-label="Search">
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <span class="search-btn-label">Search</span>
+    </button>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+      <span class="toggle-icon" id="toggleIcon">☀️</span>
+      <span class="toggle-text" id="toggleText">Light mode</span>
+    </button>
+  </div>
+</nav>
+
+<div class="section-hero">
+  <div class="breadcrumb"><a href="../../index.html">The Map</a> / Learning</div>
+  <span class="section-icon">📚</span>
+  <h1>Learning</h1>
+  <p class="lead">How to get through school, study effectively, and keep learning long after graduation. Because the most valuable skill isn't any subject — it's knowing how to learn.</p>
+</div>
+
+<div class="guides-wrap">
+  <p class="guides-label">5 guides</p>
+  <div class="guides-grid">
+
+    <a class="guide-card fade-in" href="college-journey.html">
+      <span class="guide-arrow">→</span>
+      <div class="guide-info">
+        <div class="guide-title">The College Journey</div>
+        <p class="guide-desc">Whether you're heading to a four-year university, community college, or trade school — here's how to navigate it without losing your mind or your savings.</p>
+      </div>
+    </a>
+
+    <a class="guide-card fade-in" href="effective-learning.html">
+      <span class="guide-arrow">→</span>
+      <div class="guide-info">
+        <div class="guide-title">Effective Learning Techniques</div>
+        <p class="guide-desc">Most people were never taught how to study. Here's what actually works, based on how memory and retention really function.</p>
+      </div>
+    </a>
+
+    <a class="guide-card fade-in" href="test-taking.html">
+      <span class="guide-arrow">→</span>
+      <div class="guide-info">
+        <div class="guide-title">Test-Taking Strategies</div>
+        <p class="guide-desc">There's a real difference between knowing the material and performing well on a test. These strategies help close that gap.</p>
+      </div>
+    </a>
+
+    <a class="guide-card fade-in" href="continued-learning.html">
+      <span class="guide-arrow">→</span>
+      <div class="guide-info">
+        <div class="guide-title">Continued Learning</div>
+        <p class="guide-desc">School ending doesn't mean learning stops. The people who keep growing after graduation are the ones who stay curious and know where to look.</p>
+      </div>
+    </a>
+
+    <a class="guide-card fade-in" href="academic-ai.html">
+      <span class="guide-arrow">→</span>
+      <div class="guide-info">
+        <div class="guide-title">Academic AI Usage</div>
+        <p class="guide-desc">Generative AI is real, it's not going away, and institutions are still figuring out how to handle it. Here's a grounded take on using it wisely.</p>
+      </div>
+    </a>
+
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">The <span>Map.</span></div>
+  <div class="footer-copy">Free to use. Built with care. Not professional advice.</div>
+</footer>
+
+<div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Search">
+  <div class="search-modal">
+    <div class="search-input-row">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <input class="search-input" id="searchInput" type="search" placeholder="Search topics…" autocomplete="off" autocorrect="off" spellcheck="false"/>
+      <button class="search-close" id="searchClose" aria-label="Close search">Esc</button>
+    </div>
+    <div class="search-results" id="searchResults" role="listbox"></div>
+    <div class="search-footer" aria-hidden="true">
+      <span class="search-footer-hint"><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
+      <span class="search-footer-hint"><kbd>↵</kbd> open</span>
+      <span class="search-footer-hint"><kbd>Esc</kbd> close</span>
+    </div>
+  </div>
+</div>
+<script src="../../search-index.js"></script>
+<script src="../../shared.js"></script>
+</body>
+</html>
