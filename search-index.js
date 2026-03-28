@@ -65,7 +65,27 @@ const SEARCH_INDEX = [
     keywords: "salary negotiation offer letter compensation benefits PTO raise counter offer market rate"
   },
   {
-    title: "Job Hunting",
+    title: "Auto Insurance",
+    section: "Finance",
+    path: "finance/auto-insurance.html",
+    desc: "Auto insurance is legally required in almost every state. The difference between a good policy and a bad one can mean thousands of dollars out of pocket after an accident.",
+    keywords: "auto insurance car liability collision comprehensive deductible premium uninsured coverage rate quote"
+  },
+  {
+    title: "Renter's Insurance",
+    section: "Finance",
+    path: "finance/renters-insurance.html",
+    desc: "Most renters don't have it. Most who've experienced a break-in, fire, or flood wish they had. It costs less than most people spend on coffee each month.",
+    keywords: "renters insurance apartment belongings theft fire liability personal property replacement cost Lemonade"
+  },
+  {
+    title: "Credit Cards 101",
+    section: "Finance",
+    path: "finance/credit-cards.html",
+    desc: "A credit card used well builds your credit, earns rewards, and costs you nothing. Used poorly, it's a debt trap. The difference comes down to one habit.",
+    keywords: "credit card APR interest balance rewards cashback utilization debt secured student first card"
+  },
+
     section: "Career",
     path: "career/job-hunting.html",
     desc: "Finding a job takes more than sending out applications and hoping for the best. A little strategy goes a long way, especially early in your career.",
@@ -100,7 +120,13 @@ const SEARCH_INDEX = [
     keywords: "career research job shadowing informational interview industries fields salary outlook BLS O*NET"
   },
   {
-    title: "The College Journey",
+    title: "Choosing a Major or Trade",
+    section: "Learning",
+    path: "learning/choosing-a-major.html",
+    desc: "Most people make one of the biggest decisions of their life with almost no information. Here's how to actually research your options before committing.",
+    keywords: "major trade career path college degree apprenticeship vocational YouTube research BLS job market passion"
+  },
+
     section: "Learning",
     path: "learning/college-journey.html",
     desc: "Whether you're heading to a four-year university, community college, or trade school, higher education is a major shift. Here's how to navigate it.",
