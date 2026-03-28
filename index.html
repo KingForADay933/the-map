@@ -413,15 +413,16 @@
     .hero-stats {
       position: absolute;
       bottom: 3.5rem;
-      left: 50%;
-      transform: translateX(-50%);
+      left: 0;
+      right: 0;
       display: flex;
+      justify-content: center;
       align-items: center;
-      gap: 0;
       z-index: 2;
       opacity: 0;
       animation: fadeUp 0.7s 0.75s forwards;
       white-space: nowrap;
+      pointer-events: none;
     }
     .hero-stat {
       display: flex;
