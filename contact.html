@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact — The Map</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="shared.css"/>
+  <link rel="stylesheet" href="search.css"/>
+  <style>
+    .contact-wrap {
+      max-width: 580px;
+      margin: 0 auto;
+      padding: 0 2.5rem 6rem;
+    }
+
+    /* ── Form ── */
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      margin-top: 0.5rem;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .field label {
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      letter-spacing: 0.03em;
+      transition: color 0.4s;
+    }
+
+    .field input,
+    .field textarea,
+    .field select {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9375rem;
+      color: var(--text-primary);
+      width: 100%;
+      transition: border-color 0.25s, background 0.25s, color 0.4s;
+      outline: none;
+      -webkit-appearance: none;
+    }
+
+    .field input::placeholder,
+    .field textarea::placeholder {
+      color: var(--text-dim);
+    }
+
+    .field input:focus,
+    .field textarea:focus,
+    .field select:focus {
+      border-color: var(--clay);
+      background: var(--surface-mid);
+    }
+
+    .field textarea {
+      resize: vertical;
+      min-height: 140px;
+      line-height: 1.6;
+    }
+
+    .field select option {
+      background: var(--surface-mid);
+      color: var(--text-primary);
+    }
+
+    /* Submit button */
+    .submit-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background: var(--terracotta);
+      color: #fff;
+      border: none;
+      border-radius: 100px;
+      padding: 0.75rem 2rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+      align-self: flex-start;
+      letter-spacing: 0.01em;
+    }
+    .submit-btn:hover {
+      background: var(--btn-hover-bg);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px var(--btn-shadow);
+    }
+    .submit-btn:active { transform: translateY(0); }
+    .submit-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Success / error states */
+    .form-feedback {
+      display: none;
+      padding: 1rem 1.25rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+    .form-feedback.success {
+      background: rgba(122,144,104,0.12);
+      border: 1px solid rgba(122,144,104,0.3);
+      color: var(--moss);
+    }
+    .form-feedback.error {
+      background: rgba(212,114,90,0.1);
+      border: 1px solid rgba(212,114,90,0.3);
+      color: var(--terracotta);
+    }
+    .form-feedback.visible { display: block; }
+
+    /* Info aside */
+    .contact-aside {
+      margin-top: 3rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .contact-aside p {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 0.75rem;
+      transition: color 0.4s;
+    }
+    .contact-aside p:last-child { margin-bottom: 0; }
+
+    @media (max-width: 768px) {
+      .contact-wrap { padding: 0 1.25rem 4rem; }
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="index.html">The <span>Map.</span></a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="index.html#topics">All Topics</a></li>
+      <li><a href="index.html#mission">Mission</a></li>
+    </ul>
+    <a class="nav-back" href="index.html">← Home</a>
+    <button class="search-btn" id="searchBtn" aria-label="Search">
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <span class="search-btn-label">Search</span>
+    </button>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><span class="toggle-icon" id="toggleIcon">☀️</span><span class="toggle-text" id="toggleText">Light mode</span></button>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="breadcrumb">Get in touch</div>
+  <h1>Contact</h1>
+  <p class="lead">Questions, corrections, suggestions, or just want to say the site helped — we'd like to hear it. We read everything.</p>
+</div>
+
+<div class="contact-wrap">
+
+  <form class="contact-form" id="contactForm" novalidate>
+
+    <!-- Web3Forms access key — replace YOUR_ACCESS_KEY_HERE with your key from web3forms.com -->
+    <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE"/>
+    <input type="hidden" name="subject" value="Message from The Map"/>
+    <input type="hidden" name="from_name" value="The Map Contact Form"/>
+    <!-- Honeypot spam field -->
+    <input type="checkbox" name="botcheck" style="display:none"/>
+
+    <div class="field">
+      <label for="name">Your name</label>
+      <input type="text" id="name" name="name" placeholder="First name is fine" required autocomplete="name"/>
+    </div>
+
+    <div class="field">
+      <label for="email">Your email</label>
+      <input type="email" id="email" name="email" placeholder="So we can write back" required autocomplete="email"/>
+    </div>
+
+    <div class="field">
+      <label for="reason">What's this about?</label>
+      <select id="reason" name="reason">
+        <option value="" disabled selected>Select one</option>
+        <option value="General feedback">General feedback</option>
+        <option value="Correction or error">Correction or error on a page</option>
+        <option value="Topic suggestion">Suggest a topic</option>
+        <option value="Something helped">Something helped me</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="message">Message</label>
+      <textarea id="message" name="message" placeholder="Whatever's on your mind" required></textarea>
+    </div>
+
+    <div class="form-feedback" id="formFeedback"></div>
+
+    <button type="submit" class="submit-btn" id="submitBtn">
+      Send message
+    </button>
+
+  </form>
+
+  <div class="contact-aside">
+    <p>This site is a personal project, not a company. We aim to respond within a few days, though we can't guarantee a reply to every message.</p>
+    <p>If you spotted a factual error or outdated information on a page, please include the page name and the specific issue — those reports are especially useful.</p>
+    <p>The Map is and will always be free. No ads, no spam, no agenda.</p>
+  </div>
+
+</div>
+
+<footer><div class="footer-logo">The <span>Map.</span></div><div class="footer-copy">Free to use. Built with care. Not professional advice.</div></footer>
+
+<div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Search">
+  <div class="search-modal">
+    <div class="search-input-row">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <input class="search-input" id="searchInput" type="search" placeholder="Search topics…" autocomplete="off" autocorrect="off" spellcheck="false"/>
+      <button class="search-close" id="searchClose" aria-label="Close search">Esc</button>
+    </div>
+    <div class="search-results" id="searchResults" role="listbox"></div>
+    <div class="search-footer" aria-hidden="true">
+      <span class="search-footer-hint"><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
+      <span class="search-footer-hint"><kbd>↵</kbd> open</span>
+      <span class="search-footer-hint"><kbd>Esc</kbd> close</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.getElementById('contactForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const form = this;
+    const btn = document.getElementById('submitBtn');
+    const feedback = document.getElementById('formFeedback');
+
+    // Basic client-side validation
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    const message = form.message.value.trim();
+
+    if (!name || !email || !message) {
+      feedback.className = 'form-feedback error visible';
+      feedback.textContent = 'Please fill in your name, email, and message before sending.';
+      return;
+    }
+
+    // Disable button and show sending state
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    feedback.className = 'form-feedback';
+
+    try {
+      const data = Object.fromEntries(new FormData(form));
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        feedback.className = 'form-feedback success visible';
+        feedback.textContent = 'Message sent. Thank you for reaching out.';
+        form.reset();
+        // Reset select to placeholder
+        document.getElementById('reason').selectedIndex = 0;
+      } else {
+        throw new Error(result.message || 'Submission failed');
+      }
+    } catch (err) {
+      feedback.className = 'form-feedback error visible';
+      feedback.textContent = 'Something went wrong. Please try again, or email us directly.';
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Send message';
+    }
+  });
+</script>
+
+<script src="search-index.js"></script>
+<script src="shared.js"></script>
+</body>
+</html>
