@@ -2,7 +2,13 @@
 // One entry per page. Add new pages here as the site grows.
 const SEARCH_INDEX = [
   {
-    title: "Financial Literacy Overview",
+    title: "Glossary",
+    section: "Reference",
+    path: "glossary.html",
+    desc: "Plain-language definitions for the terms that come up most across finance, career, and adult life.",
+    keywords: "glossary terms definitions APR deductible FICO credit score W-2 Roth IRA 401k premium coinsurance ETF index fund FAFSA COBRA"
+  },
+
     section: "Finance",
     path: "finance/financial-literacy-overview.html",
     desc: "Managing money is a skill, not something you're born knowing. Once you understand the basics, a lot of the stress around finances starts to loosen its grip.",
@@ -176,7 +182,20 @@ const SEARCH_INDEX = [
     keywords: "apartment setup utilities electricity internet renter's insurance mail address roommates move-in"
   },
   {
-    title: "Car Maintenance",
+    title: "Laundry & Clothing Care",
+    section: "Life Skills",
+    path: "life/laundry.html",
+    desc: "How to sort, wash, and dry clothes without ruining them. Care label symbols, stain removal, and clothing care habits.",
+    keywords: "laundry washing drying clothes stains care label sorting detergent ironing shrinking fabric delicates"
+  },
+  {
+    title: "Digital Safety",
+    section: "Life Skills",
+    path: "life/digital-safety.html",
+    desc: "Passwords, two-factor authentication, recognizing scams, protecting personal information, and keeping accounts secure.",
+    keywords: "digital safety passwords two-factor authentication 2FA phishing scams identity theft credit freeze security online privacy"
+  },
+
     section: "Life Skills",
     path: "life/car-maintenance.html",
     desc: "Owning a car means more than paying for it. Regular maintenance prevents breakdowns, extends the vehicle's life, and saves significant money.",
