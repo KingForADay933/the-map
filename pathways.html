@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pathways — The Map</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="shared.css"/>
+  <link rel="stylesheet" href="search.css"/>
+  <style>
+    /* ── Page layout ── */
+    .pathways-wrap {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 2.5rem 6rem;
+    }
+
+    /* ── Pathway card ── */
+    .pathway {
+      margin-bottom: 4rem;
+      padding-bottom: 4rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .pathway:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+
+    .pathway-header {
+      margin-bottom: 2rem;
+    }
+    .pathway-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.875rem;
+    }
+    .pathway-eyebrow::before {
+      content: '';
+      display: block;
+      width: 18px; height: 1px;
+      background: var(--terracotta);
+      opacity: 0.5;
+    }
+    .pathway-title {
+      font-family: 'Lora', Georgia, serif;
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      margin-bottom: 0.625rem;
+      line-height: 1.2;
+      transition: color 0.4s;
+    }
+    .pathway-desc {
+      font-size: 0.9375rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      max-width: 580px;
+      transition: color 0.4s;
+    }
+
+    /* ── Steps ── */
+    .pathway-steps {
+      position: relative;
+    }
+    .pathway-steps::before {
+      content: '';
+      position: absolute;
+      left: 1.0625rem;
+      top: 0.5rem;
+      bottom: 0.5rem;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--terracotta), transparent);
+      opacity: 0.25;
+    }
+
+    .pathway-step {
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+      margin-bottom: 0.75rem;
+      position: relative;
+    }
+    .pathway-step:last-child { margin-bottom: 0; }
+
+    .step-dot {
+      width: 2.125rem;
+      height: 2.125rem;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 0.6875rem;
+      font-weight: 700;
+      color: var(--terracotta);
+      letter-spacing: 0.02em;
+      transition: background 0.3s, border-color 0.3s;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-body {
+      flex: 1;
+      padding: 0.125rem 0 0.625rem;
+    }
+
+    .step-link {
+      display: block;
+      text-decoration: none;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      transition: background 0.25s, border-color 0.25s, transform 0.25s;
+    }
+    .step-link:hover {
+      background: var(--surface-mid);
+      border-color: var(--border-hover);
+      transform: translateX(3px);
+    }
+    .step-link:hover .step-dot { background: var(--surface-mid); border-color: var(--terracotta); }
+
+    .step-title {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: color 0.4s;
+    }
+    .step-title::after {
+      content: '→';
+      font-size: 0.8125rem;
+      color: var(--terracotta);
+      opacity: 0.6;
+      transition: transform 0.2s, opacity 0.2s;
+      flex-shrink: 0;
+    }
+    .step-link:hover .step-title::after {
+      opacity: 1;
+      transform: translateX(3px);
+    }
+
+    .step-note {
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+      transition: color 0.4s;
+    }
+
+    /* ── Checkpoint ── */
+    .pathway-checkpoint {
+      margin-top: 1.25rem;
+      padding: 0.875rem 1.125rem;
+      background: var(--surface);
+      border-left: 3px solid var(--moss);
+      border-radius: 0 10px 10px 0;
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    .pathway-checkpoint strong {
+      color: var(--moss);
+      font-weight: 600;
+      display: block;
+      margin-bottom: 0.2rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 768px) {
+      .pathways-wrap { padding: 0 1.25rem 4rem; }
+      .pathway { margin-bottom: 3rem; padding-bottom: 3rem; }
+      .pathway-steps::before { left: 0.9375rem; }
+      .step-dot { width: 1.875rem; height: 1.875rem; font-size: 0.625rem; }
+      .pathway-step { gap: 1rem; }
+      .step-link { padding: 0.875rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="index.html">The <span>Map.</span></a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="index.html#topics">All Topics</a></li>
+      <li><a href="index.html#mission">Mission</a></li>
+    </ul>
+    <a class="nav-back" href="index.html">← Home</a>
+    <button class="search-btn" id="searchBtn" aria-label="Search">
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <span class="search-btn-label">Search</span>
+    </button>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><span class="toggle-icon" id="toggleIcon">☀️</span><span class="toggle-text" id="toggleText">Light mode</span></button>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="breadcrumb">Guided Reading</div>
+  <h1>Pathways</h1>
+  <p class="lead">Not sure where to start, or want to work through a specific situation from beginning to end? These curated sequences pull together the most relevant pages in the right order.</p>
+</div>
+
+<div class="pathways-wrap">
+
+  <!-- PATHWAY 1: Moving Out -->
+  <div class="pathway" id="moved-out">
+    <div class="pathway-header">
+      <div class="pathway-eyebrow">Pathway 01</div>
+      <h2 class="pathway-title">Moving Out</h2>
+      <p class="pathway-desc">Moving into your first place involves more than a security deposit and a U-Haul. This path covers everything you need to get set up, financially protected, and actually living like an adult.</p>
+    </div>
+
+    <div class="pathway-steps">
+      <div class="pathway-step">
+        <div class="step-dot">01</div>
+        <div class="step-body">
+          <a class="step-link" href="life/finding-housing.html">
+            <div class="step-title">Finding a Place to Live</div>
+            <p class="step-note">What to look for, what to avoid, and the questions to ask before signing anything.</p>
+          </a>
+        </div>
+      </div>
+
+      <div class="pathway-step">
+        <div class="step-dot">02</div>
+        <div class="step-body">
+          <a class="step-link" href="finance/budgeting.html">
+            <div class="step-title">Budgeting</div>
+            <p class="step-note">Know your numbers before you commit to a rent payment. The 50/30/20 rule and what actually works.</p>
+          </a>
+        </div>
+      </div>
+
+      <div class="pathway-step">
+        <div class="step-dot">03</div>
+        <div class="step-body">
+          <a class="step-link" href="life/setting-up-your-place.html">
+            <div class="step-title">Setting Up Your First Place</div>
+            <p class="step-note">Utilities, mail forwarding, roommate agreements, and the first-week checklist most people miss.</p>
+          </a>
+        </div>
+      </div>
+
+      <div class="pathway-step">
+        <div class="step-dot">04</div>
+        <div class="step-body">
+          <a class="step-link" href="finance/renters-insurance.html">
+            <div class="step-title">Renter's Insurance</div>
+            <p class="step-note">$15 to $30 a month. Your landlord's policy covers the building — not your stuff.</p>
+          </a>
+        </div>
+      </div>
+
+      <div class="pathway-step">
+        <div class="step-dot">05</div>
+        <div class="step-body">
+          <a class="step-link" href="life/cooking.html">
+            <div class="step-title">Cooking 101</div>
+            <p class="step-note">The four techniques, a grocery budget approach, and five recipes that actually work.</p>
+          </a>
+        </div>
+      </div>
+
+      <div class="pathway-step">
+        <div class="step-dot">06</div>
+        <div class="step-body">
+          <a class="step-link" href="life/laundry.html">
+            <div class="step-title">Laundry &amp; Clothing Care</div>
+            <p class="step-note">What the symbols mean, how to sort, and how to handle stains before they set.</p>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pathway-checkpoint">
+      <strong>Checkpoint</strong>
+      Before you sign a lease: do you know your take-home monthly income, what utilities will cost, and whether the landlord has a written policy on getting your security deposit back?
+    </div>
+  </div>
+
+  <!-- PATHWAY 2: Landing Your First Job -->
+  <div class="pathway" id="first-job">
+    <div class="pathway-header">
+      <div class="pathway-eyebrow">Pathway 02</div>
+      <h2 class="pathway-title">Landing Your First Job</h2>
+      <p class="pathway-desc">From a blank document to your first day — and making sure you're not leaving money on the table when the offer comes in.</p>
+    </div>
+
+    <div class="pathway-steps">
+      <div class="pathway-step">
+        <div class="step-dot">01</div>
+        <div class="step-body">
+          <a class="step-link" href="career/career-research.html">
+            <div class="step-title">Career Research</div>
+            <p class="step-note">Before you apply anywhere, know what the role actually involves and what the market pays.</p>
+          </a>
+        </div>
+      </div>
+
+      <div class="pathway-step">
+        <div class="step-dot">02</div>
+        <div class="step-body">
+          <a class="step-link" href="career/resume.html">
+            <div class="step-title">Building a Strong Resume</div>
+            <p class="step-note">How to build one from scratch, even with limited experience, and how to get past ATS filters.</p>
+          </a>
+        </div>
+      </div>
+
+      <div class="pathway-step">
+        <div class="step-dot">03</div>
+        <div class="step-body">
+          <a class="step-link" href="career/job-hunting.html">
+            <div class="step-title">Job Hunting</div>
+            <p class="step-note">Where to look, how to follow up, and why your network is more useful than job boards.</p>
+          </a>
+        </div>
+      </div>
+
+      <div class="pathway-step">
+        <div class="step-dot">04</div>
+        <div class="step-body">
+          <a class="step-link" href="career/interview-skills.html">
+            <div class="step-title">Interview Skills</div>
+            <p class="step-note">Managing nerves, the STAR method, and what to say when they ask if you have questions.</p>
+          </a>
+        </div>
+      </div>
+
+      <div class="pathway-step">
+        <div class="step-dot">05</div>
+        <div class="step-body">
+          <a class="step-link" href="finance/salary-negotiation.html">
+            <div class="step-title">Salary Negotiation &amp; Job Offers</div>
+            <p class="step-note">Most people accept the first number. That's almost always a mistake. Here's what to do instead.</p>
+          </a>
+        </div>
+      </div>
+
+      <div class="pathway-step">
+        <div class="step-dot">06</div>
+        <div class="step-body">
+          <a class="step-link" href="career/workplace-basics.html">
+            <div class="step-title">Workplace Basics</div>
+            <p class="step-note">What professionalism actually means, how to communicate with your manager, and what the first 90 days set up.</p>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pathway-checkpoint">
+      <strong>Checkpoint</strong>
+      After you receive an offer: have you researched the market rate for the role, evaluated the full benefits package, and decided on a specific number to counter with?
+    </div>
+  </div>
+
+  <!-- PATHWAY 3: Getting Your Finances in Order -->
+  <div class="pathway" id="finances">
+    <div class="pathway-header">
+      <div class="pathway-eyebrow">Pathway 03</div>
+      <h2 class="pathway-title">Getting Your Finances in Order</h2>
+      <p class="pathway-desc">Whether you're starting from zero or just realizing you've never had a real plan — this is the sequence that builds a financial foundation that actually holds.</p>
+    </div>
+
+    <div class="pathway-steps">
+      <div class="pathway-step">
+        <div class="step-dot">01</div>
+        <div class="step-body">
+          <a class="step-link" href="finance/financial-literacy-overview.html">
+            <div class="step-title">Financial Literacy Overview</div>
+            <p class="step-note">The core equation, the emergency fund, and the order of operations. Start here.</p>
+          </a>
+        </div>
+      </div>
+
+      <div class="pathway-step">
+        <div class="step-dot">02</div>
+        <div class="step-body">
+          <a class="step-link" href="finance/budgeting.html">
+            <div class="step-title">Budgeting</div>
+            <p class="step-note">Five methods, which one fits how your brain works, and how to automate it so it actually sticks.</p>
+          </a>
+        </div>
+      </div>
+
+      <div class="pathway-step">
+        <div class="step-dot">03</div>
+        <div class="step-body">
+          <a class="step-link" href="finance/debt-management.html">
+            <div class="step-title">Debt Management &amp; Building Credit</div>
+            <p class="step-note">Good debt vs. bad debt, how your credit score is calculated, and how to start building it.</p>
+          </a>
+        </div>
+      </div>
+
+      <div class="pathway-step">
+        <div class="step-dot">04</div>
+        <div class="step-body">
+          <a class="step-link" href="finance/credit-cards.html">
+            <div class="step-title">Credit Cards 101</div>
+            <p class="step-note">The one rule that makes credit cards a tool rather than a trap, and how to choose your first card.</p>
+          </a>
+        </div>
+      </div>
+
+      <div class="pathway-step">
+        <div class="step-dot">05</div>
+        <div class="step-body">
+          <a class="step-link" href="finance/roth-ira.html">
+            <div class="step-title">Roth IRA &amp; Retirement Basics</div>
+            <p class="step-note">Why starting in your 20s matters more than the amount, and how to open one in 15 minutes.</p>
+          </a>
+        </div>
+      </div>
+
+      <div class="pathway-step">
+        <div class="step-dot">06</div>
+        <div class="step-body">
+          <a class="step-link" href="finance/low-risk-investing.html">
+            <div class="step-title">Low-Risk Investing</div>
+            <p class="step-note">Index funds, dollar-cost averaging, and why the boring strategy is the one that works.</p>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pathway-checkpoint">
+      <strong>Checkpoint</strong>
+      Before investing: do you have at least $500 in an emergency fund, no high-interest credit card debt, and a budget that accounts for all your recurring expenses?
+    </div>
+  </div>
+
+  <!-- PATHWAY 4: Starting College or a Trade -->
+  <div class="pathway" id="college-or-trade">
+    <div class="pathway-header">
+      <div class="pathway-eyebrow">Pathway 04</div>
+      <h2 class="pathway-title">Starting College or a Trade</h2>
+      <p class="pathway-desc">For anyone about to begin a degree, a certification, or an apprenticeship — and not sure how to make the most of it without wasting money or time.</p>
+    </div>
+
+    <div class="pathway-steps">
+      <div class="pathway-step">
+        <div class="step-dot">01</div>
+        <div class="step-body">
+          <a class="step-link" href="learning/choosing-a-major.html">
+            <div class="step-title">Choosing a Major or Trade</div>
+            <p class="step-note">How to research a field before committing, what the different paths actually cost, and why the trades deserve a serious look.</p>
+          </a>
+        </div>
+      </div>
+
+      <div class="pathway-step">
+        <div class="step-dot">02</div>
+        <div class="step-body">
+          <a class="step-link" href="finance/financial-literacy-overview.html">
+            <div class="step-title">Financial Literacy Overview</div>
+            <p class="step-note">Before you take on any debt, understand how money works. The foundation everything else rests on.</p>
+          </a>
+        </div>
+      </div>
+
+      <div class="pathway-step">
+        <div class="step-dot">03</div>
+        <div class="step-body">
+          <a class="step-link" href="learning/college-journey.html">
+            <div class="step-title">The College Journey</div>
+            <p class="step-note">FAFSA, choosing a school, surviving academically and financially, and preparing for what comes after.</p>
+          </a>
+        </div>
+      </div>
+
+      <div class="pathway-step">
+        <div class="step-dot">04</div>
+        <div class="step-body">
+          <a class="step-link" href="learning/effective-learning.html">
+            <div class="step-title">Effective Learning Techniques</div>
+            <p class="step-note">Active recall, spaced repetition, and how to build a study system that actually works.</p>
+          </a>
+        </div>
+      </div>
+
+      <div class="pathway-step">
+        <div class="step-dot">05</div>
+        <div class="step-body">
+          <a class="step-link" href="life/time-management.html">
+            <div class="step-title">Time Management &amp; Productivity</div>
+            <p class="step-note">Prioritization frameworks, how to avoid burnout, and why procrastination is usually anxiety in disguise.</p>
+          </a>
+        </div>
+      </div>
+
+      <div class="pathway-step">
+        <div class="step-dot">06</div>
+        <div class="step-body">
+          <a class="step-link" href="finance/debt-management.html">
+            <div class="step-title">Debt Management &amp; Building Credit</div>
+            <p class="step-note">Federal vs. private loans, repayment options, and what to do before the first payment is due.</p>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pathway-checkpoint">
+      <strong>Checkpoint</strong>
+      Before taking on student loans: have you exhausted grants and scholarships, compared in-state vs. out-of-state costs, and calculated what monthly loan payments will look like on an entry-level salary in your field?
+    </div>
+  </div>
+
+  <!-- PATHWAY 5: Healthcare Literacy -->
+  <div class="pathway" id="healthcare">
+    <div class="pathway-header">
+      <div class="pathway-eyebrow">Pathway 05</div>
+      <h2 class="pathway-title">Healthcare Literacy</h2>
+      <p class="pathway-desc">Coming off a parent's plan, getting coverage through a new job, or just trying to understand what you're actually paying for. Health insurance is one of the most confusing parts of adult life — it doesn't have to be.</p>
+    </div>
+
+    <div class="pathway-steps">
+      <div class="pathway-step">
+        <div class="step-dot">01</div>
+        <div class="step-body">
+          <a class="step-link" href="finance/health-insurance.html">
+            <div class="step-title">Health Insurance 101</div>
+            <p class="step-note">Premiums, deductibles, copays, HMO vs. PPO — every term decoded, and how to compare plans without guessing.</p>
+          </a>
+        </div>
+      </div>
+
+      <div class="pathway-step">
+        <div class="step-dot">02</div>
+        <div class="step-body">
+          <a class="step-link" href="finance/budgeting.html">
+            <div class="step-title">Budgeting</div>
+            <p class="step-note">Healthcare costs are a real line item. Know what you're paying monthly before choosing a plan.</p>
+          </a>
+        </div>
+      </div>
+
+      <div class="pathway-step">
+        <div class="step-dot">03</div>
+        <div class="step-body">
+          <a class="step-link" href="life/nutrition.html">
+            <div class="step-title">Nutrition Basics</div>
+            <p class="step-note">The choices that reduce how often you need the healthcare system in the first place.</p>
+          </a>
+        </div>
+      </div>
+
+      <div class="pathway-step">
+        <div class="step-dot">04</div>
+        <div class="step-body">
+          <a class="step-link" href="life/managing-emotions.html">
+            <div class="step-title">Managing Emotions, Anxiety &amp; Stress</div>
+            <p class="step-note">Mental health is health. When to seek professional support and where to find it.</p>
+          </a>
+        </div>
+      </div>
+
+      <div class="pathway-step">
+        <div class="step-dot">05</div>
+        <div class="step-body">
+          <a class="step-link" href="finance/financial-literacy-overview.html">
+            <div class="step-title">Financial Literacy Overview</div>
+            <p class="step-note">Medical bills are the most common cause of unexpected debt. Having an emergency fund is your first line of defense.</p>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pathway-checkpoint">
+      <strong>Checkpoint</strong>
+      Do you know your plan's deductible, out-of-pocket maximum, and whether your current doctor is in-network? If not, those are worth looking up today — before you need a doctor.
+    </div>
+  </div>
+
+</div><!-- /pathways-wrap -->
+
+<footer><div class="footer-logo">The <span>Map.</span></div><div class="footer-copy">Free to use. Built with care. Not professional advice.</div></footer>
+<div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Search">
+  <div class="search-modal">
+    <div class="search-input-row">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <input class="search-input" id="searchInput" type="search" placeholder="Search topics…" autocomplete="off" autocorrect="off" spellcheck="false"/>
+      <button class="search-close" id="searchClose" aria-label="Close search">Esc</button>
+    </div>
+    <div class="search-results" id="searchResults" role="listbox"></div>
+    <div class="search-footer" aria-hidden="true">
+      <span class="search-footer-hint"><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
+      <span class="search-footer-hint"><kbd>↵</kbd> open</span>
+      <span class="search-footer-hint"><kbd>Esc</kbd> close</span>
+    </div>
+  </div>
+</div>
+<script src="search-index.js"></script>
+<script src="shared.js"></script>
+</body></html>

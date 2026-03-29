@@ -826,6 +826,101 @@
       .hero h1 { font-size: 2.125rem; }
       .topic-card { padding: 1.125rem; }
     }
+
+    /* ── Mode toggle (a la carte vs pathways) ── */
+    .mode-toggle {
+      display: inline-flex;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 0.25rem;
+      gap: 0.25rem;
+      margin-bottom: 2.5rem;
+    }
+    .mode-btn {
+      padding: 0.4rem 1.125rem;
+      border-radius: 100px;
+      border: none;
+      background: none;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      white-space: nowrap;
+    }
+    .mode-btn.active {
+      background: var(--surface-hi);
+      color: var(--text-primary);
+    }
+    .mode-btn:hover:not(.active) { color: var(--clay); }
+
+    .mode-panel { display: none; }
+    .mode-panel.active { display: block; }
+
+    /* Pathway preview cards on homepage */
+    .pathways-preview {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .pathway-preview-card {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      text-decoration: none;
+      color: inherit;
+      transition: background 0.25s, border-color 0.25s, transform 0.25s;
+    }
+    .pathway-preview-card:hover {
+      background: var(--surface-mid);
+      border-color: var(--border-hover);
+      transform: translateX(4px);
+    }
+    .pathway-num {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--terracotta);
+      opacity: 0.3;
+      flex-shrink: 0;
+      min-width: 2.5rem;
+      line-height: 1;
+    }
+    .pathway-preview-body { flex: 1; }
+    .pathway-preview-title {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.2rem;
+      transition: color 0.4s;
+    }
+    .pathway-preview-desc {
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      transition: color 0.4s;
+    }
+    .pathway-preview-arrow {
+      font-size: 0.875rem;
+      color: var(--terracotta);
+      opacity: 0.5;
+      flex-shrink: 0;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+    .pathway-preview-card:hover .pathway-preview-arrow {
+      transform: translateX(3px);
+      opacity: 1;
+    }
+    @media (max-width: 768px) {
+      .pathway-preview-card { padding: 1rem 1.125rem; gap: 1rem; }
+      .pathway-num { font-size: 1.25rem; min-width: 2rem; }
+    }
   </style>
 </head>
 <body>
@@ -910,9 +1005,15 @@
   <!-- Topics -->
   <div class="section-wrap" id="topics">
     <p class="section-label">What's inside</p>
-    <h2 class="section-title">Every topic that matters.</h2>
-    <p class="section-sub">Four sections covering the core areas of adult life. Pick wherever you need help most.</p>
+    <h2 class="section-title fade-in">Every topic that matters.</h2>
+    <p class="section-sub fade-in">Browse all topics, or follow a curated pathway through a specific situation.</p>
 
+    <div class="mode-toggle" role="tablist" aria-label="View mode">
+      <button class="mode-btn" id="tabALaCarte" role="tab" aria-selected="false" aria-controls="panelALaCarte" onclick="switchMode('alacarte')">Browse all topics</button>
+      <button class="mode-btn active" id="tabPathways" role="tab" aria-selected="true" aria-controls="panelPathways" onclick="switchMode('pathways')">Follow a pathway</button>
+    </div>
+
+    <div class="mode-panel" id="panelALaCarte" role="tabpanel" aria-labelledby="tabALaCarte">
     <div class="topics-grid">
 
       <div class="topic-card fade-in">
@@ -979,7 +1080,53 @@
         </div>
       </div>
 
-    </div>
+    </div><!-- /topics-grid -->
+    </div><!-- /panelALaCarte -->
+
+    <div class="mode-panel active" id="panelPathways" role="tabpanel" aria-labelledby="tabPathways">
+      <div class="pathways-preview">
+        <a class="pathway-preview-card fade-in" href="pathways.html#moved-out">
+          <div class="pathway-num">01</div>
+          <div class="pathway-preview-body">
+            <div class="pathway-preview-title">Moving Out</div>
+            <p class="pathway-preview-desc">Finding housing, setting up utilities, renter's insurance, cooking, and laundry — in order.</p>
+          </div>
+          <span class="pathway-preview-arrow">→</span>
+        </a>
+        <a class="pathway-preview-card fade-in" href="pathways.html#first-job">
+          <div class="pathway-num">02</div>
+          <div class="pathway-preview-body">
+            <div class="pathway-preview-title">Landing Your First Job</div>
+            <p class="pathway-preview-desc">Resume through first day — including what to do when the offer comes in.</p>
+          </div>
+          <span class="pathway-preview-arrow">→</span>
+        </a>
+        <a class="pathway-preview-card fade-in" href="pathways.html#finances">
+          <div class="pathway-num">03</div>
+          <div class="pathway-preview-body">
+            <div class="pathway-preview-title">Getting Your Finances in Order</div>
+            <p class="pathway-preview-desc">Emergency fund to investing, in the right sequence.</p>
+          </div>
+          <span class="pathway-preview-arrow">→</span>
+        </a>
+        <a class="pathway-preview-card fade-in" href="pathways.html#college-or-trade">
+          <div class="pathway-num">04</div>
+          <div class="pathway-preview-body">
+            <div class="pathway-preview-title">Starting College or a Trade</div>
+            <p class="pathway-preview-desc">Choosing a path, financing it, and making the most of it once you're in.</p>
+          </div>
+          <span class="pathway-preview-arrow">→</span>
+        </a>
+        <a class="pathway-preview-card fade-in" href="pathways.html#healthcare">
+          <div class="pathway-num">05</div>
+          <div class="pathway-preview-body">
+            <div class="pathway-preview-title">Healthcare Literacy</div>
+            <p class="pathway-preview-desc">Decoding insurance, finding a doctor, and understanding what you're paying for.</p>
+          </div>
+          <span class="pathway-preview-arrow">→</span>
+        </a>
+      </div>
+    </div><!-- /panelPathways -->
 
     <div class="disclaimer">
       <strong>Disclaimer:</strong> This site provides general advice and information only. It is not a substitute for professional financial, legal, or medical guidance. Always consult qualified experts when making major decisions.
@@ -1044,6 +1191,7 @@
         <li><a href="career/index.html">Career</a></li>
         <li><a href="learning/index.html">Learning</a></li>
         <li><a href="life/index.html">Life Skills</a></li>
+        <li><a href="pathways.html">Pathways</a></li>
         <li><a href="glossary.html">Glossary</a></li>
         <li><a href="#mission">Mission</a></li>
       </ul>
@@ -1069,5 +1217,22 @@
 <script src="search-index.js"></script>
   <script src="shared.js"></script>
 
+  <script>
+    function switchMode(mode) {
+      var panels = document.querySelectorAll('.mode-panel');
+      var btns = document.querySelectorAll('.mode-btn');
+      panels.forEach(function(p) { p.classList.remove('active'); });
+      btns.forEach(function(b) { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+      if (mode === 'alacarte') {
+        document.getElementById('panelALaCarte').classList.add('active');
+        document.getElementById('tabALaCarte').classList.add('active');
+        document.getElementById('tabALaCarte').setAttribute('aria-selected', 'true');
+      } else {
+        document.getElementById('panelPathways').classList.add('active');
+        document.getElementById('tabPathways').classList.add('active');
+        document.getElementById('tabPathways').setAttribute('aria-selected', 'true');
+      }
+    }
+  </script>
 </body>
 </html>
