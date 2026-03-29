@@ -140,6 +140,336 @@
     </div>
   </div>
 
+
+  <h2>See the Math for Yourself</h2>
+  <p>The numbers below are why minimum payments are a trap. Enter your balance and rate to see exactly what it costs — and how long it takes.</p>
+
+  <div class="calc-wrap">
+    <div class="calc-inputs">
+      <div class="calc-field">
+        <label for="calcBalance">Balance</label>
+        <div class="calc-input-wrap">
+          <span class="calc-prefix">$</span>
+          <input type="number" id="calcBalance" value="1000" min="1" max="100000" step="10"/>
+        </div>
+      </div>
+      <div class="calc-field">
+        <label for="calcAPR">APR</label>
+        <div class="calc-input-wrap">
+          <input type="number" id="calcAPR" value="24" min="1" max="60" step="0.1"/>
+          <span class="calc-suffix">%</span>
+        </div>
+      </div>
+      <div class="calc-field">
+        <label for="calcMinPct">Min payment %</label>
+        <div class="calc-input-wrap">
+          <input type="number" id="calcMinPct" value="2" min="1" max="10" step="0.5"/>
+          <span class="calc-suffix">%</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="calc-results" id="calcResults">
+      <div class="calc-result-item calc-result-danger">
+        <div class="calc-result-label">Time to pay off</div>
+        <div class="calc-result-value" id="resMonths">—</div>
+      </div>
+      <div class="calc-result-item">
+        <div class="calc-result-label">Total interest paid</div>
+        <div class="calc-result-value calc-interest" id="resInterest">—</div>
+      </div>
+      <div class="calc-result-item">
+        <div class="calc-result-label">Total paid</div>
+        <div class="calc-result-value" id="resTotal">—</div>
+      </div>
+      <div class="calc-result-item calc-result-good">
+        <div class="calc-result-label">Pay in full — you save</div>
+        <div class="calc-result-value calc-savings" id="resSavings">—</div>
+      </div>
+    </div>
+
+    <div class="calc-bar-wrap" id="calcBarWrap">
+      <div class="calc-bar-label">Where your money goes</div>
+      <div class="calc-bar">
+        <div class="calc-bar-principal" id="barPrincipal"></div>
+        <div class="calc-bar-interest" id="barInterest"></div>
+      </div>
+      <div class="calc-bar-legend">
+        <span class="legend-principal">Principal</span>
+        <span class="legend-interest">Interest</span>
+      </div>
+    </div>
+
+    <p class="calc-note" id="calcNote">Assumes a minimum payment of the percentage shown (or $25, whichever is higher), recalculated each month as the balance falls — which is how most card issuers calculate it.</p>
+  </div>
+
+  <style>
+    .calc-wrap {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.75rem;
+      margin: 1.75rem 0 2.5rem;
+      transition: background 0.4s, border-color 0.4s;
+    }
+    .calc-inputs {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+    .calc-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.375rem;
+      flex: 1;
+      min-width: 120px;
+    }
+    .calc-field label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: var(--text-dim);
+      text-transform: uppercase;
+    }
+    .calc-input-wrap {
+      display: flex;
+      align-items: center;
+      background: var(--surface-mid);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: border-color 0.2s, background 0.4s;
+    }
+    .calc-input-wrap:focus-within {
+      border-color: var(--clay);
+    }
+    .calc-prefix, .calc-suffix {
+      padding: 0 0.625rem;
+      font-size: 0.875rem;
+      color: var(--text-dim);
+      user-select: none;
+      transition: color 0.4s;
+    }
+    .calc-input-wrap input {
+      flex: 1;
+      background: none;
+      border: none;
+      outline: none;
+      padding: 0.625rem 0.375rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      min-width: 0;
+      width: 100%;
+      transition: color 0.4s;
+    }
+    .calc-input-wrap input::-webkit-inner-spin-button { opacity: 0.4; }
+
+    /* Results grid */
+    .calc-results {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+    .calc-result-item {
+      background: var(--surface-mid);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem 1.125rem;
+      transition: background 0.4s, border-color 0.4s;
+    }
+    .calc-result-danger { border-color: rgba(212,114,90,0.3); }
+    .calc-result-good   { border-color: rgba(122,144,104,0.3); }
+    .calc-result-label {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      margin-bottom: 0.3rem;
+      letter-spacing: 0.02em;
+      transition: color 0.4s;
+    }
+    .calc-result-value {
+      font-family: 'Lora', serif;
+      font-size: 1.375rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      transition: color 0.4s;
+    }
+    .calc-interest { color: var(--terracotta); }
+    .calc-savings  { color: var(--moss); }
+
+    /* Bar chart */
+    .calc-bar-wrap { margin-bottom: 1rem; }
+    .calc-bar-label {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.02em;
+      transition: color 0.4s;
+    }
+    .calc-bar {
+      display: flex;
+      height: 12px;
+      border-radius: 100px;
+      overflow: hidden;
+      background: var(--surface-hi);
+    }
+    .calc-bar-principal {
+      background: var(--clay);
+      transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .calc-bar-interest {
+      background: var(--terracotta);
+      transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .calc-bar-legend {
+      display: flex;
+      gap: 1.25rem;
+      margin-top: 0.5rem;
+    }
+    .calc-bar-legend span {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: color 0.4s;
+    }
+    .calc-bar-legend span::before {
+      content: '';
+      display: inline-block;
+      width: 10px; height: 10px;
+      border-radius: 3px;
+    }
+    .legend-principal::before { background: var(--clay); }
+    .legend-interest::before  { background: var(--terracotta); }
+
+    .calc-note {
+      font-size: 0.775rem;
+      color: var(--text-dim);
+      font-style: italic;
+      margin-top: 1rem;
+      line-height: 1.55;
+      transition: color 0.4s;
+    }
+
+    @media (max-width: 768px) {
+      .calc-wrap { padding: 1.25rem; }
+      .calc-inputs { gap: 0.75rem; }
+      .calc-results { grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+      .calc-result-value { font-size: 1.125rem; }
+    }
+    @media (max-width: 480px) {
+      .calc-results { grid-template-columns: 1fr; }
+    }
+  </style>
+
+  <script>
+    (function() {
+      function fmt(n) {
+        return '$' + Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+      }
+
+      function calc() {
+        var balance     = parseFloat(document.getElementById('calcBalance').value) || 0;
+        var apr         = parseFloat(document.getElementById('calcAPR').value)     || 0;
+        var minPct      = parseFloat(document.getElementById('calcMinPct').value)  || 2;
+
+        if (balance <= 0 || apr <= 0) return;
+
+        var monthlyRate = apr / 100 / 12;
+
+        // Check if minimum payment can ever beat interest
+        // First payment on the original balance
+        var firstInterest = balance * monthlyRate;
+        var firstBalance  = balance + firstInterest;
+        var firstPayment  = Math.max(firstBalance * (minPct / 100), 25);
+        var unpayable     = firstPayment <= firstInterest;
+
+        if (unpayable) {
+          document.getElementById('resMonths').textContent   = 'Never';
+          document.getElementById('resInterest').textContent = '—';
+          document.getElementById('resTotal').textContent    = '—';
+          document.getElementById('resSavings').textContent  = '—';
+          document.getElementById('barPrincipal').style.width = '100%';
+          document.getElementById('barInterest').style.width  = '0%';
+          document.getElementById('calcNote').textContent =
+            'At this APR and minimum payment percentage, the payment barely covers interest. ' +
+            'The balance would never meaningfully decrease. Raise the minimum payment or lower the APR to see a payoff timeline.';
+          return;
+        }
+
+        // Reset note
+        document.getElementById('calcNote').textContent =
+          'Assumes a minimum payment of the percentage shown (or $25, whichever is higher), ' +
+          'recalculated each month as the balance falls — which is how most card issuers calculate it.';
+
+        var remaining = balance;
+        var totalPaid = 0;
+        var months    = 0;
+
+        var CAP = 600; // 50-year cap
+        while (remaining > 0.01 && months < CAP) {
+          var interest = remaining * monthlyRate;
+          remaining += interest;
+          var payment = Math.max(remaining * (minPct / 100), 25);
+          if (payment > remaining) payment = remaining;
+          remaining -= payment;
+          totalPaid += payment;
+          months++;
+        }
+
+        var hitCap = months >= CAP;
+        var totalInterest = totalPaid - balance;
+        var years = Math.floor(months / 12);
+        var mos   = months % 12;
+
+        if (hitCap) {
+          document.getElementById('resMonths').textContent   = '50+ years';
+          document.getElementById('resInterest').textContent = '—';
+          document.getElementById('resTotal').textContent    = '—';
+          document.getElementById('resSavings').textContent  = '—';
+          document.getElementById('barPrincipal').style.width = '5%';
+          document.getElementById('barInterest').style.width  = '95%';
+          document.getElementById('calcNote').textContent =
+            'At this combination of APR and minimum payment, the balance would take more than 50 years to pay off ' +
+            'because the minimum payment barely exceeds the monthly interest charge. ' +
+            'Increasing the minimum payment percentage or paying a fixed amount above the minimum makes an enormous difference.';
+          return;
+        }
+
+        var timeStr;
+        if (years > 0 && mos > 0) {
+          timeStr = years + 'y ' + mos + 'm';
+        } else if (years > 0) {
+          timeStr = years + (years === 1 ? ' year' : ' years');
+        } else {
+          timeStr = mos + (mos === 1 ? ' month' : ' months');
+        }
+
+        document.getElementById('resMonths').textContent   = timeStr;
+        document.getElementById('resInterest').textContent = fmt(totalInterest);
+        document.getElementById('resTotal').textContent    = fmt(totalPaid);
+        document.getElementById('resSavings').textContent  = fmt(totalInterest);
+
+        var principalPct = (balance / totalPaid * 100).toFixed(1);
+        var interestPct  = (totalInterest / totalPaid * 100).toFixed(1);
+        document.getElementById('barPrincipal').style.width = principalPct + '%';
+        document.getElementById('barInterest').style.width  = interestPct  + '%';
+      }
+
+      ['calcBalance', 'calcAPR', 'calcMinPct'].forEach(function(id) {
+        document.getElementById(id).addEventListener('input', calc);
+      });
+
+      calc();
+    })();
+  </script>
+
   <h2>If You're Already Carrying a Balance</h2>
   <p>If you've accumulated credit card debt, the priority is paying it off as fast as possible, not earning rewards on new spending. A few principles:</p>
   <ul>
