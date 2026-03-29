@@ -64,8 +64,11 @@
     .guide-card:hover .guide-title { color: var(--clay); }
     .guide-desc { font-size: 0.875rem; color: var(--text-secondary); line-height: 1.55; }
     @media (max-width: 768px) {
-      .section-hero { padding: 100px 1.25rem 2.5rem; }
+      .section-hero { padding: 96px 1.25rem 2rem; }
+      .section-hero h1 { font-size: clamp(1.875rem, 7.5vw, 2.5rem); }
+      .section-hero .section-lead { font-size: 0.9375rem; }
       .guides-wrap { padding: 0 1.25rem 4rem; }
+      .guide-card { padding: 1.125rem 1.25rem; }
     }
   </style>
 </head>
