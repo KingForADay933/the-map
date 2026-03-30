@@ -205,7 +205,7 @@
         hamburger.setAttribute('aria-expanded', 'true');
         mobileMenu.classList.add('open');
         mobileMenu.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = '';
+        document.body.style.overflow = 'hidden';
       }
 
       function closeMobileMenu() {
@@ -270,18 +270,8 @@
         mobileThemeBtn.addEventListener('click', () => {
           const current = document.documentElement.getAttribute('data-theme');
           const next = current === 'dark' ? 'light' : 'dark';
-          // Trigger the main theme toggle logic
-          document.documentElement.setAttribute('data-theme', next);
-          localStorage.setItem('the-map-theme', next);
-          const themes = {
-            dark:  { icon: '☀️', label: 'Light mode' },
-            light: { icon: '🌙', label: 'Dark mode'  },
-          };
-          // Sync both toggles
-          const desktopIcon = document.getElementById('toggleIcon');
-          const desktopText = document.getElementById('toggleText');
-          if (desktopIcon) desktopIcon.textContent = themes[next].icon;
-          if (desktopText) desktopText.textContent = themes[next].label;
+          // Use the same applyTheme() function used by the desktop toggle
+          applyTheme(next);
           syncMobileTheme(next);
         });
       }
