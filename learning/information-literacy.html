@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Information Literacy, The Map</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../shared.css"/>
+  <link rel="stylesheet" href="../search.css"/>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="../index.html">The <span>Map.</span></a>
+  <div class="nav-right">
+    <ul class="nav-links"><li><a href="../index.html#topics">All Topics</a></li><li><a href="../pathways.html">Pathways</a></li><li><a href="../index.html#mission">Mission</a></li><li><a href="../contact.html">Contact</a></li></ul>
+    <a class="nav-back" href="../index.html">← Home</a>
+    <button class="search-btn" id="searchBtn" aria-label="Search">
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <span class="search-btn-label">Search</span>
+    </button>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><span class="toggle-icon" id="toggleIcon">☀️</span><span class="toggle-text" id="toggleText">Light mode</span></button>
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <div class="mobile-menu-links">
+    <a href="../index.html">Home</a>
+    <a href="../index.html#topics">All Topics</a>
+    <a href="../pathways.html">Pathways</a>
+    <a href="../index.html#mission">Mission</a>
+    <a href="../contact.html">Contact</a>
+    <a href="../glossary.html">Glossary</a>
+  </div>
+  <div class="mobile-menu-footer">
+    <button class="theme-toggle" id="themeToggleMobile" aria-label="Toggle theme">
+      <span class="toggle-icon" id="toggleIconMobile">☀️</span>
+      <span class="toggle-text" id="toggleTextMobile">Light mode</span>
+    </button>
+  </div>
+</div>
+
+<div class="page-header">
+  <div class="breadcrumb">Learning</div>
+  <h1>Information Literacy</h1>
+  <p class="lead">The problem isn't access to information anymore, it's the opposite. Knowing how to quickly evaluate whether a source is reliable, biased, or outright false is one of the most practical skills you can build.</p>
+  <span class="read-time">4 min read</span>
+</div>
+<article class="article">
+
+  <div class="tldr">
+    <span class="tldr-label">TL;DR</span>
+    <ul>
+      <li>Before sharing or acting on a claim, ask: who is the source, do they have expertise in this specific area, and does anyone else corroborate this?</li>
+      <li>Peer-reviewed journals, government data (.gov), and primary documents are the gold standard. News articles summarizing those are second. Reddit and TikTok are opinions and experiences, not facts.</li>
+      <li>If an article makes you feel strongly vindicated or outraged, it may be designed to. Emotional response is not evidence of accuracy.</li>
+      <li>Check the date. Information in fields like health, finance, and technology expires quickly.</li>
+      <li>Wikipedia is a good starting point because of its citations, not a finishing point. Use those citations to find the original source.</li>
+    </ul>
+  </div>
+
+  <h2>A Fast Vetting Framework</h2>
+  <p>When you encounter a claim online, a health tip, a financial strategy, a news story, you can evaluate it in under a minute using the SIFT method.</p>
+
+  <div class="steps">
+    <div class="step fade-in">
+      <div class="step-num">S</div>
+      <div class="step-content">
+        <h4>Stop</h4>
+        <p>Before you share or act on something, pause. Ask yourself: do I actually know who is making this claim? Do I have any basis for trusting them on this specific topic?</p>
+      </div>
+    </div>
+    <div class="step fade-in">
+      <div class="step-num">I</div>
+      <div class="step-content">
+        <h4>Investigate the source</h4>
+        <p>Open the "About" page or search the author's name. Are they an expert in this specific field, or a generalist content creator? Publishing frequently doesn't make someone authoritative. Check what credentials they have for the claim they're making.</p>
+      </div>
+    </div>
+    <div class="step fade-in">
+      <div class="step-num">F</div>
+      <div class="step-content">
+        <h4>Find better coverage</h4>
+        <p>Is anyone else reporting this? If a claim appears on only one website or in only one video, be skeptical. Established, independently corroborated reporting is more reliable than a single source, even a credible one.</p>
+      </div>
+    </div>
+    <div class="step fade-in">
+      <div class="step-num">T</div>
+      <div class="step-content">
+        <h4>Trace claims to their origin</h4>
+        <p>Statistics, quotes, and studies are frequently stripped of context to make them look more dramatic. If an article says "a study found," find the actual study and check what it actually says. Summaries are often wrong, exaggerated, or misleading.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2>A Hierarchy of Sources</h2>
+  <p>Not all sources carry the same weight, and knowing the difference matters especially when you're making decisions about money, health, or legal situations.</p>
+
+  <div class="term-grid">
+    <div class="term-card">
+      <div class="term-name">Primary Sources</div>
+      <div class="term-def">The gold standard. Peer-reviewed research, government data (.gov sites), legal documents, official statistics, original studies. When possible, go here directly rather than reading someone's summary of it.</div>
+    </div>
+    <div class="term-card">
+      <div class="term-name">Secondary Sources</div>
+      <div class="term-def">Professional journalists or educators summarizing primary sources. A reputable news outlet reporting on a new study, or a textbook explaining an established concept. Useful, but check that they've cited something real.</div>
+    </div>
+    <div class="term-card">
+      <div class="term-name">Anecdotal Sources</div>
+      <div class="term-def">Personal experience shared on Reddit, TikTok, YouTube, or forums. Valuable for perspective and lived experience, but not evidence. Particularly risky to use as the basis for medical, legal, or financial decisions.</div>
+    </div>
+    <div class="term-card">
+      <div class="term-name">Sponsored Content</div>
+      <div class="term-def">An advertisement written to look like a guide or news article. Check the top of any article for labels like "Sponsored," "Promoted," or "Partner Content." These are not objective sources regardless of how they're written.</div>
+    </div>
+  </div>
+
+  <h2>Why You Believe What You Believe</h2>
+  <p>Confirmation bias, the tendency to seek out and trust information that confirms what you already think, affects everyone. It's not a character flaw, it's how human cognition works. The practical response is to deliberately look for the counter-argument whenever you form a strong opinion based on a source.</p>
+  <p>If an article or video makes you feel strongly vindicated, that feeling is a signal to slow down, not to share immediately. Content designed to confirm your existing beliefs and trigger emotional response is extremely common, and it's often either misleading or missing important context.</p>
+
+  <div class="callout tip">
+    <span class="callout-label">The useful Wikipedia trick</span>
+    <p>Wikipedia is good for orientation, not for citation. Read the article to get your bearings on a topic, then scroll to the bottom and look at the citations. Those are your real sources. Find the original research, government report, or primary document and read that instead.</p>
+  </div>
+
+  <h2>Red Flags Worth Knowing</h2>
+  <ul>
+    <li><strong>URLs with slight misspellings.</strong> Sites impersonating trusted brands often use names like <code>wellsfargo-secure.com</code> or <code>arnazon.com</code>. Check the domain carefully before entering any information.</li>
+    <li><strong>"Secrets they don't want you to know."</strong> Legitimate experts don't describe their knowledge this way. This framing almost always signals a scam or a lead-generation site dressed up as advice.</li>
+    <li><strong>Articles that cite no sources.</strong> Any factual claim should trace back to something. If a health or financial article makes specific claims with no links, no citations, and no named sources, treat it skeptically regardless of how well-written it sounds.</li>
+    <li><strong>Outdated information presented as current.</strong> Information in tech, finance, medicine, and law changes. Check the publication date of anything you're using to make a decision. Three or more years old in a fast-moving field is a reason to look for something newer.</li>
+  </ul>
+
+  <h2>Free Research Tools</h2>
+  <p>If you're a student, you have free access to academic databases that contain peer-reviewed research Google hides behind paywalls. Log in through your institution and use these:</p>
+  <ul>
+    <li><strong>JSTOR</strong>, journals across humanities, social sciences, and sciences</li>
+    <li><strong>ProQuest</strong>, newspapers, dissertations, academic journals</li>
+    <li><strong>PubMed</strong>, medical and life sciences research, free to the public</li>
+    <li><strong>Google Scholar</strong>, not always full-text, but useful for finding what exists and sometimes finding free versions</li>
+  </ul>
+
+  <div class="related"><div class="related-label">Keep reading</div><div class="related-links">
+    <a class="related-link" href="ai-learning.html">AI as a Learning Tool</a>
+    <a class="related-link" href="effective-learning.html">Effective Learning Techniques</a>
+    <a class="related-link" href="../life/digital-safety.html">Digital Safety</a>
+  </div></div>
+
+</article>
+<footer><a class="footer-logo" href="../index.html">The <span>Map.</span></a><div class="footer-copy">Free to use. Built with care. Not professional advice.</div></footer>
+<div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Search">
+  <div class="search-modal">
+    <div class="search-input-row">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <input class="search-input" id="searchInput" type="search" placeholder="Search topics…" autocomplete="off" autocorrect="off" spellcheck="false"/>
+      <button class="search-close" id="searchClose" aria-label="Close search">Esc</button>
+    </div>
+    <div class="search-results" id="searchResults" role="listbox"></div>
+    <div class="search-footer" aria-hidden="true">
+      <span class="search-footer-hint"><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
+      <span class="search-footer-hint"><kbd>↵</kbd> open</span>
+      <span class="search-footer-hint"><kbd>Esc</kbd> close</span>
+    </div>
+  </div>
+</div>
+<script src="../search-index.js"></script>
+<script src="../shared.js"></script>
+</body></html>

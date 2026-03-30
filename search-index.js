@@ -302,4 +302,61 @@ const SEARCH_INDEX = [
     desc: "What makes a contract binding, your rights at work and with debt collectors, how small claims court works, and when to get a lawyer.",
     keywords: "legal contract rights small claims court debt collectors police employment wage theft power of attorney notary"
   }
+,
+  {
+    title: "Financial Aid & the FAFSA",
+    section: "Learning",
+    path: "learning/financial-aid.html",
+    desc: "How to file the FAFSA, understand your Student Aid Index, read award letters, and make smart decisions about grants, work-study, and loans.",
+    keywords: "FAFSA financial aid SAI Student Aid Index Pell Grant work-study loans dependent independent FSA ID award letter"
+  },
+  {
+    title: "Grad School & Professional Licensing",
+    section: "Learning",
+    path: "learning/grad-school.html",
+    desc: "How degrees and licenses differ, what licensing exams require, how to choose an accredited program, and how to plan your timeline.",
+    keywords: "grad school graduate school master degree license CPA LCSW NCLEX accreditation GRE supervised hours board exam PSLF"
+  },
+  {
+    title: "Information Literacy",
+    section: "Learning",
+    path: "learning/information-literacy.html",
+    desc: "How to vet a source quickly using SIFT, spot bias and sponsored content, understand source hierarchy, and find primary research.",
+    keywords: "information literacy SIFT sources vetting research bias fact-checking primary sources peer-reviewed Wikipedia confirmation bias"
+  },
+  {
+    title: "Note-Taking & Knowledge Management",
+    section: "Learning",
+    path: "learning/note-taking.html",
+    desc: "PARA method for organizing digital notes, the three levels of note-taking, avoiding the collector trap, and tools worth using.",
+    keywords: "note taking knowledge management PARA method Notion Obsidian second brain fleeting notes literature notes"
+  },
+  {
+    title: "Public Speaking & Presentations",
+    section: "Learning",
+    path: "learning/public-speaking.html",
+    desc: "Slides that work, managing stage fright, structuring a presentation people remember, delivery techniques, and handling Q&A.",
+    keywords: "public speaking presentations slides stage fright nerves delivery Q&A structure hook 10 20 30 rule"
+  },
+  {
+    title: "Standardized Testing & Certifications",
+    section: "Learning",
+    path: "learning/standardized-testing.html",
+    desc: "Strategy for certification and licensing exams: format research, test-day triage, managing anxiety, accommodations, and the certification lifecycle.",
+    keywords: "standardized testing certification exam GRE NCLEX CPA licensing board exam computer adaptive test anxiety accommodations CEU"
+  },
+  {
+    title: "AI as a Learning Tool",
+    section: "Learning",
+    path: "learning/ai-learning.html",
+    desc: "How to use AI to study faster without letting it do your thinking. Covers the ethics line, AI hallucinations, and effective prompting.",
+    keywords: "AI artificial intelligence study tool ChatGPT active recall hallucinations academic integrity prompts tutor learning"
+  },
+  {
+    title: "The Working Student's Guide",
+    section: "Learning",
+    path: "learning/working-student.html",
+    desc: "For people balancing jobs and school: gap-based study strategies, energy management, glass vs plastic priorities, and communicating with employers.",
+    keywords: "working student time management gap study adult learner energy management priorities employer tuition reimbursement"
+  },
 ];

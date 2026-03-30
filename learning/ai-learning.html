@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI as a Learning Tool, The Map</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../shared.css"/>
+  <link rel="stylesheet" href="../search.css"/>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="../index.html">The <span>Map.</span></a>
+  <div class="nav-right">
+    <ul class="nav-links"><li><a href="../index.html#topics">All Topics</a></li><li><a href="../pathways.html">Pathways</a></li><li><a href="../index.html#mission">Mission</a></li><li><a href="../contact.html">Contact</a></li></ul>
+    <a class="nav-back" href="../index.html">← Home</a>
+    <button class="search-btn" id="searchBtn" aria-label="Search">
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <span class="search-btn-label">Search</span>
+    </button>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><span class="toggle-icon" id="toggleIcon">☀️</span><span class="toggle-text" id="toggleText">Light mode</span></button>
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <div class="mobile-menu-links">
+    <a href="../index.html">Home</a>
+    <a href="../index.html#topics">All Topics</a>
+    <a href="../pathways.html">Pathways</a>
+    <a href="../index.html#mission">Mission</a>
+    <a href="../contact.html">Contact</a>
+    <a href="../glossary.html">Glossary</a>
+  </div>
+  <div class="mobile-menu-footer">
+    <button class="theme-toggle" id="themeToggleMobile" aria-label="Toggle theme">
+      <span class="toggle-icon" id="toggleIconMobile">☀️</span>
+      <span class="toggle-text" id="toggleTextMobile">Light mode</span>
+    </button>
+  </div>
+</div>
+
+<div class="page-header">
+  <div class="breadcrumb">Learning</div>
+  <h1>AI as a Learning Tool</h1>
+  <p class="lead">AI is the most capable study aid that has ever existed. Whether it makes you sharper or just does your thinking for you depends entirely on how you use it.</p>
+  <span class="read-time">4 min read</span>
+</div>
+<article class="article">
+
+  <div class="tldr">
+    <span class="tldr-label">TL;DR</span>
+    <ul>
+      <li>Ask AI to explain concepts and test your understanding, not to produce work you'll submit as your own.</li>
+      <li>Use it to generate practice questions from your own notes. This is active recall at scale.</li>
+      <li>AI "hallucinates", it confidently states things that are false. Never use a fact, quote, or citation from AI without verifying it against a primary source.</li>
+      <li>The ethics line is clear: if you couldn't explain the reasoning behind a sentence in your own words during a conversation, you shouldn't have let AI write it.</li>
+      <li>The more context you give, the better the output. Vague prompts produce vague answers.</li>
+    </ul>
+  </div>
+
+  <h2>The Core Distinction</h2>
+  <p>AI becomes a problem when you use it to skip the thinking. It becomes an asset when you use it to extend your thinking. The difference isn't the tool, it's whether your brain is engaged.</p>
+  <p>If you paste a question from your homework and copy the answer, you haven't learned anything. You've also built a habit that will cost you in exams, interviews, and any situation where AI isn't available. If you instead ask AI to explain the concept behind the question, quiz you on it, and tell you where your reasoning breaks down, you've used the same tool to learn faster than you could alone.</p>
+
+  <h2>Using AI as a Tutor</h2>
+  <p>The most effective use of AI for learning is asking it to guide your thinking rather than replace it.</p>
+
+  <div class="steps">
+    <div class="step fade-in">
+      <div class="step-num">01</div>
+      <div class="step-content">
+        <h4>Ask for explanations, not answers</h4>
+        <p>When a textbook section isn't clicking, ask: "Explain [concept] using a simple analogy." Or: "Walk me through the steps of this problem but don't give me the final answer yet, let me try the next step." The goal is to understand the logic, not just get the result.</p>
+      </div>
+    </div>
+    <div class="step fade-in">
+      <div class="step-num">02</div>
+      <div class="step-content">
+        <h4>Use the Socratic method</h4>
+        <p>Tell the AI: "I'm studying [topic]. Ask me one question at a time to test my understanding, give me feedback on my answers, and tell me when I'm wrong." This turns AI into an interactive tutor rather than a search engine.</p>
+      </div>
+    </div>
+    <div class="step fade-in">
+      <div class="step-num">03</div>
+      <div class="step-content">
+        <h4>Get feedback on your own work</h4>
+        <p>Paste a paragraph you wrote and ask: "Critique this for clarity and logic. Don't rewrite it, give me three specific suggestions for improvement." You stay in control of the writing; AI helps you see the gaps.</p>
+      </div>
+    </div>
+    <div class="step fade-in">
+      <div class="step-num">04</div>
+      <div class="step-content">
+        <h4>Give it context</h4>
+        <p>Vague prompts produce vague answers. "Explain psychology" will get you a textbook intro. "I'm a sophomore studying clinical psychology, explain the difference between CBT and DBT and when each is used" will get you something actually useful.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2>Active Recall at Scale</h2>
+  <p>One of the most practical uses of AI is generating practice materials from your own notes. Paste your notes into a conversation and ask for flashcard questions, practice problems, or a short quiz. When you then answer those questions from memory, you're doing active recall, the most effective study technique that exists, with material customized to exactly what you're studying.</p>
+  <p>Some prompts that work well:</p>
+  <ul>
+    <li>"Based on these notes, generate 10 challenging questions. Show the questions first, then the answers below a clear divider."</li>
+    <li>"I'm writing an argumentative essay with this thesis. What are the three strongest counter-arguments? Where is my logic vulnerable?"</li>
+    <li>"Create a study schedule for this syllabus, assuming I can study two hours a day and my midterm is on [date]."</li>
+  </ul>
+
+  <h2>The Ethics Line</h2>
+  <p>Academic institutions and employers are increasingly clear about where AI assistance crosses into academic dishonesty or professional misrepresentation. The line is simpler than most people make it.</p>
+
+  <div class="compare-table-wrap"><table class="compare-table">
+    <tr><th>Fine to use AI for</th><th>Use judgment here</th><th>Don't do this</th></tr>
+    <tr><td>Explaining concepts you don't understand</td><td>Brainstorming an outline you then write from</td><td>Generating text you submit as your own writing</td></tr>
+    <tr><td>Generating practice questions from your notes</td><td>Rewording a confusing sentence you drafted</td><td>Having AI write an entire essay or report</td></tr>
+    <tr><td>Checking your grammar and catching typos</td><td>Organizing research you've already gathered</td><td>Using AI-generated facts without verifying them</td></tr>
+  </table></div>
+
+  <p>A useful test: if someone asked you to explain the reasoning behind a sentence in your submitted work during a conversation, could you do it? If the honest answer is no, you've crossed the line.</p>
+
+  <h2>AI Hallucinations</h2>
+  <p>This is the most important technical fact to understand about how AI works. A language model predicts the next most likely word in a sequence, it doesn't actually retrieve or verify facts. This means it can, and does, confidently state things that are completely false: wrong dates, fabricated citations, quotes attributed to people who never said them, statistics that don't exist.</p>
+  <p>This isn't a bug that will eventually be fixed. It's a fundamental property of how these systems work. The practical consequence: never use a specific fact, date, statistic, or citation that came from an AI without finding the original source yourself and confirming it's real. See the <a href="information-literacy.html">Information Literacy</a> page for how to vet sources quickly.</p>
+
+  <div class="callout warn">
+    <span class="callout-label">Verify before you cite</span>
+    <p>If an AI gives you a citation, a paper title, an author, a journal, a page number, search for it yourself before using it. AI-generated citations are frequently partially or entirely fabricated. This has caused real harm to students and professionals who submitted work with fake sources they didn't check.</p>
+  </div>
+
+  <div class="disclaimer-bar"><strong>Note:</strong> AI tools, policies, and capabilities change quickly. Your institution's specific policies on AI use should take precedence over any general guidance here.</div>
+
+  <div class="related"><div class="related-label">Keep reading</div><div class="related-links">
+    <a class="related-link" href="effective-learning.html">Effective Learning Techniques</a>
+    <a class="related-link" href="information-literacy.html">Information Literacy</a>
+    <a class="related-link" href="note-taking.html">Note-Taking &amp; Knowledge Management</a>
+  </div></div>
+
+</article>
+<footer><a class="footer-logo" href="../index.html">The <span>Map.</span></a><div class="footer-copy">Free to use. Built with care. Not professional advice.</div></footer>
+<div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Search">
+  <div class="search-modal">
+    <div class="search-input-row">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <input class="search-input" id="searchInput" type="search" placeholder="Search topics…" autocomplete="off" autocorrect="off" spellcheck="false"/>
+      <button class="search-close" id="searchClose" aria-label="Close search">Esc</button>
+    </div>
+    <div class="search-results" id="searchResults" role="listbox"></div>
+    <div class="search-footer" aria-hidden="true">
+      <span class="search-footer-hint"><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
+      <span class="search-footer-hint"><kbd>↵</kbd> open</span>
+      <span class="search-footer-hint"><kbd>Esc</kbd> close</span>
+    </div>
+  </div>
+</div>
+<script src="../search-index.js"></script>
+<script src="../shared.js"></script>
+</body></html>
