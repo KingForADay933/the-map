@@ -39,7 +39,7 @@
   --btn-hover-bg:   #A85038;
 }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scroll-padding-top: 88px; }
 [id] { scroll-margin-top: 88px; }
 
 body {
