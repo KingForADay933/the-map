@@ -931,8 +931,9 @@
     <div class="nav-right">
       <ul class="nav-links">
         <li><a href="#topics">Topics</a></li>
+        <li><a href="pathways.html">Pathways</a></li>
         <li><a href="#mission">Mission</a></li>
-        <li><a href="#start">Where to Start</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
       <button class="search-btn" id="searchBtn" aria-label="Search">
       <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
@@ -942,8 +943,26 @@
         <span class="toggle-icon" id="toggleIcon">☀️</span>
         <span class="toggle-text" id="toggleText">Light mode</span>
       </button>
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
     </div>
   </nav>
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <div class="mobile-menu-links">
+      <a href="#topics">Topics</a>
+      <a href="pathways.html">Pathways</a>
+      <a href="#mission">Mission</a>
+      <a href="contact.html">Contact</a>
+      <a href="glossary.html">Glossary</a>
+  </div>
+  <div class="mobile-menu-footer">
+    <button class="theme-toggle" id="themeToggleMobile" aria-label="Toggle theme">
+      <span class="toggle-icon" id="toggleIconMobile">☀️</span>
+      <span class="toggle-text" id="toggleTextMobile">Light mode</span>
+    </button>
+  </div>
+</div>
 
   <!-- Hero -->
   <div class="hero">

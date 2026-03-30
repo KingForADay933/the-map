@@ -194,4 +194,99 @@
 
   } catch(e) { console.error('The Map search error:', e); }
 
+  // ── 4. Mobile Menu ───────────────────────────────────────────────────────
+  try {
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    if (hamburger && mobileMenu) {
+      function openMobileMenu() {
+        hamburger.classList.add('open');
+        hamburger.setAttribute('aria-expanded', 'true');
+        mobileMenu.classList.add('open');
+        mobileMenu.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = '';
+      }
+
+      function closeMobileMenu() {
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        mobileMenu.classList.remove('open');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+      }
+
+      hamburger.addEventListener('click', () => {
+        if (mobileMenu.classList.contains('open')) {
+          closeMobileMenu();
+        } else {
+          // Close search if open
+          const overlay = document.getElementById('searchOverlay');
+          if (overlay && overlay.classList.contains('open')) {
+            overlay.classList.remove('open');
+            document.body.style.overflow = '';
+          }
+          openMobileMenu();
+        }
+      });
+
+      // Close when a link is tapped
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', closeMobileMenu);
+      });
+
+      // Close on outside tap
+      document.addEventListener('click', (e) => {
+        if (mobileMenu.classList.contains('open') &&
+            !mobileMenu.contains(e.target) &&
+            !hamburger.contains(e.target)) {
+          closeMobileMenu();
+        }
+      });
+
+      // Close on Escape
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+          closeMobileMenu();
+        }
+      });
+
+      // Wire up mobile theme toggle to match the desktop one
+      const mobileThemeBtn = document.getElementById('themeToggleMobile');
+      const mobileIcon     = document.getElementById('toggleIconMobile');
+      const mobileText     = document.getElementById('toggleTextMobile');
+
+      if (mobileThemeBtn) {
+        // Sync initial state
+        function syncMobileTheme(t) {
+          const themes = {
+            dark:  { icon: '☀️', label: 'Light mode' },
+            light: { icon: '🌙', label: 'Dark mode'  },
+          };
+          if (mobileIcon) mobileIcon.textContent = themes[t].icon;
+          if (mobileText) mobileText.textContent = themes[t].label;
+        }
+        syncMobileTheme(localStorage.getItem('the-map-theme') || 'dark');
+
+        mobileThemeBtn.addEventListener('click', () => {
+          const current = document.documentElement.getAttribute('data-theme');
+          const next = current === 'dark' ? 'light' : 'dark';
+          // Trigger the main theme toggle logic
+          document.documentElement.setAttribute('data-theme', next);
+          localStorage.setItem('the-map-theme', next);
+          const themes = {
+            dark:  { icon: '☀️', label: 'Light mode' },
+            light: { icon: '🌙', label: 'Dark mode'  },
+          };
+          // Sync both toggles
+          const desktopIcon = document.getElementById('toggleIcon');
+          const desktopText = document.getElementById('toggleText');
+          if (desktopIcon) desktopIcon.textContent = themes[next].icon;
+          if (desktopText) desktopText.textContent = themes[next].label;
+          syncMobileTheme(next);
+        });
+      }
+    }
+  } catch(e) { console.error('The Map mobile menu error:', e); }
+
+
 })();
