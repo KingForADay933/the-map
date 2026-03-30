@@ -795,11 +795,88 @@
     }
     .fade-in.visible { opacity: 1; transform: translateY(0); }
 
+
+    /* ── Hamburger button ── */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      width: 36px;
+      height: 36px;
+      background: none;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      padding: 0;
+      transition: border-color 0.25s;
+      flex-shrink: 0;
+    }
+    .hamburger:hover { border-color: var(--clay); }
+    .hamburger span {
+      display: block;
+      width: 16px;
+      height: 1.5px;
+      background: var(--text-secondary);
+      border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s, background 0.25s;
+      transform-origin: center;
+    }
+    .hamburger:hover span { background: var(--clay); }
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* ── Mobile menu drawer ── */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 64px;
+      left: 0; right: 0;
+      background: var(--nav-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      z-index: 199;
+      transform: translateY(-8px);
+      opacity: 0;
+      transition: transform 0.25s cubic-bezier(0.4,0,0.2,1), opacity 0.25s;
+      pointer-events: none;
+    }
+    .mobile-menu.open {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .mobile-menu-links {
+      display: flex;
+      flex-direction: column;
+      padding: 1rem 1.5rem 0.5rem;
+    }
+    .mobile-menu-links a {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-decoration: none;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--border);
+      transition: color 0.2s;
+      display: block;
+    }
+    .mobile-menu-links a:last-child { border-bottom: none; }
+    .mobile-menu-links a:hover { color: var(--clay); }
+    .mobile-menu-footer {
+      padding: 0.875rem 1.5rem 1rem;
+      border-top: 1px solid var(--border);
+    }
+
     /* ── Responsive ── */
     @media (max-width: 768px) {
       nav { padding: 0 1.25rem; }
       .nav-links { display: none; }
       .hamburger { display: flex; }
+      .mobile-menu { display: block; }
 
       /* Hero */
       .hero { padding: 96px 1.25rem 2rem; min-height: 85vh; }
