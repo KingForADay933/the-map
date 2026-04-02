@@ -294,7 +294,7 @@
 
   // ── 6. Footer Disclaimer ───────────────────────────────────────────────── ─────────────────────────────────────────────────
   const footerEl = document.querySelector('footer');
-  if (footerEl) {
+  if (footerEl && !footerEl.querySelector('.footer-disclaimer')) {
     const disc = document.createElement('p');
     disc.className = 'footer-disclaimer';
     const prefix = (function () {
