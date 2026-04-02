@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Disclosures — The Map</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="shared.css"/>
+  <link rel="stylesheet" href="search.css"/>
+  <style>
+    .disclosures-wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 2.5rem 6rem;
+    }
+    .disclosures-wrap h2 {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin: 2.5rem 0 0.75rem;
+      letter-spacing: -0.02em;
+    }
+    .disclosures-wrap p {
+      font-size: 0.9375rem;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      margin-bottom: 0.75rem;
+      transition: color 0.4s;
+    }
+    .disclosures-wrap p:last-child { margin-bottom: 0; }
+    .disclosures-wrap hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2.5rem 0;
+    }
+    @media (max-width: 768px) {
+      .disclosures-wrap { padding: 0 1.25rem 4rem; }
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="index.html">The <span>Map.</span></a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="index.html#topics">All Topics</a></li>
+      <li><a href="pathways.html">Pathways</a></li>
+      <li><a href="index.html#mission">Mission</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a class="nav-back" href="index.html">← Home</a>
+    <button class="search-btn" id="searchBtn" aria-label="Search">
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <span class="search-btn-label">Search</span>
+    </button>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><span class="toggle-icon" id="toggleIcon">☀️</span><span class="toggle-text" id="toggleText">Light mode</span></button>
+      <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <div class="mobile-menu-links">
+      <a href="index.html">Home</a>
+      <a href="index.html#topics">All Topics</a>
+      <a href="pathways.html">Pathways</a>
+      <a href="index.html#mission">Mission</a>
+      <a href="contact.html">Contact</a>
+      <a href="glossary.html">Glossary</a>
+  </div>
+  <div class="mobile-menu-footer">
+    <button class="theme-toggle" id="themeToggleMobile" aria-label="Toggle theme">
+      <span class="toggle-icon" id="toggleIconMobile">☀️</span>
+      <span class="toggle-text" id="toggleTextMobile">Light mode</span>
+    </button>
+  </div>
+</div>
+
+<div class="page-header">
+  <div class="breadcrumb">Legal</div>
+  <h1>Disclosures</h1>
+  <p class="lead">What this site is, what it isn't, and how it operates.</p>
+</div>
+
+<div class="disclosures-wrap">
+
+  <h2>Informational Purposes Only</h2>
+  <p>The content on The Map is for informational purposes only. Nothing on this site constitutes professional financial, legal, tax, or medical advice. The information provided is general in nature and may not apply to your specific situation.</p>
+  <p>Always consult a qualified professional — such as a licensed financial advisor, attorney, tax professional, or doctor — before making decisions that affect your finances, legal standing, or health.</p>
+
+  <hr>
+
+  <h2>No Affiliate Relationships or Compensation</h2>
+  <p>The Map does not participate in affiliate programs. We do not receive any compensation, commission, referral fees, or other payment in connection with any product, service, company, or website mentioned or linked to on this site.</p>
+  <p>When we mention a specific product, tool, or service — such as a savings account, tax software, or financial app — it is solely for illustrative purposes. We have no financial relationship with any of those companies, and our mention of them is not a paid endorsement.</p>
+  <p>This site has no advertisers and generates no revenue. It is a free resource built and maintained as a personal project.</p>
+
+  <hr>
+
+  <h2>Third-Party Links</h2>
+  <p>Some pages on this site link to external websites for reference — such as government resources, educational institutions, or tools we mention in passing. These links are provided for convenience only.</p>
+  <p>We have no control over the content, accuracy, availability, or privacy practices of any external site. Linking to a third-party site does not constitute an endorsement of that site, its content, or its operators. We are not responsible for any loss or damage that may arise from your use of an external site.</p>
+  <p>When you leave The Map and visit an external site, that site's own terms of service and privacy policy apply.</p>
+
+  <hr>
+
+  <h2>Accuracy and Currency of Information</h2>
+  <p>We make reasonable efforts to ensure the information on this site is accurate and up to date. However, laws, regulations, financial products, and best practices change over time. We cannot guarantee that every piece of information reflects the most current standards or rules in your state or country.</p>
+  <p>If you notice an error or outdated information, please <a href="contact.html" style="color: var(--terracotta); text-decoration: none;">let us know</a>. We take corrections seriously and update pages when issues are identified.</p>
+
+  <hr>
+
+  <h2>No Endorsement of User Decisions</h2>
+  <p>The Map does not endorse or recommend any specific financial product, investment strategy, career path, or legal approach for any individual. Examples used on this site are illustrative only and should not be interpreted as personalized guidance.</p>
+
+</div>
+
+<footer><a class="footer-logo" href="index.html">The <span>Map.</span></a><div class="footer-copy">Free to use. Built with care. Not professional advice.</div></footer>
+<div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Search">
+  <div class="search-modal">
+    <div class="search-input-row">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <input class="search-input" id="searchInput" type="search" placeholder="Search topics…" autocomplete="off" autocorrect="off" spellcheck="false"/>
+      <button class="search-close" id="searchClose" aria-label="Close search">Esc</button>
+    </div>
+    <div class="search-results" id="searchResults" role="listbox"></div>
+    <div class="search-footer" aria-hidden="true">
+      <span class="search-footer-hint"><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
+      <span class="search-footer-hint"><kbd>↵</kbd> open</span>
+      <span class="search-footer-hint"><kbd>Esc</kbd> close</span>
+    </div>
+  </div>
+</div>
+<script src="search-index.js"></script>
+<script src="shared.js"></script>
+</body></html>

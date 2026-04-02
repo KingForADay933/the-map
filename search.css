@@ -57,7 +57,7 @@
 .search-input-row svg { color: var(--text-dim); flex-shrink: 0; }
 
 .search-input {
-  flex: 1; border: none; outline: none;
+  flex: 1; border: none; outline: none; /* outline suppressed — focus shown on .search-input-row */
   background: transparent;
   font-family: 'DM Sans', sans-serif;
   font-size: 1rem; font-weight: 400;

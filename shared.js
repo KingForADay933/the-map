@@ -279,4 +279,46 @@
   } catch(e) { console.error('The Map mobile menu error:', e); }
 
 
+  // ── 5. Skip-to-Content Link ──────────────────────────────────────────────
+  const skipLink = document.createElement('a');
+  skipLink.href = '#main-content';
+  skipLink.className = 'skip-link';
+  skipLink.textContent = 'Skip to main content';
+  document.body.insertBefore(skipLink, document.body.firstChild);
+
+  const mainTarget = document.querySelector('article.article, .article, .page-header');
+  if (mainTarget && !mainTarget.id) {
+    mainTarget.id = 'main-content';
+  }
+
+
+  // ── 6. Footer Disclaimer ───────────────────────────────────────────────── ─────────────────────────────────────────────────
+  const footerEl = document.querySelector('footer');
+  if (footerEl) {
+    const disc = document.createElement('p');
+    disc.className = 'footer-disclaimer';
+    const prefix = (function () {
+      const parts = window.location.pathname.replace(/\/[^/]*$/, '').split('/').filter(Boolean);
+      return parts.length > 0 ? '../'.repeat(parts.length) : '';
+    })();
+    disc.innerHTML = 'The content on this site is for informational purposes only and does not constitute professional financial, legal, or medical advice.<br><a href="' + prefix + 'disclosures.html">Full disclosures.</a>';
+    footerEl.appendChild(disc);
+  }
+
+
+  // ── 7. Hash Scroll Fix ───────────────────────────────────────────────────
+  // On cross-page navigation with a hash, the browser scrolls to the anchor
+  // before the fixed nav is accounted for. Nudge the scroll position on load.
+  if (window.location.hash) {
+    window.addEventListener('load', function () {
+      const id = window.location.hash.slice(1);
+      const el = document.getElementById(id);
+      if (el) {
+        const navH = (document.querySelector('nav') || {}).offsetHeight || 64;
+        const top = el.getBoundingClientRect().top + window.pageYOffset - navH - 24;
+        window.scrollTo({ top: top, behavior: 'instant' });
+      }
+    });
+  }
+
 })();
