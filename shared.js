@@ -279,7 +279,20 @@
   } catch(e) { console.error('The Map mobile menu error:', e); }
 
 
-  // ── 5. Skip-to-Content Link ──────────────────────────────────────────────
+  // ── 5. Last Updated Stamp ────────────────────────────────────────────────
+  var article = document.querySelector('article[data-updated]');
+  if (article) {
+    var header = document.querySelector('.page-header');
+    if (header) {
+      var stamp = document.createElement('span');
+      stamp.className = 'last-updated';
+      stamp.textContent = 'Last reviewed: ' + article.getAttribute('data-updated');
+      header.appendChild(stamp);
+    }
+  }
+
+
+  // ── 7. Skip-to-Content Link ──────────────────────────────────────────────
   const skipLink = document.createElement('a');
   skipLink.href = '#main-content';
   skipLink.className = 'skip-link';
@@ -292,7 +305,7 @@
   }
 
 
-  // ── 6. Footer Disclaimer ───────────────────────────────────────────────── ─────────────────────────────────────────────────
+  // ── 8. Footer Disclaimer ─────────────────────────────────────────────────
   const footerEl = document.querySelector('footer');
   if (footerEl && !footerEl.querySelector('.footer-disclaimer')) {
     const disc = document.createElement('p');
@@ -306,7 +319,7 @@
   }
 
 
-  // ── 7. Hash Scroll Fix ───────────────────────────────────────────────────
+  // ── 9. Hash Scroll Fix ───────────────────────────────────────────────────
   // On cross-page navigation with a hash, the browser scrolls to the anchor
   // before the fixed nav is accounted for. Nudge the scroll position on load.
   if (window.location.hash) {
