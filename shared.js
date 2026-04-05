@@ -279,7 +279,24 @@
   } catch(e) { console.error('The Map mobile menu error:', e); }
 
 
-  // ── 5. Last Updated Stamp ────────────────────────────────────────────────
+  // ── 5. Root-relative path prefix (used by sections 5 and 8) ─────────────
+  var rootPrefix = (function () {
+    var parts = window.location.pathname.replace(/\/[^/]*$/, '').split('/').filter(Boolean);
+    return parts.length > 0 ? '../'.repeat(parts.length) : '';
+  })();
+
+  // ── 5b. Crisis Nav Link ──────────────────────────────────────────────────
+  var navEl = document.querySelector('nav');
+  if (navEl && !navEl.querySelector('.nav-crisis')) {
+    var crisisLink = document.createElement('a');
+    crisisLink.className = 'nav-crisis';
+    crisisLink.textContent = 'Urgent Resources';
+    crisisLink.setAttribute('href', rootPrefix + 'urgent-resources.html');
+    navEl.appendChild(crisisLink);
+  }
+
+
+  // ── 6. Last Updated Stamp ────────────────────────────────────────────────
   var article = document.querySelector('article[data-updated]');
   if (article) {
     var header = document.querySelector('.page-header');
@@ -310,11 +327,7 @@
   if (footerEl && !footerEl.querySelector('.footer-disclaimer')) {
     const disc = document.createElement('p');
     disc.className = 'footer-disclaimer';
-    const prefix = (function () {
-      const parts = window.location.pathname.replace(/\/[^/]*$/, '').split('/').filter(Boolean);
-      return parts.length > 0 ? '../'.repeat(parts.length) : '';
-    })();
-    disc.innerHTML = 'The content on this site is for informational purposes only and does not constitute professional financial, legal, or medical advice.<br><a href="' + prefix + 'disclosures.html">Full disclosures.</a>';
+    disc.innerHTML = 'The content on this site is for informational purposes only and does not constitute professional financial, legal, or medical advice.<br><a href="' + rootPrefix + 'disclosures.html">Full disclosures.</a>';
     footerEl.appendChild(disc);
   }
 

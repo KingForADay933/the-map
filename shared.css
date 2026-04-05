@@ -113,6 +113,29 @@ nav {
 }
 .nav-back:hover { color: var(--clay); }
 
+.nav-crisis {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  text-decoration: none;
+  padding: 0.3rem 0.75rem;
+  border: 1.5px solid var(--terracotta);
+  border-radius: 100px;
+  opacity: 0.85;
+  transition: opacity 0.2s, background 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+.nav-crisis:hover {
+  opacity: 1;
+  background: rgba(212,114,90,0.1);
+  color: var(--terracotta);
+}
+
 .theme-toggle {
   display: flex; align-items: center; gap: 0.5rem;
   background: none; border: 1.5px solid var(--border); border-radius: 100px;
