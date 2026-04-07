@@ -332,6 +332,95 @@
   }
 
 
+  // ── 10. Interactive Checklists ───────────────────────────────────────────
+  try {
+    function clPageSlug() {
+      return window.location.pathname.replace(/.*\//, '').replace(/\.html$/, '');
+    }
+
+    function clKey(listIdx, itemIdx) {
+      return 'the-map-cl-' + clPageSlug() + '-' + listIdx + '-' + itemIdx;
+    }
+
+    document.querySelectorAll('ul.checklist').forEach(function (list, listIdx) {
+      var items = Array.from(list.querySelectorAll(':scope > li'));
+      var total = items.length;
+
+      // Build progress bar row
+      var bar = document.createElement('div');
+      bar.className = 'checklist-bar';
+
+      var label = document.createElement('span');
+      label.className = 'checklist-label';
+
+      var track = document.createElement('div');
+      track.className = 'checklist-progress-track';
+      var fill = document.createElement('div');
+      fill.className = 'checklist-progress-fill';
+      track.appendChild(fill);
+
+      var resetBtn = document.createElement('button');
+      resetBtn.className = 'checklist-reset';
+      resetBtn.textContent = 'Reset';
+      resetBtn.setAttribute('aria-label', 'Reset checklist');
+
+      bar.appendChild(label);
+      bar.appendChild(track);
+      bar.appendChild(resetBtn);
+      list.parentNode.insertBefore(bar, list);
+
+      function countChecked() {
+        return items.filter(function (li) { return li.classList.contains('checked'); }).length;
+      }
+
+      function syncBar() {
+        var checked = countChecked();
+        var pct = total > 0 ? (checked / total) * 100 : 0;
+        fill.style.width = pct + '%';
+        label.textContent = checked + ' of ' + total + ' complete';
+      }
+
+      items.forEach(function (li, itemIdx) {
+        // Restore from localStorage
+        if (localStorage.getItem(clKey(listIdx, itemIdx)) === '1') {
+          li.classList.add('checked');
+        }
+        li.setAttribute('role', 'checkbox');
+        li.setAttribute('aria-checked', li.classList.contains('checked') ? 'true' : 'false');
+        li.setAttribute('tabindex', '0');
+
+        function toggle() {
+          var nowChecked = !li.classList.contains('checked');
+          li.classList.toggle('checked', nowChecked);
+          li.setAttribute('aria-checked', nowChecked ? 'true' : 'false');
+          if (nowChecked) {
+            localStorage.setItem(clKey(listIdx, itemIdx), '1');
+          } else {
+            localStorage.removeItem(clKey(listIdx, itemIdx));
+          }
+          syncBar();
+        }
+
+        li.addEventListener('click', toggle);
+        li.addEventListener('keydown', function (e) {
+          if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); toggle(); }
+        });
+      });
+
+      resetBtn.addEventListener('click', function () {
+        items.forEach(function (li, itemIdx) {
+          li.classList.remove('checked');
+          li.setAttribute('aria-checked', 'false');
+          localStorage.removeItem(clKey(listIdx, itemIdx));
+        });
+        syncBar();
+      });
+
+      syncBar();
+    });
+  } catch (e) { console.error('The Map checklist error:', e); }
+
+
   // ── 9. Hash Scroll Fix ───────────────────────────────────────────────────
   // On cross-page navigation with a hash, the browser scrolls to the anchor
   // before the fixed nav is accounted for. Nudge the scroll position on load.

@@ -537,3 +537,81 @@ a.footer-logo:hover { opacity: 0.75; }
 
   footer { padding: 2rem 1.25rem; }
 }
+
+
+/* ── Interactive Checklists ─────────────────────────────────────────────── */
+ul.checklist {
+  list-style: none;
+  padding-left: 0;
+}
+ul.checklist li {
+  position: relative;
+  padding: 0.5rem 0.5rem 0.5rem 2.25rem;
+  border-radius: 6px;
+  cursor: pointer;
+  user-select: none;
+  transition: opacity 0.25s, background 0.15s;
+  line-height: 1.55;
+}
+ul.checklist li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 50%; transform: translateY(-50%);
+  width: 18px; height: 18px;
+  border: 2px solid var(--border-hover);
+  border-radius: 4px;
+  background: transparent;
+  transition: background 0.2s, border-color 0.2s;
+}
+ul.checklist li:hover { background: var(--surface); }
+ul.checklist li:hover::before { border-color: var(--clay); }
+ul.checklist li.checked { opacity: 0.45; }
+ul.checklist li.checked::before {
+  background: var(--moss);
+  border-color: var(--moss);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='10' viewBox='0 0 12 10'%3E%3Cpath d='M1 5l3.5 3.5L11 1' stroke='%23fff' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+ul.checklist li.checked > * { text-decoration: line-through; }
+ul.checklist li.checked > strong { text-decoration: line-through; }
+
+/* Progress row above each checklist */
+.checklist-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.65rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+.checklist-progress-track {
+  flex: 1;
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.checklist-progress-fill {
+  height: 100%;
+  background: var(--moss);
+  border-radius: 2px;
+  width: 0%;
+  transition: width 0.3s ease;
+}
+.checklist-reset {
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  font-size: 0.75rem;
+  cursor: pointer;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-family: inherit;
+  white-space: nowrap;
+  transition: color 0.2s, background 0.2s;
+}
+.checklist-reset:hover {
+  color: var(--terracotta);
+  background: var(--surface);
+}
