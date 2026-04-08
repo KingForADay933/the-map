@@ -250,6 +250,45 @@
         }
       });
 
+      // Inject Urgent Resources + Search into mobile menu links
+      var mobileLinks = mobileMenu.querySelector('.mobile-menu-links');
+      if (mobileLinks) {
+        var mobilePrefix = (function () {
+          var parts = window.location.pathname.replace(/\/[^/]*$/, '').split('/').filter(Boolean);
+          return parts.length > 0 ? '../'.repeat(parts.length) : '';
+        })();
+
+        // Urgent Resources at top of menu
+        if (!mobileLinks.querySelector('.mobile-crisis-link')) {
+          var mobileCrisis = document.createElement('a');
+          mobileCrisis.className = 'mobile-crisis-link';
+          mobileCrisis.href = mobilePrefix + 'urgent-resources.html';
+          mobileCrisis.textContent = 'Urgent Resources';
+          mobileCrisis.addEventListener('click', closeMobileMenu);
+          mobileLinks.insertBefore(mobileCrisis, mobileLinks.firstChild);
+        }
+
+        // Search button at bottom of menu
+        if (!mobileLinks.querySelector('.mobile-search-btn')) {
+          var mobileSearchBtn = document.createElement('button');
+          mobileSearchBtn.className = 'mobile-search-btn';
+          mobileSearchBtn.setAttribute('aria-label', 'Open search');
+          mobileSearchBtn.innerHTML = '<svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> Search';
+          mobileSearchBtn.addEventListener('click', function () {
+            closeMobileMenu();
+            var overlay = document.getElementById('searchOverlay');
+            var input = document.getElementById('searchInput');
+            if (overlay && input) {
+              overlay.classList.add('open');
+              input.value = '';
+              setTimeout(function () { input.focus(); }, 50);
+              document.body.style.overflow = 'hidden';
+            }
+          });
+          mobileLinks.appendChild(mobileSearchBtn);
+        }
+      }
+
       // Wire up mobile theme toggle to match the desktop one
       const mobileThemeBtn = document.getElementById('themeToggleMobile');
       const mobileIcon     = document.getElementById('toggleIconMobile');

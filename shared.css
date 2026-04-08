@@ -483,6 +483,19 @@ a.footer-logo:hover { opacity: 0.75; }
 }
 .mobile-menu-links a:last-child { border-bottom: none; }
 .mobile-menu-links a:hover { color: var(--clay); }
+.mobile-crisis-link { color: var(--terracotta) !important; font-weight: 600 !important; }
+.mobile-search-btn {
+  background: none; border: none;
+  border-top: 1px solid var(--border);
+  width: 100%; text-align: left;
+  font-size: 0.9375rem; font-weight: 500;
+  color: var(--text-secondary);
+  padding: 0.75rem 0; cursor: pointer;
+  font-family: inherit;
+  display: flex; align-items: center; gap: 0.5rem;
+  transition: color 0.2s;
+}
+.mobile-search-btn:hover { color: var(--clay); }
 .mobile-menu-footer {
   padding: 0.875rem 1.5rem 1rem;
   border-top: 1px solid var(--border);
@@ -492,6 +505,8 @@ a.footer-logo:hover { opacity: 0.75; }
   .hamburger { display: flex; }
   .mobile-menu { display: block; }
   .nav-back { display: none; }
+  .search-btn { display: none; }
+  .nav-crisis { display: none; }
 }
 
 /* ── Responsive ── */
