@@ -1,5 +1,20 @@
 /* ── The Map — Search Modal ── */
 
+/* Mobile menu injected items */
+.mobile-crisis-link { color: var(--terracotta) !important; font-weight: 600 !important; }
+.mobile-search-btn {
+  background: none; border: none;
+  border-top: 1px solid var(--border);
+  width: 100%; text-align: left;
+  font-size: 0.9375rem; font-weight: 500;
+  color: var(--text-secondary);
+  padding: 0.75rem 0; cursor: pointer;
+  font-family: inherit;
+  display: flex; align-items: center; gap: 0.5rem;
+  transition: color 0.2s;
+}
+.mobile-search-btn:hover { color: var(--clay); }
+
 /* Trigger button in nav */
 .search-btn {
   display: flex; align-items: center; gap: 0.4rem;
