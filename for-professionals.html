@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>For Professionals — The Map</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="shared.css"/>
+  <link rel="stylesheet" href="search.css"/>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="index.html">The <span>Map.</span></a>
+  <div class="nav-right">
+    <ul class="nav-links"><li><a href="index.html#topics">All Topics</a></li><li><a href="index.html#mission">Mission</a></li></ul>
+    <a class="nav-back" href="index.html">← Home</a>
+    <button class="search-btn" id="searchBtn" aria-label="Search">
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <span class="search-btn-label">Search</span>
+    </button>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><span class="toggle-icon" id="toggleIcon">☀️</span><span class="toggle-text" id="toggleText">Light mode</span></button>
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <div class="mobile-menu-links">
+    <a href="index.html">Home</a>
+    <a href="index.html#topics">All Topics</a>
+    <a href="pathways.html">Pathways</a>
+    <a href="index.html#mission">Mission</a>
+    <a href="contact.html">Contact</a>
+    <a href="glossary.html">Glossary</a>
+  </div>
+  <div class="mobile-menu-footer">
+    <button class="theme-toggle" id="themeToggleMobile" aria-label="Toggle theme">
+      <span class="toggle-icon" id="toggleIconMobile">☀️</span>
+      <span class="toggle-text" id="toggleTextMobile">Light mode</span>
+    </button>
+  </div>
+</div>
+
+<div class="page-header">
+  <div class="breadcrumb">For Professionals</div>
+  <h1>For Professionals</h1>
+  <p class="lead">The Map is a free resource built for young adults navigating adulthood for the first time. This page is for educators, counselors, social workers, and youth-serving professionals who want to use it with the people they work with.</p>
+</div>
+
+<article class="article">
+
+  <h2>What The Map Is</h2>
+  <p>The Map is a free, openly accessible guide covering the practical life skills that most young adults aren't formally taught: personal finance, career development, life logistics, and learning strategies. Every guide is written to be honest, accessible, and free of jargon. There are no ads, no paywalls, and no accounts required.</p>
+  <p>The site is designed to meet young people where they are — whether they're 17 and about to graduate, 22 and figuring out their first apartment, or 25 and trying to understand their health insurance for the first time.</p>
+
+  <h2>How Professionals Use It</h2>
+  <ul>
+    <li><strong>Counselors and advisors</strong> share individual guides with students as pre-work or follow-up to conversations — for example, sending the <a href="finance/budgeting.html">Budgeting</a> or <a href="finance/filing-taxes.html">Filing Taxes</a> guide after a session on financial planning.</li>
+    <li><strong>Teachers and instructors</strong> use specific pages as classroom resources or discussion starters for life skills, financial literacy, or career readiness units.</li>
+    <li><strong>Social workers and case managers</strong> share guides with clients navigating housing, employment, or financial stability — particularly pages like <a href="life/finding-housing.html">Finding Housing</a>, <a href="career/job-hunting.html">Job Hunting</a>, and <a href="life/money-tight.html">When Money Is Tight</a>.</li>
+    <li><strong>Youth program staff</strong> use The Map as a reference library for workshops or drop-in support, with the <a href="glossary.html">Glossary</a> as a shared vocabulary tool.</li>
+    <li><strong>Parents</strong> share it with their kids as a starting point for conversations about adulting — or simply send a link and let them explore.</li>
+  </ul>
+
+  <div class="callout tip">
+    <span class="callout-label">Quick entry points</span>
+    <p>The <a href="pathways.html">Pathways</a> page organizes guides by life situation rather than topic — useful for pointing someone toward a curated sequence based on where they are right now.</p>
+  </div>
+
+  <h2>Sharing and Use Policy</h2>
+  <p>The Map is free to share and use in any non-commercial educational or professional context. You are welcome to:</p>
+  <ul>
+    <li>Link to any page or share URLs directly with clients, students, or colleagues</li>
+    <li>Print or save individual guides for offline use in sessions or workshops</li>
+    <li>Reference content in your own materials, with attribution to The Map</li>
+    <li>Recommend the site as a resource in your organization's materials or handouts</li>
+  </ul>
+  <p>Please do not republish content wholesale or represent it as your own work. If you'd like to use The Map in a way not covered here, use the <a href="contact.html">contact page</a> to get in touch.</p>
+
+  <h2>Limitations to Be Aware Of</h2>
+  <p>The Map is written for a general young adult audience in the United States. A few things to keep in mind when using it professionally:</p>
+  <ul>
+    <li><strong>It is general guidance, not professional advice.</strong> Every guide includes a disclaimer. The Map does not substitute for personalized legal, financial, or mental health advice.</li>
+    <li><strong>Laws and policies vary by state and locality.</strong> Guides covering topics like tenant rights, employment law, and taxes include this caveat, but you know your clients' specific situations better than any general resource can.</li>
+    <li><strong>Content is reviewed periodically</strong>, but some details (tax thresholds, specific platforms, program availability) may change between updates. Each guide shows a "Last reviewed" date.</li>
+    <li><strong>Mental health content is first-aid, not clinical.</strong> The <a href="life/managing-emotions.html">Managing Emotions</a> guide is explicit about this distinction and encourages professional referrals where appropriate.</li>
+  </ul>
+
+  <h2>Feedback and Suggestions</h2>
+  <p>Professionals working directly with young adults often notice gaps that aren't visible from the outside. If you find that a topic is missing, a guide is inaccurate, or something isn't working for your population, we want to know. Use the <a href="contact.html">contact page</a> to share feedback — it genuinely shapes what gets built next.</p>
+
+</article>
+
+<footer><a class="footer-logo" href="index.html">The <span>Map.</span></a></footer>
+
+<div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Search">
+  <div class="search-modal">
+    <div class="search-input-row">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <input class="search-input" id="searchInput" type="search" placeholder="Search topics…" autocomplete="off" autocorrect="off" spellcheck="false"/>
+      <button class="search-close" id="searchClose" aria-label="Close search">Esc</button>
+    </div>
+    <div class="search-results" id="searchResults" role="listbox"></div>
+    <div class="search-footer" aria-hidden="true">
+      <span class="search-footer-hint"><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
+      <span class="search-footer-hint"><kbd>↵</kbd> open</span>
+      <span class="search-footer-hint"><kbd>Esc</kbd> close</span>
+    </div>
+  </div>
+</div>
+<script src="search-index.js"></script>
+<script src="shared.js"></script>
+</body>
+</html>

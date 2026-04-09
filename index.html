@@ -229,6 +229,33 @@
       max-width: 680px;
     }
 
+    .hero-pro-link {
+      position: absolute;
+      top: 76px;
+      left: 0;
+      right: 0;
+      width: fit-content;
+      margin: 0 auto;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      text-decoration: none;
+      padding: 0.3rem 0.75rem;
+      border: 1.5px solid var(--border);
+      border-radius: 100px;
+      white-space: nowrap;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.05s forwards;
+      transition: opacity 0.2s, color 0.2s, border-color 0.2s, background 0.2s;
+    }
+    .hero-pro-link:hover {
+      color: var(--clay);
+      border-color: var(--clay);
+      background: rgba(196,154,108,0.06);
+    }
+
     .hero-eyebrow {
       display: inline-flex;
       align-items: center;
@@ -1054,6 +1081,7 @@
 
   <!-- Hero -->
   <div class="hero">
+    <a href="for-professionals.html" class="hero-pro-link">For Professionals</a>
     <div class="hero-glow-a"></div>
     <div class="hero-glow-b"></div>
     <div class="hero-inner">
@@ -1116,11 +1144,11 @@
     <p class="section-sub fade-in">Browse all topics, or follow a curated pathway through a specific situation.</p>
 
     <div class="mode-toggle" role="tablist" aria-label="View mode">
-      <button class="mode-btn" id="tabALaCarte" role="tab" aria-selected="false" aria-controls="panelALaCarte" onclick="switchMode('alacarte')">Browse all topics</button>
-      <button class="mode-btn active" id="tabPathways" role="tab" aria-selected="true" aria-controls="panelPathways" onclick="switchMode('pathways')">Follow a pathway</button>
+      <button class="mode-btn active" id="tabALaCarte" role="tab" aria-selected="true" aria-controls="panelALaCarte" onclick="switchMode('alacarte')">Browse all topics</button>
+      <button class="mode-btn" id="tabPathways" role="tab" aria-selected="false" aria-controls="panelPathways" onclick="switchMode('pathways')">Follow a pathway</button>
     </div>
 
-    <div class="mode-panel" id="panelALaCarte" role="tabpanel" aria-labelledby="tabALaCarte">
+    <div class="mode-panel active" id="panelALaCarte" role="tabpanel" aria-labelledby="tabALaCarte">
     <div class="topics-grid">
 
       <div class="topic-card fade-in">
@@ -1205,7 +1233,7 @@
     </div><!-- /topics-grid -->
     </div><!-- /panelALaCarte -->
 
-    <div class="mode-panel active" id="panelPathways" role="tabpanel" aria-labelledby="tabPathways">
+    <div class="mode-panel" id="panelPathways" role="tabpanel" aria-labelledby="tabPathways">
       <div class="pathways-preview">
         <a class="pathway-preview-card fade-in" href="pathways.html#college-or-trade">
           <div class="pathway-num">01</div>
