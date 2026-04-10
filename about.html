@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About the Founder — The Map</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="shared.css"/>
+  <link rel="stylesheet" href="search.css"/>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="index.html">The <span>Map.</span></a>
+  <div class="nav-right">
+    <ul class="nav-links"><li><a href="index.html#topics">All Topics</a></li><li><a href="index.html#mission">Mission</a></li><li><a href="about.html">About</a></li></ul>
+    <a class="nav-back" href="index.html">← Home</a>
+    <button class="search-btn" id="searchBtn" aria-label="Search">
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <span class="search-btn-label">Search</span>
+    </button>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><span class="toggle-icon" id="toggleIcon">☀️</span><span class="toggle-text" id="toggleText">Light mode</span></button>
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <div class="mobile-menu-links">
+    <a href="index.html">Home</a>
+    <a href="index.html#topics">All Topics</a>
+    <a href="pathways.html">Pathways</a>
+    <a href="index.html#mission">Mission</a>
+    <a href="contact.html">Contact</a>
+    <a href="about.html">About</a>
+    <a href="glossary.html">Glossary</a>
+  </div>
+  <div class="mobile-menu-footer">
+    <button class="theme-toggle" id="themeToggleMobile" aria-label="Toggle theme">
+      <span class="toggle-icon" id="toggleIconMobile">☀️</span>
+      <span class="toggle-text" id="toggleTextMobile">Light mode</span>
+    </button>
+  </div>
+</div>
+
+<div class="page-header">
+  <div class="breadcrumb">About</div>
+  <h1>About the Founder</h1>
+</div>
+
+<article class="article">
+
+  <p class="lead">The Map to Adulthood exists because I needed it and it didn't exist.</p>
+
+  <p>I'm Darius, the founder of this project. For most of my early adulthood, I was completely lost.
+    Not because I wasn't capable, but because nobody ever sat down with me long enough to help me find my direction.</p>
+
+  <p>I grew up without a real roadmap. My school counselors were stretched too thin for meaningful one-on-one conversation. The adults in my life were doing their best, but surviving their own lives left little room to guide mine. I graduated high school, shut down entirely, and spent the better part of a decade drifting: couch-surfing, major-hopping, working jobs that paid the bills but built nothing toward the future I didn't yet know I wanted.</p>
+
+  <p>I was 27 years old before I discovered that the field I'd always been drawn to, supporting young people, had a name, a career path, and a way in. That field is social work. The fact that I didn't know it existed until my late twenties tells you something about the gap this project is trying to fill.</p>
+
+  <p>The turning point was stability: a home, a partner, and finally enough stillness to start mentally unpacking everything that had come before. From that stillness came a question: what if someone had given me a map?</p>
+
+  <p>That question became this platform.</p>
+
+  <p>I'm currently pursuing my undergraduate degree in psychology and building the Map to Adulthood to serve the young people who are living what I lived, and the adults who want to help them. I believe that with the right guidance, the right tools, and the right community, we can keep an entire generation from slipping through the cracks the way I did.</p>
+
+  <p>You don't have to figure this out alone. That's kind of the whole point.</p>
+
+</article>
+
+<footer><a class="footer-logo" href="index.html">The <span>Map.</span></a></footer>
+
+<div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Search">
+  <div class="search-modal">
+    <div class="search-input-row">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <input class="search-input" id="searchInput" type="search" placeholder="Search topics…" autocomplete="off" autocorrect="off" spellcheck="false"/>
+      <button class="search-close" id="searchClose" aria-label="Close search">Esc</button>
+    </div>
+    <div class="search-results" id="searchResults" role="listbox"></div>
+    <div class="search-footer" aria-hidden="true">
+      <span class="search-footer-hint"><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
+      <span class="search-footer-hint"><kbd>↵</kbd> open</span>
+      <span class="search-footer-hint"><kbd>Esc</kbd> close</span>
+    </div>
+  </div>
+</div>
+<script src="search-index.js"></script>
+<script src="shared.js"></script>
+</body>
+</html>

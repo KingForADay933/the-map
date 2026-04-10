@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Map.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0e0b08;
+      --text-primary: #f0ebe4;
+      --terracotta: #c49a6c;
+    }
+    [data-theme="light"] {
+      --bg: #faf7f4;
+      --text-primary: #1a1410;
+      --terracotta: #b5784a;
+    }
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .logo {
+      font-family: 'Lora', serif;
+      font-size: clamp(2.5rem, 10vw, 6rem);
+      font-weight: 600;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+      text-decoration: none;
+      user-select: none;
+    }
+    .logo span { color: var(--terracotta); }
+  </style>
+</head>
+<body>
+  <span class="logo">The <span>Map.</span></span>
+</body>
+</html>

@@ -540,6 +540,73 @@ a.footer-logo:hover { opacity: 0.75; }
 }
 
 
+/* ── For Professionals — PDF embed ─────────────────────────────────────── */
+.pro-intro {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+}
+.pro-intro-text { flex: 1; min-width: 0; }
+.pro-intro-text h2 { margin-top: 0; }
+
+.pro-pdf-card {
+  flex-shrink: 0;
+  width: 188px;
+  border: 1.5px solid var(--border-hover);
+  border-radius: 12px;
+  overflow: hidden;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background: var(--surface);
+}
+.pro-pdf-card:hover {
+  border-color: var(--clay);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+}
+.pro-pdf-preview {
+  background: var(--surface-mid);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 110px;
+  color: var(--text-dim);
+  border-bottom: 1px solid var(--border);
+}
+.pro-pdf-meta {
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.pro-pdf-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  font-weight: 600;
+}
+.pro-pdf-title {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  line-height: 1.35;
+}
+.pro-pdf-action {
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  margin-top: 0.25rem;
+}
+
+@media (max-width: 640px) {
+  .pro-intro { flex-direction: column; }
+  .pro-pdf-card { width: 100%; flex-direction: row; }
+  .pro-pdf-preview { width: 80px; height: auto; flex-shrink: 0; border-bottom: none; border-right: 1px solid var(--border); }
+}
+
+
 /* ── Interactive Checklists ─────────────────────────────────────────────── */
 ul.checklist {
   list-style: none;
