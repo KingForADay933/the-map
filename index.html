@@ -255,6 +255,32 @@
       border-color: var(--clay);
       background: rgba(196,154,108,0.06);
     }
+    .hero-future-link {
+      position: absolute;
+      top: 112px;
+      left: 0;
+      right: 0;
+      width: fit-content;
+      margin: 0 auto;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      text-decoration: none;
+      padding: 0.3rem 0.75rem;
+      border: 1.5px solid var(--border);
+      border-radius: 100px;
+      white-space: nowrap;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.15s forwards;
+      transition: opacity 0.2s, color 0.2s, border-color 0.2s, background 0.2s;
+    }
+    .hero-future-link:hover {
+      color: var(--clay);
+      border-color: var(--clay);
+      background: rgba(196,154,108,0.06);
+    }
 
     .hero-eyebrow {
       display: inline-flex;
@@ -1083,6 +1109,7 @@
   <!-- Hero -->
   <div class="hero">
     <a href="for-professionals.html" class="hero-pro-link">For Professionals</a>
+    <a href="future.html" class="hero-future-link">Future of the Project</a>
     <div class="hero-glow-a"></div>
     <div class="hero-glow-b"></div>
     <div class="hero-inner">

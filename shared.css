@@ -550,9 +550,23 @@ a.footer-logo:hover { opacity: 0.75; }
 .pro-intro-text { flex: 1; min-width: 0; }
 .pro-intro-text h2 { margin-top: 0; }
 
-.pro-pdf-card {
+.pro-printables {
   flex-shrink: 0;
   width: 188px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.pro-printables-heading {
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  font-weight: 600;
+}
+
+.pro-pdf-card {
+  width: 100%;
   border: 1.5px solid var(--border-hover);
   border-radius: 12px;
   overflow: hidden;
@@ -602,7 +616,8 @@ a.footer-logo:hover { opacity: 0.75; }
 
 @media (max-width: 640px) {
   .pro-intro { flex-direction: column; }
-  .pro-pdf-card { width: 100%; flex-direction: row; }
+  .pro-printables { width: 100%; flex-direction: row; flex-wrap: wrap; }
+  .pro-pdf-card { flex-direction: row; }
   .pro-pdf-preview { width: 80px; height: auto; flex-shrink: 0; border-bottom: none; border-right: 1px solid var(--border); }
 }
 
