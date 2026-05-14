@@ -91,6 +91,17 @@
   max-width: 380px;
   margin: 0 auto;
 }
+.gallery-empty-cta {
+  display: inline-block;
+  margin-top: 1.25rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--terracotta);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: color 0.2s;
+}
+.gallery-empty-cta:hover { color: var(--clay); }
 
 /* ══════════════════════════════════════
    STORY GRID
