@@ -17,11 +17,11 @@ const SEARCH_INDEX = [
     keywords: "gallery submissions stories anonymous community writing art audio video Mexia tell your story"
   },
   {
-    title: "Tell Your Story — Partner Information",
+    title: "Tell Your Story — For Community Leaders",
     section: "Programs",
     path: "tell-your-story/for-partners.html",
-    desc: "How the Tell Your Story program works, what the pilot model looks like, and what co-sponsoring a future iteration would involve for libraries and organizations.",
-    keywords: "partner library sponsor organization co-sponsor tell your story pilot program Gibbs Memorial Library Mexia community"
+    desc: "How the Tell Your Story program works, what the pilot model looks like, and what running a similar program independently in your own community could look like.",
+    keywords: "community leaders library organization tell your story pilot program Gibbs Memorial Library Mexia replicate independent replication"
   },
 
   {
