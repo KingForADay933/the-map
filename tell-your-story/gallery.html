@@ -81,11 +81,11 @@
   ───────────────────────────────────────────────────────────── -->
 
   <div class="gallery-filter" role="group" aria-label="Filter by format">
-    <button class="filter-btn active" data-filter="all">All</button>
-    <button class="filter-btn" data-filter="writing">Writing</button>
-    <button class="filter-btn" data-filter="art">Art</button>
-    <button class="filter-btn" data-filter="audio">Audio</button>
-    <button class="filter-btn" data-filter="video">Video</button>
+    <button class="filter-btn active" data-filter="all" aria-pressed="true">All</button>
+    <button class="filter-btn" data-filter="writing" aria-pressed="false">Writing</button>
+    <button class="filter-btn" data-filter="art" aria-pressed="false">Art</button>
+    <button class="filter-btn" data-filter="audio" aria-pressed="false">Audio</button>
+    <button class="filter-btn" data-filter="video" aria-pressed="false">Video</button>
   </div>
 
 
@@ -236,14 +236,20 @@
   (function () {
     var filterBtns = document.querySelectorAll('.filter-btn');
     var cards = document.querySelectorAll('.story-card');
+    var grid = document.querySelector('.story-grid');
+    var emptyState = document.querySelector('.gallery-empty');
 
     filterBtns.forEach(function (btn) {
       btn.addEventListener('click', function () {
         var filter = btn.getAttribute('data-filter');
 
-        // Update active state
-        filterBtns.forEach(function (b) { b.classList.remove('active'); });
+        // Update active state and aria-pressed
+        filterBtns.forEach(function (b) {
+          b.classList.remove('active');
+          b.setAttribute('aria-pressed', 'false');
+        });
         btn.classList.add('active');
+        btn.setAttribute('aria-pressed', 'true');
 
         // Show/hide cards
         cards.forEach(function (card) {
@@ -255,8 +261,6 @@
         });
 
         // Show empty state if no visible cards after filtering
-        var grid = document.querySelector('.story-grid');
-        var emptyState = document.querySelector('.gallery-empty');
         if (grid && !grid.hidden && emptyState) {
           var anyVisible = Array.from(cards).some(function (c) { return !c.hidden; });
           emptyState.hidden = anyVisible;
