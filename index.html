@@ -281,6 +281,32 @@
       border-color: var(--clay);
       background: rgba(196,154,108,0.06);
     }
+    .hero-story-link {
+      position: absolute;
+      top: 148px;
+      left: 0;
+      right: 0;
+      width: fit-content;
+      margin: 0 auto;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      text-decoration: none;
+      padding: 0.3rem 0.75rem;
+      border: 1.5px solid var(--border);
+      border-radius: 100px;
+      white-space: nowrap;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.25s forwards;
+      transition: opacity 0.2s, color 0.2s, border-color 0.2s, background 0.2s;
+    }
+    .hero-story-link:hover {
+      color: var(--clay);
+      border-color: var(--clay);
+      background: rgba(196,154,108,0.06);
+    }
 
     .hero-eyebrow {
       display: inline-flex;
@@ -932,6 +958,14 @@
     }
 
     /* ── Responsive ── */
+    @media (max-width: 960px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .mobile-menu { display: block; }
+      .search-btn { display: none; }
+      .nav-crisis { display: none; }
+    }
+
     @media (max-width: 768px) {
       nav { padding: 0 1.25rem; }
       .nav-links { display: none; }
@@ -965,6 +999,49 @@
     @media (max-width: 480px) {
       .hero h1 { font-size: 2.125rem; }
       .topic-card { padding: 1.125rem; }
+    }
+
+    /* ── Program Strip ── */
+    .program-strip-wrap {
+      position: relative;
+      z-index: 1;
+      padding: 0 2.5rem 3rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .program-strip {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--terracotta);
+      border-radius: 0 12px 12px 0;
+      padding: 1.75rem 2rem;
+      transition: background 0.4s, border-color 0.4s;
+    }
+    .program-strip-body { flex: 1; min-width: 0; }
+    .program-strip-title {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 1.1875rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+      margin-bottom: 0.35rem;
+      transition: color 0.4s;
+    }
+    .program-strip-desc {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      transition: color 0.4s;
+    }
+    .program-strip-cta { flex-shrink: 0; white-space: nowrap; }
+    .program-strip .section-label { margin-bottom: 0.5rem; }
+    @media (max-width: 640px) {
+      .program-strip-wrap { padding: 0 1.25rem 2.5rem; }
+      .program-strip { flex-direction: column; align-items: flex-start; gap: 1.25rem; }
     }
 
     /* ── Mode toggle (a la carte vs pathways) ── */
@@ -1110,6 +1187,7 @@
   <div class="hero">
     <a href="for-professionals.html" class="hero-pro-link">For Professionals</a>
     <a href="future.html" class="hero-future-link">Future of the Project</a>
+    <a href="tell-your-story/" class="hero-story-link">Tell Your Story Project</a>
     <div class="hero-glow-a"></div>
     <div class="hero-glow-b"></div>
     <div class="hero-inner">
@@ -1311,6 +1389,17 @@
     </div>
   </div>
 
+  <div class="program-strip-wrap fade-in">
+    <div class="program-strip">
+      <div class="program-strip-body">
+        <p class="section-label">Community Programs</p>
+        <p class="program-strip-title">Tell Your Story</p>
+        <p class="program-strip-desc">An open call for young adults in Mexia to share their own experiences — in their words, in any format — for an anonymous gallery on this site. Pilot submissions open October 5, 2026.</p>
+      </div>
+      <a href="tell-your-story/" class="btn-secondary program-strip-cta">Learn more →</a>
+    </div>
+  </div>
+
   <div class="divider"></div>
 
   <!-- Mission -->
@@ -1374,6 +1463,7 @@
         <li><a href="about.html">About Me</a></li>
         <li><a href="glossary.html">Glossary</a></li>
         <li><a href="#mission">Mission</a></li>
+        <li><a href="tell-your-story/">Tell Your Story</a></li>
       </ul>
       <p class="footer-disclaimer">The content on this site is for informational purposes only and does not constitute professional financial, legal, or medical advice.<br><a href="disclosures.html">Full disclosures.</a></p>
     </div>

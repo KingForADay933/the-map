@@ -1,0 +1,269 @@
+/*
+  Tell Your Story — Section Stylesheet
+  Loaded on all tell-your-story/* pages.
+  Extends shared.css — does not redefine base variables or reset styles.
+*/
+
+/* ══════════════════════════════════════
+   DEV NOTICE BANNER
+══════════════════════════════════════ */
+
+.dev-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.875rem 1.125rem;
+  background: rgba(212, 114, 90, 0.06);
+  border: 1px solid rgba(212, 114, 90, 0.25);
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+.dev-notice-label {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  white-space: nowrap;
+  padding-top: 0.125rem;
+}
+
+/* ══════════════════════════════════════
+   GALLERY FILTER
+══════════════════════════════════════ */
+
+.gallery-filter {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.filter-btn {
+  padding: 0.375rem 1rem;
+  border-radius: 100px;
+  border: 1.5px solid var(--border);
+  background: none;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+  white-space: nowrap;
+}
+.filter-btn:hover {
+  border-color: var(--clay);
+  color: var(--clay);
+}
+.filter-btn.active {
+  border-color: var(--terracotta);
+  color: var(--terracotta);
+  background: rgba(212, 114, 90, 0.08);
+}
+
+/* ══════════════════════════════════════
+   GALLERY EMPTY STATE
+══════════════════════════════════════ */
+
+.gallery-empty {
+  text-align: center;
+  padding: 4rem 2rem;
+  border: 1px dashed var(--border-hover);
+  border-radius: 12px;
+  background: var(--surface);
+}
+.gallery-empty-title {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.01em;
+}
+.gallery-empty-desc {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  max-width: 380px;
+  margin: 0 auto;
+}
+
+/* ══════════════════════════════════════
+   STORY GRID
+══════════════════════════════════════ */
+
+.story-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ══════════════════════════════════════
+   STORY CARD
+   Handles all four formats:
+   text, image, audio, video
+══════════════════════════════════════ */
+
+.story-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: border-color 0.25s, background 0.25s;
+}
+.story-card:hover {
+  border-color: var(--border-hover);
+  background: var(--surface-mid);
+}
+
+.story-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.375rem 0;
+}
+
+/* Format tag pill */
+.story-format-badge {
+  display: inline-block;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--terracotta);
+  background: rgba(212, 114, 90, 0.1);
+  border: 1px solid rgba(212, 114, 90, 0.2);
+  border-radius: 100px;
+  padding: 0.2rem 0.65rem;
+}
+
+.story-card-meta {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  letter-spacing: 0.02em;
+}
+
+/* Content area — shared padding, format-specific elements inside */
+.story-card-content {
+  padding: 1rem 1.375rem;
+}
+
+/* Text: prose excerpt or full short piece */
+.story-card-content p {
+  font-size: 0.9375rem;
+  color: var(--text-primary);
+  line-height: 1.8;
+  margin: 0;
+}
+.story-card-content p + p {
+  margin-top: 0.875rem;
+}
+
+/* Image: art / photo submissions */
+.story-card-content img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  display: block;
+}
+
+/* Responsive video/audio iframe wrapper */
+.story-embed {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
+  overflow: hidden;
+  border-radius: 6px;
+  background: var(--surface-hi);
+}
+.story-embed iframe,
+.story-embed video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Native HTML5 audio player */
+.story-card-content audio {
+  width: 100%;
+  margin-top: 0.375rem;
+}
+
+/* Card footer: optional title, always present for spacing */
+.story-card-footer {
+  padding: 0.625rem 1.375rem 1rem;
+  border-top: 1px solid var(--border);
+  margin-top: 0.25rem;
+}
+.story-card-title {
+  font-size: 0.8125rem;
+  font-style: italic;
+  color: var(--text-secondary);
+}
+
+/* ══════════════════════════════════════
+   CTA BLOCK
+   Submission call-to-action panel.
+   Button uses .btn-primary from shared.css;
+   disabled state defined here.
+══════════════════════════════════════ */
+
+.cta-block {
+  text-align: center;
+  padding: 2.5rem 2rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  margin: 2.5rem 0;
+}
+.cta-block-title {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 1.375rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+  margin-bottom: 0.5rem;
+}
+.cta-block-desc {
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin-bottom: 1.5rem;
+  max-width: 440px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Disabled submit button — form not yet open */
+.cta-block .btn-primary[aria-disabled="true"] {
+  background: var(--surface-hi);
+  color: var(--text-dim);
+  box-shadow: none;
+  cursor: not-allowed;
+  pointer-events: none;
+  transform: none;
+}
+.cta-open-date {
+  display: block;
+  font-size: 0.8125rem;
+  color: var(--text-dim);
+  margin-top: 0.875rem;
+  letter-spacing: 0.02em;
+}
+
+/* ══════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  .story-card-header { padding: 0.875rem 1.125rem 0; }
+  .story-card-content { padding: 0.875rem 1.125rem; }
+  .story-card-footer { padding: 0.5rem 1.125rem 0.875rem; }
+  .cta-block { padding: 2rem 1.25rem; }
+}
