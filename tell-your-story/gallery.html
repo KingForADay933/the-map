@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Gallery — Tell Your Story — The Map</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../shared.css"/>
+  <link rel="stylesheet" href="../search.css"/>
+  <link rel="stylesheet" href="tell-your-story.css"/>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="../index.html">The <span>Map.</span></a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../index.html#topics">All Topics</a></li>
+      <li><a href="../index.html#mission">Mission</a></li>
+      <li><a href="../about.html">About Me</a></li>
+    </ul>
+    <a class="nav-back" href="index.html">← Tell Your Story</a>
+    <button class="search-btn" id="searchBtn" aria-label="Search">
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <span class="search-btn-label">Search</span>
+    </button>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><span class="toggle-icon" id="toggleIcon">☀️</span><span class="toggle-text" id="toggleText">Light mode</span></button>
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <div class="mobile-menu-links">
+    <a href="../index.html">Home</a>
+    <a href="../index.html#topics">All Topics</a>
+    <a href="../pathways.html">Pathways</a>
+    <a href="../index.html#mission">Mission</a>
+    <a href="../contact.html">Contact</a>
+    <a href="../about.html">About Me</a>
+    <a href="../glossary.html">Glossary</a>
+  </div>
+  <div class="mobile-menu-footer">
+    <button class="theme-toggle" id="themeToggleMobile" aria-label="Toggle theme">
+      <span class="toggle-icon" id="toggleIconMobile">☀️</span>
+      <span class="toggle-text" id="toggleTextMobile">Light mode</span>
+    </button>
+  </div>
+</div>
+
+<div class="page-header">
+  <div class="breadcrumb">Tell Your Story</div>
+  <h1>The Gallery</h1>
+  <p class="lead">Submissions from the Tell Your Story pilot, shared anonymously, with consent. Writing, audio, video, and art from young adults in Mexia.</p>
+</div>
+
+<article class="article">
+
+  <!--
+    GALLERY STATE NOTES:
+    ─────────────────────────────────────────────────────────────
+    PRE-LAUNCH (before Oct 5):  Show only .gallery-empty block.
+                                Hide .gallery-filter and .story-grid.
+
+    ACTIVE (mid-Oct onward):    Show .gallery-filter and .story-grid.
+                                Hide .gallery-empty, or replace with
+                                a short "More coming soon" callout.
+
+    To toggle: add/remove the `hidden` attribute or use a display:none
+    inline style on the relevant blocks. JS filter handles show/hide
+    of individual cards by data-format attribute.
+    ─────────────────────────────────────────────────────────────
+  -->
+
+
+  <!-- ── Filter bar ──────────────────────────────────────────────
+       Always present in DOM. Non-functional until multiple formats
+       exist — buttons are still rendered so the UI is already in
+       place when content arrives.
+  ───────────────────────────────────────────────────────────── -->
+
+  <div class="gallery-filter" role="group" aria-label="Filter by format">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="writing">Writing</button>
+    <button class="filter-btn" data-filter="art">Art</button>
+    <button class="filter-btn" data-filter="audio">Audio</button>
+    <button class="filter-btn" data-filter="video">Video</button>
+  </div>
+
+
+  <!-- ── Empty state ─────────────────────────────────────────────
+       Shown before mid-October publication begins.
+       Remove `hidden` attribute when active gallery replaces this.
+  ───────────────────────────────────────────────────────────── -->
+
+  <div class="gallery-empty">
+    <p class="gallery-empty-title">The gallery opens mid-October.</p>
+    <p class="gallery-empty-desc">Submissions are open now through November 30, 2026. Accepted pieces are published here on a rolling basis as they're reviewed. Check back soon.</p>
+  </div>
+
+
+  <!-- ── Story grid ──────────────────────────────────────────────
+       Hidden at launch; becomes visible as submissions are published.
+       Add `hidden` attribute to this section until first entries exist.
+
+       Each .story-card gets a data-format attribute matching one of:
+       writing | art | audio | video
+
+       The JS filter at the bottom of this file handles show/hide.
+  ───────────────────────────────────────────────────────────── -->
+
+  <div class="story-grid" hidden>
+
+    <!-- ── WRITING EXAMPLE ──────────────────────────────────── -->
+    <article class="story-card" data-format="writing">
+      <header class="story-card-header">
+        <span class="story-format-badge">Writing</span>
+        <span class="story-card-meta">Anonymous</span>
+      </header>
+      <div class="story-card-content">
+        <p>[Full text of submission, or a substantial excerpt if long. No truncation to a teaser — each card should feel complete. Line breaks preserved as paragraph tags.]</p>
+        <p>[Second paragraph if applicable.]</p>
+      </div>
+      <div class="story-card-footer">
+        <span class="story-card-title">[Optional title, if submitter provided one. Remove this element entirely if untitled.]</span>
+      </div>
+    </article>
+
+    <!-- ── IMAGE / ART EXAMPLE ──────────────────────────────── -->
+    <article class="story-card" data-format="art">
+      <header class="story-card-header">
+        <span class="story-format-badge">Art</span>
+        <span class="story-card-meta">Anonymous</span>
+      </header>
+      <div class="story-card-content">
+        <!-- Replace src and alt with actual submission details.
+             Alt text should describe the image content meaningfully,
+             not just say "submission" — ask submitter if unsure. -->
+        <img src="[path-to-image.jpg]" alt="[Meaningful description of the artwork]" loading="lazy"/>
+      </div>
+      <div class="story-card-footer">
+        <span class="story-card-title">[Optional title]</span>
+      </div>
+    </article>
+
+    <!-- ── AUDIO EXAMPLE ────────────────────────────────────── -->
+    <article class="story-card" data-format="audio">
+      <header class="story-card-header">
+        <span class="story-format-badge">Audio</span>
+        <span class="story-card-meta">Anonymous</span>
+      </header>
+      <div class="story-card-content">
+        <!-- Option A: hosted audio file -->
+        <audio controls>
+          <source src="[path-to-audio.mp3]" type="audio/mpeg"/>
+          Your browser doesn't support the audio element.
+        </audio>
+        <!-- Option B: embedded SoundCloud or similar — use .story-embed wrapper instead:
+        <div class="story-embed">
+          <iframe src="[soundcloud-embed-url]" allow="autoplay"></iframe>
+        </div>
+        -->
+        <!-- Optional: short text description of the piece -->
+        <p style="margin-top: 0.875rem;">[Optional brief description of what the audio piece is, e.g. a spoken word recording, a voice note, etc.]</p>
+      </div>
+      <div class="story-card-footer">
+        <span class="story-card-title">[Optional title]</span>
+      </div>
+    </article>
+
+    <!-- ── VIDEO EXAMPLE ────────────────────────────────────── -->
+    <article class="story-card" data-format="video">
+      <header class="story-card-header">
+        <span class="story-format-badge">Video</span>
+        <span class="story-card-meta">Anonymous</span>
+      </header>
+      <div class="story-card-content">
+        <!-- Use .story-embed wrapper for all video iframes (YouTube, Vimeo, etc.)
+             This preserves 16:9 aspect ratio at all widths. -->
+        <div class="story-embed">
+          <iframe
+            src="[youtube-or-vimeo-embed-url]"
+            title="[Meaningful title for accessibility]"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+      <div class="story-card-footer">
+        <span class="story-card-title">[Optional title]</span>
+      </div>
+    </article>
+
+  </div><!-- /story-grid -->
+
+
+  <!-- ── Related ──────────────────────────────────────────────── -->
+
+  <div class="related">
+    <div class="related-label">Also</div>
+    <div class="related-links">
+      <a class="related-link" href="index.html">About Tell Your Story</a>
+      <a class="related-link" href="for-partners.html">Partner Information</a>
+    </div>
+  </div>
+
+  <div class="disclaimer-bar">All submissions are published anonymously with the explicit consent of the creator. Participants retain ownership of their work and may request removal at any time.</div>
+
+</article>
+
+<footer><a class="footer-logo" href="../index.html">The <span>Map.</span></a><div class="footer-copy">Free to use. Built with care. Not professional advice.</div></footer>
+
+<div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Search">
+  <div class="search-modal">
+    <div class="search-input-row">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <input class="search-input" id="searchInput" type="search" placeholder="Search topics…" autocomplete="off" autocorrect="off" spellcheck="false"/>
+      <button class="search-close" id="searchClose" aria-label="Close search">Esc</button>
+    </div>
+    <div class="search-results" id="searchResults" role="listbox"></div>
+    <div class="search-footer" aria-hidden="true">
+      <span class="search-footer-hint"><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
+      <span class="search-footer-hint"><kbd>↵</kbd> open</span>
+      <span class="search-footer-hint"><kbd>Esc</kbd> close</span>
+    </div>
+  </div>
+</div>
+<script src="../search-index.js"></script>
+<script src="../shared.js"></script>
+
+<script>
+  // Gallery format filter
+  // Reads data-filter on buttons, shows/hides cards by data-format attribute.
+  // No-op when story-grid is hidden (pre-publication state).
+  (function () {
+    var filterBtns = document.querySelectorAll('.filter-btn');
+    var cards = document.querySelectorAll('.story-card');
+
+    filterBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var filter = btn.getAttribute('data-filter');
+
+        // Update active state
+        filterBtns.forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+
+        // Show/hide cards
+        cards.forEach(function (card) {
+          if (filter === 'all' || card.getAttribute('data-format') === filter) {
+            card.hidden = false;
+          } else {
+            card.hidden = true;
+          }
+        });
+
+        // Show empty state if no visible cards after filtering
+        var grid = document.querySelector('.story-grid');
+        var emptyState = document.querySelector('.gallery-empty');
+        if (grid && !grid.hidden && emptyState) {
+          var anyVisible = Array.from(cards).some(function (c) { return !c.hidden; });
+          emptyState.hidden = anyVisible;
+          // Swap empty state message for "no results in this format"
+          if (!anyVisible) {
+            var desc = emptyState.querySelector('.gallery-empty-desc');
+            if (desc) desc.textContent = 'No ' + filter + ' submissions have been published yet. Check back as the pilot progresses.';
+          }
+        }
+      });
+    });
+  }());
+</script>
+
+</body>
+</html>

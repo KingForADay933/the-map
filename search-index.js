@@ -1,5 +1,29 @@
 // The Map — Search Index
 const SEARCH_INDEX = [
+
+  // ── Programs ─────────────────────────────────────────────────
+  {
+    title: "Tell Your Story",
+    section: "Programs",
+    path: "tell-your-story/index.html",
+    desc: "An open call for young adults in Mexia to share their own experiences — in their words, in any format — for an anonymous gallery on this site. Pilot runs October–November 2026.",
+    keywords: "tell your story community program submission gallery anonymous Mexia Limestone County young adults storytelling writing audio video art"
+  },
+  {
+    title: "Tell Your Story — The Gallery",
+    section: "Programs",
+    path: "tell-your-story/gallery.html",
+    desc: "Submissions from the Tell Your Story pilot — writing, audio, video, and art from young adults in Mexia, published anonymously with consent.",
+    keywords: "gallery submissions stories anonymous community writing art audio video Mexia tell your story"
+  },
+  {
+    title: "Tell Your Story — Partner Information",
+    section: "Programs",
+    path: "tell-your-story/for-partners.html",
+    desc: "How the Tell Your Story program works, what the pilot model looks like, and what co-sponsoring a future iteration would involve for libraries and organizations.",
+    keywords: "partner library sponsor organization co-sponsor tell your story pilot program Gibbs Memorial Library Mexia community"
+  },
+
   {
     title: "Pathways",
     section: "Guided Reading",
