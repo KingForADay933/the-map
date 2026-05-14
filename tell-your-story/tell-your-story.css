@@ -97,7 +97,8 @@
   font-size: 0.8125rem;
   font-weight: 500;
   color: var(--terracotta);
-  text-decoration: none;
+  text-decoration: underline;
+  text-underline-offset: 3px;
   letter-spacing: 0.02em;
   transition: color 0.2s;
 }
