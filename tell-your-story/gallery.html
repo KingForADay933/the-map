@@ -105,8 +105,8 @@
 
 
   <!-- ── Story grid ──────────────────────────────────────────────
-       Hidden at launch; becomes visible as submissions are published.
-       Add `hidden` attribute to this section until first entries exist.
+       Remove `hidden` and add .story-card elements here when
+       submissions are ready to publish.
 
        Each .story-card gets a data-format attribute matching one of:
        writing | art | audio | video
@@ -115,87 +115,6 @@
   ───────────────────────────────────────────────────────────── -->
 
   <div class="story-grid" hidden>
-
-    <!-- ── WRITING EXAMPLE ──────────────────────────────────── -->
-    <article class="story-card" data-format="writing">
-      <header class="story-card-header">
-        <span class="story-format-badge">Writing</span>
-        <span class="story-card-meta">Anonymous</span>
-      </header>
-      <div class="story-card-content">
-        <p>[Full text of submission, or a substantial excerpt if long. No truncation to a teaser — each card should feel complete. Line breaks preserved as paragraph tags.]</p>
-        <p>[Second paragraph if applicable.]</p>
-      </div>
-      <div class="story-card-footer">
-        <span class="story-card-title">[Optional title, if submitter provided one. Remove this element entirely if untitled.]</span>
-      </div>
-    </article>
-
-    <!-- ── IMAGE / ART EXAMPLE ──────────────────────────────── -->
-    <article class="story-card" data-format="art">
-      <header class="story-card-header">
-        <span class="story-format-badge">Art</span>
-        <span class="story-card-meta">Anonymous</span>
-      </header>
-      <div class="story-card-content">
-        <!-- Replace src and alt with actual submission details.
-             Alt text should describe the image content meaningfully,
-             not just say "submission" — ask submitter if unsure. -->
-        <img src="[path-to-image.jpg]" alt="[Meaningful description of the artwork]" loading="lazy"/>
-      </div>
-      <div class="story-card-footer">
-        <span class="story-card-title">[Optional title]</span>
-      </div>
-    </article>
-
-    <!-- ── AUDIO EXAMPLE ────────────────────────────────────── -->
-    <article class="story-card" data-format="audio">
-      <header class="story-card-header">
-        <span class="story-format-badge">Audio</span>
-        <span class="story-card-meta">Anonymous</span>
-      </header>
-      <div class="story-card-content">
-        <!-- Option A: hosted audio file -->
-        <audio controls>
-          <source src="[path-to-audio.mp3]" type="audio/mpeg"/>
-          Your browser doesn't support the audio element.
-        </audio>
-        <!-- Option B: embedded SoundCloud or similar — use .story-embed wrapper instead:
-        <div class="story-embed">
-          <iframe src="[soundcloud-embed-url]" allow="autoplay"></iframe>
-        </div>
-        -->
-        <!-- Optional: short text description of the piece -->
-        <p style="margin-top: 0.875rem;">[Optional brief description of what the audio piece is, e.g. a spoken word recording, a voice note, etc.]</p>
-      </div>
-      <div class="story-card-footer">
-        <span class="story-card-title">[Optional title]</span>
-      </div>
-    </article>
-
-    <!-- ── VIDEO EXAMPLE ────────────────────────────────────── -->
-    <article class="story-card" data-format="video">
-      <header class="story-card-header">
-        <span class="story-format-badge">Video</span>
-        <span class="story-card-meta">Anonymous</span>
-      </header>
-      <div class="story-card-content">
-        <!-- Use .story-embed wrapper for all video iframes (YouTube, Vimeo, etc.)
-             This preserves 16:9 aspect ratio at all widths. -->
-        <div class="story-embed">
-          <iframe
-            src="[youtube-or-vimeo-embed-url]"
-            title="[Meaningful title for accessibility]"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen>
-          </iframe>
-        </div>
-      </div>
-      <div class="story-card-footer">
-        <span class="story-card-title">[Optional title]</span>
-      </div>
-    </article>
-
   </div><!-- /story-grid -->
 
 
