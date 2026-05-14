@@ -272,7 +272,7 @@
           emptyState.hidden = anyVisible;
           // Swap empty state message for "no results in this format"
           if (!anyVisible) {
-            if (emptyDesc) emptyDesc.textContent = 'No ' + filter + ' submissions have been published yet. Check back as the pilot progresses.';
+            if (emptyDesc) emptyDesc.textContent = 'No ' + (filter === 'all' ? '' : filter + ' ') + 'submissions have been published yet. Check back as the pilot progresses.';
           }
         }
       });
