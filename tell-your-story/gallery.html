@@ -80,12 +80,10 @@
 
 
   <!-- ── Filter bar ──────────────────────────────────────────────
-       Always present in DOM. Non-functional until multiple formats
-       exist — buttons are still rendered so the UI is already in
-       place when content arrives.
+       Hidden at launch. Remove `hidden` when story-grid goes live.
   ───────────────────────────────────────────────────────────── -->
 
-  <div class="gallery-filter" role="group" aria-label="Filter by format">
+  <div class="gallery-filter" role="group" aria-label="Filter by format" hidden>
     <button class="filter-btn active" data-filter="all" aria-pressed="true">All</button>
     <button class="filter-btn" data-filter="writing" aria-pressed="false">Writing</button>
     <button class="filter-btn" data-filter="art" aria-pressed="false">Art</button>
@@ -96,12 +94,13 @@
 
   <!-- ── Empty state ─────────────────────────────────────────────
        Shown before mid-October publication begins.
-       Remove `hidden` attribute when active gallery replaces this.
+       Add `hidden` attribute when story-grid goes live.
   ───────────────────────────────────────────────────────────── -->
 
   <div class="gallery-empty">
     <p class="gallery-empty-title">The gallery opens mid-October.</p>
-    <p class="gallery-empty-desc">Submissions are open now through November 30, 2026. Accepted pieces are published here on a rolling basis as they're reviewed. Check back soon.</p>
+    <p class="gallery-empty-desc">Submissions open October 5 and run through November 30, 2026. Accepted pieces are published here on a rolling basis as they're reviewed.</p>
+    <a class="gallery-empty-cta" href="index.html">Learn how to submit →</a>
   </div>
 
 
