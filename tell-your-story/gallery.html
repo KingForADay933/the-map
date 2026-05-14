@@ -100,7 +100,7 @@
   <div class="gallery-empty">
     <p class="gallery-empty-title">The gallery opens mid-October.</p>
     <p class="gallery-empty-desc">Submissions open October 5 and run through November 30, 2026. Accepted pieces are published here on a rolling basis as they're reviewed.</p>
-    <a class="gallery-empty-cta" href="index.html">Learn how to submit →</a>
+    <a class="gallery-empty-cta" href="index.html#how-to-participate">Learn how to submit <span aria-hidden="true">→</span></a>
   </div>
 
 
@@ -162,6 +162,7 @@
     var grid = document.querySelector('.story-grid');
     var emptyState = document.querySelector('.gallery-empty');
     var emptyDesc = emptyState ? emptyState.querySelector('.gallery-empty-desc') : null;
+    var emptyTitle = emptyState ? emptyState.querySelector('.gallery-empty-title') : null;
 
     filterBtns.forEach(function (btn) {
       btn.addEventListener('click', function () {
@@ -190,6 +191,7 @@
           emptyState.hidden = anyVisible;
           // Swap empty state message for "no results in this format"
           if (!anyVisible) {
+            if (emptyTitle) emptyTitle.hidden = true;
             if (emptyDesc) emptyDesc.textContent = `No ${filter === 'all' ? '' : `${filter} `}submissions have been published yet. Check back as the pilot progresses.`;
           }
         }
