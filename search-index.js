@@ -6,7 +6,7 @@ const SEARCH_INDEX = [
     title: "Tell Your Story",
     section: "Programs",
     path: "tell-your-story/index.html",
-    desc: "An open call for young adults in Mexia to share their own experiences — in their words, in any format — for an anonymous gallery on this site. Pilot runs October–November 2026.",
+    desc: "An open call for young adults in Mexia to share their own experiences, in their words, in any format, for an anonymous gallery on this site. Pilot runs October - November 2026.",
     keywords: "tell your story community program submission gallery anonymous Mexia Limestone County young adults storytelling writing audio video art"
   },
   {

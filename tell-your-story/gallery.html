@@ -243,6 +243,7 @@
     var cards = document.querySelectorAll('.story-card');
     var grid = document.querySelector('.story-grid');
     var emptyState = document.querySelector('.gallery-empty');
+    var emptyDesc = emptyState ? emptyState.querySelector('.gallery-empty-desc') : null;
 
     filterBtns.forEach(function (btn) {
       btn.addEventListener('click', function () {
@@ -271,8 +272,7 @@
           emptyState.hidden = anyVisible;
           // Swap empty state message for "no results in this format"
           if (!anyVisible) {
-            var desc = emptyState.querySelector('.gallery-empty-desc');
-            if (desc) desc.textContent = 'No ' + filter + ' submissions have been published yet. Check back as the pilot progresses.';
+            if (emptyDesc) emptyDesc.textContent = 'No ' + filter + ' submissions have been published yet. Check back as the pilot progresses.';
           }
         }
       });
