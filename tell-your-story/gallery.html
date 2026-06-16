@@ -57,11 +57,6 @@
 
 <article class="article">
 
-  <div class="dev-notice">
-    <span class="dev-notice-label">In development</span>
-    <span>This program is still in its early stages. The partnership with Gibbs Memorial Library described on these pages is a planning goal, not yet a confirmed arrangement.</span>
-  </div>
-
   <!--
     GALLERY STATE NOTES:
     ─────────────────────────────────────────────────────────────
@@ -80,33 +75,34 @@
 
 
   <!-- ── Filter bar ──────────────────────────────────────────────
-       Hidden at launch. Remove `hidden` when story-grid goes live.
+       Always present in DOM. Non-functional until multiple formats
+       exist — buttons are still rendered so the UI is already in
+       place when content arrives.
   ───────────────────────────────────────────────────────────── -->
 
-  <div class="gallery-filter" role="group" aria-label="Filter by format" hidden>
-    <button class="filter-btn active" data-filter="all" aria-pressed="true">All</button>
-    <button class="filter-btn" data-filter="writing" aria-pressed="false">Writing</button>
-    <button class="filter-btn" data-filter="art" aria-pressed="false">Art</button>
-    <button class="filter-btn" data-filter="audio" aria-pressed="false">Audio</button>
-    <button class="filter-btn" data-filter="video" aria-pressed="false">Video</button>
+  <div class="gallery-filter" role="group" aria-label="Filter by format">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="writing">Writing</button>
+    <button class="filter-btn" data-filter="art">Art</button>
+    <button class="filter-btn" data-filter="audio">Audio</button>
+    <button class="filter-btn" data-filter="video">Video</button>
   </div>
 
 
   <!-- ── Empty state ─────────────────────────────────────────────
        Shown before mid-October publication begins.
-       Add `hidden` attribute when story-grid goes live.
+       Remove `hidden` attribute when active gallery replaces this.
   ───────────────────────────────────────────────────────────── -->
 
   <div class="gallery-empty">
     <p class="gallery-empty-title">The gallery opens mid-October.</p>
-    <p class="gallery-empty-desc">Submissions open October 5 and run through November 30, 2026. Accepted pieces are published here on a rolling basis as they're reviewed.</p>
-    <a class="gallery-empty-cta" href="index.html#how-to-participate">Learn how to submit <span aria-hidden="true">→</span></a>
+    <p class="gallery-empty-desc">Submissions are open now through November 30, 2026. Accepted pieces are published here on a rolling basis as they're reviewed. Check back soon.</p>
   </div>
 
 
   <!-- ── Story grid ──────────────────────────────────────────────
-       Remove `hidden` and add .story-card elements here when
-       submissions are ready to publish.
+       Hidden at launch; becomes visible as submissions are published.
+       Add `hidden` attribute to this section until first entries exist.
 
        Each .story-card gets a data-format attribute matching one of:
        writing | art | audio | video
@@ -115,6 +111,87 @@
   ───────────────────────────────────────────────────────────── -->
 
   <div class="story-grid" hidden>
+
+    <!-- ── WRITING EXAMPLE ──────────────────────────────────── -->
+    <article class="story-card" data-format="writing">
+      <header class="story-card-header">
+        <span class="story-format-badge">Writing</span>
+        <span class="story-card-meta">Anonymous</span>
+      </header>
+      <div class="story-card-content">
+        <p>[Full text of submission, or a substantial excerpt if long. No truncation to a teaser — each card should feel complete. Line breaks preserved as paragraph tags.]</p>
+        <p>[Second paragraph if applicable.]</p>
+      </div>
+      <div class="story-card-footer">
+        <span class="story-card-title">[Optional title, if submitter provided one. Remove this element entirely if untitled.]</span>
+      </div>
+    </article>
+
+    <!-- ── IMAGE / ART EXAMPLE ──────────────────────────────── -->
+    <article class="story-card" data-format="art">
+      <header class="story-card-header">
+        <span class="story-format-badge">Art</span>
+        <span class="story-card-meta">Anonymous</span>
+      </header>
+      <div class="story-card-content">
+        <!-- Replace src and alt with actual submission details.
+             Alt text should describe the image content meaningfully,
+             not just say "submission" — ask submitter if unsure. -->
+        <img src="[path-to-image.jpg]" alt="[Meaningful description of the artwork]" loading="lazy"/>
+      </div>
+      <div class="story-card-footer">
+        <span class="story-card-title">[Optional title]</span>
+      </div>
+    </article>
+
+    <!-- ── AUDIO EXAMPLE ────────────────────────────────────── -->
+    <article class="story-card" data-format="audio">
+      <header class="story-card-header">
+        <span class="story-format-badge">Audio</span>
+        <span class="story-card-meta">Anonymous</span>
+      </header>
+      <div class="story-card-content">
+        <!-- Option A: hosted audio file -->
+        <audio controls>
+          <source src="[path-to-audio.mp3]" type="audio/mpeg"/>
+          Your browser doesn't support the audio element.
+        </audio>
+        <!-- Option B: embedded SoundCloud or similar — use .story-embed wrapper instead:
+        <div class="story-embed">
+          <iframe src="[soundcloud-embed-url]" allow="autoplay"></iframe>
+        </div>
+        -->
+        <!-- Optional: short text description of the piece -->
+        <p style="margin-top: 0.875rem;">[Optional brief description of what the audio piece is, e.g. a spoken word recording, a voice note, etc.]</p>
+      </div>
+      <div class="story-card-footer">
+        <span class="story-card-title">[Optional title]</span>
+      </div>
+    </article>
+
+    <!-- ── VIDEO EXAMPLE ────────────────────────────────────── -->
+    <article class="story-card" data-format="video">
+      <header class="story-card-header">
+        <span class="story-format-badge">Video</span>
+        <span class="story-card-meta">Anonymous</span>
+      </header>
+      <div class="story-card-content">
+        <!-- Use .story-embed wrapper for all video iframes (YouTube, Vimeo, etc.)
+             This preserves 16:9 aspect ratio at all widths. -->
+        <div class="story-embed">
+          <iframe
+            src="[youtube-or-vimeo-embed-url]"
+            title="[Meaningful title for accessibility]"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+      <div class="story-card-footer">
+        <span class="story-card-title">[Optional title]</span>
+      </div>
+    </article>
+
   </div><!-- /story-grid -->
 
 
@@ -124,7 +201,7 @@
     <div class="related-label">Also</div>
     <div class="related-links">
       <a class="related-link" href="index.html">About Tell Your Story</a>
-      <a class="related-link" href="for-partners.html">For Community Leaders</a>
+      <a class="related-link" href="for-partners.html">Partner Information</a>
     </div>
   </div>
 
@@ -159,22 +236,14 @@
   (function () {
     var filterBtns = document.querySelectorAll('.filter-btn');
     var cards = document.querySelectorAll('.story-card');
-    var grid = document.querySelector('.story-grid');
-    var emptyState = document.querySelector('.gallery-empty');
-    var emptyDesc = emptyState ? emptyState.querySelector('.gallery-empty-desc') : null;
-    var emptyTitle = emptyState ? emptyState.querySelector('.gallery-empty-title') : null;
 
     filterBtns.forEach(function (btn) {
       btn.addEventListener('click', function () {
         var filter = btn.getAttribute('data-filter');
 
-        // Update active state and aria-pressed
-        filterBtns.forEach(function (b) {
-          b.classList.remove('active');
-          b.setAttribute('aria-pressed', 'false');
-        });
+        // Update active state
+        filterBtns.forEach(function (b) { b.classList.remove('active'); });
         btn.classList.add('active');
-        btn.setAttribute('aria-pressed', 'true');
 
         // Show/hide cards
         cards.forEach(function (card) {
@@ -186,13 +255,15 @@
         });
 
         // Show empty state if no visible cards after filtering
+        var grid = document.querySelector('.story-grid');
+        var emptyState = document.querySelector('.gallery-empty');
         if (grid && !grid.hidden && emptyState) {
           var anyVisible = Array.from(cards).some(function (c) { return !c.hidden; });
           emptyState.hidden = anyVisible;
           // Swap empty state message for "no results in this format"
           if (!anyVisible) {
-            if (emptyTitle) emptyTitle.hidden = true;
-            if (emptyDesc) emptyDesc.textContent = `No ${filter === 'all' ? '' : `${filter} `}submissions have been published yet. Check back as the pilot progresses.`;
+            var desc = emptyState.querySelector('.gallery-empty-desc');
+            if (desc) desc.textContent = 'No ' + filter + ' submissions have been published yet. Check back as the pilot progresses.';
           }
         }
       });
