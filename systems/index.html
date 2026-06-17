@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Systems &amp; Support — The Map</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../shared.css"/>
+  <link rel="stylesheet" href="../search.css"/>
+  <style>
+    .section-hero { padding: 120px 2.5rem 4rem; max-width: 780px; margin: 0 auto; }
+    .section-hero .breadcrumb { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--terracotta); margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.5rem; }
+    .section-hero .breadcrumb::before { content: ''; display: block; width: 18px; height: 1px; background: var(--terracotta); opacity: 0.5; }
+    .section-hero .breadcrumb a { color: var(--terracotta); text-decoration: none; }
+    .section-hero .breadcrumb a:hover { color: var(--clay); }
+    .section-icon { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
+    .section-hero h1 { font-family: 'Lora', serif; font-size: clamp(2.25rem, 5vw, 3.5rem); font-weight: 700; line-height: 1.1; letter-spacing: -0.03em; color: var(--text-primary); margin-bottom: 1.25rem; }
+    .section-hero .lead { font-size: 1.125rem; color: var(--text-secondary); line-height: 1.75; max-width: 620px; }
+    .guides-wrap { max-width: 780px; margin: 0 auto; padding: 0 2.5rem 6rem; }
+    .guides-label { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--terracotta); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.6rem; }
+    .guides-label::before { content: ''; display: block; width: 20px; height: 1px; background: var(--terracotta); opacity: 0.5; }
+    .guides-grid { display: flex; flex-direction: column; gap: 0.75rem; }
+    .guide-card { display: flex; align-items: flex-start; gap: 1.25rem; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.375rem 1.5rem; text-decoration: none; transition: background 0.2s, border-color 0.2s, transform 0.25s cubic-bezier(0.25,0.46,0.45,0.94); }
+    .guide-card:hover { background: var(--surface-mid); border-color: var(--border-hover); transform: translateX(4px); }
+    .guide-arrow { font-size: 0.875rem; color: var(--terracotta); flex-shrink: 0; margin-top: 0.25rem; transition: transform 0.2s; }
+    .guide-card:hover .guide-arrow { transform: translateX(3px); }
+    .guide-info { flex: 1; }
+    .guide-title { font-family: 'Lora', serif; font-size: 1.0625rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.3rem; letter-spacing: -0.01em; transition: color 0.2s; }
+    .guide-card:hover .guide-title { color: var(--clay); }
+    .guide-desc { font-size: 0.875rem; color: var(--text-secondary); line-height: 1.55; }
+
+    .crisis-callout {
+      background: var(--surface);
+      border: 1px solid rgba(212,114,90,0.2);
+      border-left: 3px solid var(--terracotta);
+      border-radius: 0 12px 12px 0;
+      padding: 1.375rem 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .crisis-callout-label {
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--terracotta);
+      display: block; margin-bottom: 0.6rem;
+    }
+    .crisis-callout p { font-size: 0.875rem; color: var(--text-secondary); margin: 0; line-height: 1.65; }
+    .crisis-callout strong { color: var(--text-primary); }
+    .crisis-callout a { color: var(--terracotta); text-decoration: underline; text-decoration-color: rgba(212,114,90,0.4); text-underline-offset: 3px; }
+    .crisis-callout a:hover { color: var(--clay); }
+
+    .section-note {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      margin-top: 2.5rem;
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+    .section-note strong { color: var(--text-primary); }
+    .section-note a { color: var(--clay); text-decoration: underline; text-decoration-color: rgba(196,154,108,0.4); text-underline-offset: 3px; }
+    .section-note a:hover { color: var(--text-primary); }
+
+    @media (max-width: 768px) {
+      .section-hero { padding: 96px 1.25rem 2rem; }
+      .section-hero h1 { font-size: clamp(1.875rem, 7.5vw, 2.5rem); }
+      .section-hero .lead { font-size: 0.9375rem; }
+      .guides-wrap { padding: 0 1.25rem 4rem; }
+      .guide-card { padding: 1.125rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="../index.html">The <span>Map.</span></a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="../index.html#topics">All Topics</a></li>
+      <li><a href="../pathways.html">Pathways</a></li>
+      <li><a href="../index.html#mission">Mission</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+      <li><a href="../about.html">About Me</a></li>
+    </ul>
+    <a class="nav-back" href="../index.html">← Home</a>
+    <button class="search-btn" id="searchBtn" aria-label="Search">
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <span class="search-btn-label">Search</span>
+    </button>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+      <span class="toggle-icon" id="toggleIcon">☀️</span>
+      <span class="toggle-text" id="toggleText">Light mode</span>
+    </button>
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <div class="mobile-menu-links">
+    <a href="../index.html">Home</a>
+    <a href="../index.html#topics">All Topics</a>
+    <a href="../pathways.html">Pathways</a>
+    <a href="../index.html#mission">Mission</a>
+    <a href="../contact.html">Contact</a>
+    <a href="../about.html">About Me</a>
+    <a href="../glossary.html">Glossary</a>
+  </div>
+  <div class="mobile-menu-footer">
+    <button class="theme-toggle" id="themeToggleMobile" aria-label="Toggle theme">
+      <span class="toggle-icon" id="toggleIconMobile">☀️</span>
+      <span class="toggle-text" id="toggleTextMobile">Light mode</span>
+    </button>
+  </div>
+</div>
+
+<div class="section-hero">
+  <div class="breadcrumb"><a href="../index.html">The Map</a> / Systems &amp; Support</div>
+  <span class="section-icon">🧱</span>
+  <h1>Systems &amp; Support</h1>
+  <p class="lead">Most of this site assumes a stable starting point. This section doesn't. If you are navigating foster care, leaving the justice system, dealing with housing instability, or getting out of an unsafe situation, start here.</p>
+</div>
+
+<div class="guides-wrap">
+
+  <div class="crisis-callout" role="complementary" aria-label="Immediate crisis resources">
+    <span class="crisis-callout-label">If you need help right now</span>
+    <p>Call or text <strong>211</strong> to reach local food banks, emergency shelter, utility assistance, and other services — free, 24/7, available in most states. For a place to sleep tonight, call 211 and ask specifically for emergency shelter or youth shelter. For food, visit <a href="https://www.feedingamerica.org/find-your-local-foodbank" target="_blank" rel="noopener">feedingamerica.org</a> to find a food bank near you. For mental health crises, see the <a href="../mental-health-navigation.html#crisis">crisis resources guide</a>.</p>
+  </div>
+
+  <p class="guides-label">4 guides</p>
+  <div class="guides-grid">
+
+    <a class="guide-card fade-in" href="housing-instability.html">
+      <span class="guide-arrow">→</span>
+      <div class="guide-info">
+        <div class="guide-title">Housing Instability &amp; Homelessness</div>
+        <p class="guide-desc">If you are couch-surfing, staying in an unsafe place, or have no stable housing, you are not disqualified from help. This guide covers emergency shelter, youth-specific programs, your rights without an address, and the path toward longer-term stability.</p>
+      </div>
+    </a>
+
+    <a class="guide-card fade-in" href="domestic-violence.html">
+      <span class="guide-arrow">→</span>
+      <div class="guide-info">
+        <div class="guide-title">Leaving an Unsafe Home</div>
+        <p class="guide-desc">For anyone leaving, or thinking about leaving, a home situation that involves abuse. Covers safety planning, what to take when you go, shelters, protective orders, digital safety, and building stability afterward.</p>
+      </div>
+    </a>
+
+    <a class="guide-card fade-in" href="foster-care.html">
+      <span class="guide-arrow">→</span>
+      <div class="guide-info">
+        <div class="guide-title">Aging Out of Foster Care</div>
+        <p class="guide-desc">Tens of thousands of young adults age out of the foster care system each year, often with little warning and fewer resources than they need. This guide covers Extended Foster Care, Chafee education vouchers, Medicaid, FAFSA, housing options, and what to do before your case closes.</p>
+      </div>
+    </a>
+
+    <a class="guide-card fade-in" href="reentry.html">
+      <span class="guide-arrow">→</span>
+      <div class="guide-info">
+        <div class="guide-title">Leaving the Justice System</div>
+        <p class="guide-desc">Re-entry after incarceration or juvenile detention is one of the hardest transitions that exists. This guide covers the first days after release, getting your ID and documents, housing and employment with a record, benefits eligibility, and expungement.</p>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="section-note">
+    <strong>These situations are common.</strong> The systems described in this section are often difficult to navigate, poorly publicized, and designed in ways that create barriers rather than remove them. Using these resources is not a sign of failure — it is a sign that you are in an objectively hard situation and trying to move through it as effectively as possible. The people who work in these programs have seen everything and are not there to judge you.
+  </div>
+
+</div>
+
+<footer>
+  <a class="footer-logo" href="../index.html">The <span>Map.</span></a>
+  <div class="footer-copy">Free to use. Built with care. Not professional advice.</div>
+</footer>
+
+<div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Search">
+  <div class="search-modal">
+    <div class="search-input-row">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <input class="search-input" id="searchInput" type="search" placeholder="Search topics…" autocomplete="off" autocorrect="off" spellcheck="false"/>
+      <button class="search-close" id="searchClose" aria-label="Close search">Esc</button>
+    </div>
+    <div class="search-results" id="searchResults" role="listbox"></div>
+    <div class="search-footer" aria-hidden="true">
+      <span class="search-footer-hint"><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
+      <span class="search-footer-hint"><kbd>↵</kbd> open</span>
+      <span class="search-footer-hint"><kbd>Esc</kbd> close</span>
+    </div>
+  </div>
+</div>
+<script src="../search-index.js"></script>
+<script src="../shared.js"></script>
+</body>
+</html>
