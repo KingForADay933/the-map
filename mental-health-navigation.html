@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mental Health Navigation — The Map</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="shared.css"/>
+  <link rel="stylesheet" href="search.css"/>
+  <style>
+    /* ── Crisis banner at top of page ── */
+    .crisis-banner {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0;
+      position: relative;
+      z-index: 1;
+      margin-top: 64px;
+    }
+    .crisis-banner-inner {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 1.5rem 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .crisis-banner-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .crisis-numbers {
+      display: flex;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+      flex: 1;
+    }
+    .crisis-number-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+    }
+    .crisis-number-pill strong {
+      font-family: 'Lora', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    @media (max-width: 768px) {
+      .crisis-banner-inner { padding: 1.25rem; gap: 0.75rem; }
+      .crisis-numbers { gap: 0.875rem; }
+      .page-header { padding-top: 2rem !important; } /* banner replaces top spacing */
+    }
+
+    /* ── Tier label ── */
+    .tier-divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 3rem 0 1.5rem;
+    }
+    .tier-divider-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+    .tier-divider-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      white-space: nowrap;
+    }
+
+    /* ── Resource cards (find-a-therapist tools) ── */
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 0.875rem;
+      margin: 1.25rem 0 2rem;
+    }
+    .resource-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.1rem 1.25rem;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .resource-card:hover {
+      background: var(--surface-mid);
+      border-color: var(--border-hover);
+    }
+    .resource-card-name {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.25rem;
+    }
+    .resource-card-desc {
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+    .resource-card-tag {
+      display: inline-block;
+      margin-top: 0.6rem;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--moss);
+      background: rgba(122, 144, 104, 0.1);
+      padding: 0.15rem 0.5rem;
+      border-radius: 100px;
+    }
+
+    @media (max-width: 768px) {
+      .resource-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Override shared.css 120px top padding — crisis banner already clears the fixed nav */
+    .page-header { padding-top: 3rem; }
+    @media (max-width: 768px) { .page-header { padding-top: 2rem; } }
+  </style>
+</head>
+<body>
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<nav>
+  <a class="nav-logo" href="index.html">The <span>Map.</span></a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="index.html#topics">All Topics</a></li>
+      <li><a href="pathways.html">Pathways</a></li>
+      <li><a href="index.html#mission">Mission</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="about.html">About Me</a></li>
+    </ul>
+    <a class="nav-crisis" href="#crisis" aria-label="Jump to crisis resources">Crisis Resources</a>
+    <a class="nav-back" href="index.html">← Home</a>
+    <button class="search-btn" id="searchBtn" aria-label="Search">
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <span class="search-btn-label">Search</span>
+    </button>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+      <span class="toggle-icon" id="toggleIcon">☀️</span>
+      <span class="toggle-text" id="toggleText">Light mode</span>
+    </button>
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <div class="mobile-menu-links">
+    <a href="index.html">Home</a>
+    <a href="index.html#topics">All Topics</a>
+    <a href="pathways.html">Pathways</a>
+    <a href="index.html#mission">Mission</a>
+    <a href="contact.html">Contact</a>
+    <a href="about.html">About Me</a>
+    <a href="glossary.html">Glossary</a>
+    <a href="urgent-resources.html">Urgent Resources</a>
+    <a href="mental-health-navigation.html" style="color: var(--terracotta);">Crisis Resources</a>
+  </div>
+  <div class="mobile-menu-footer">
+    <button class="theme-toggle" id="themeToggleMobile" aria-label="Toggle theme">
+      <span class="toggle-icon" id="toggleIconMobile">☀️</span>
+      <span class="toggle-text" id="toggleTextMobile">Light mode</span>
+    </button>
+  </div>
+</div>
+
+<!-- Crisis numbers banner -->
+<div class="crisis-banner" role="complementary" aria-label="Crisis hotline numbers">
+  <div class="crisis-banner-inner">
+    <span class="crisis-banner-label">If you need help now</span>
+    <div class="crisis-numbers">
+      <span class="crisis-number-pill"><strong>988</strong>: Call or text, 24/7 crisis line</span>
+      <span class="crisis-number-pill"><strong>211</strong>: Local resources (food, shelter, health)</span>
+      <span class="crisis-number-pill"><strong>741741</strong>: Text HOME for text-based support</span>
+    </div>
+  </div>
+</div>
+
+<div class="page-header" id="main-content">
+  <div class="breadcrumb">Resources</div>
+  <h1>Mental Health Navigation</h1>
+  <p class="lead">Whether you're in crisis right now or trying to figure out how to get support, this guide walks you through how the mental health system works and how to find care that fits your situation and budget.</p>
+  <span class="read-time">7 min read</span>
+</div>
+
+<article class="article" data-updated="June 2026">
+
+  <!-- ── TIER 1: Crisis ── -->
+  <div id="crisis">
+
+    <div class="callout warn">
+      <span class="callout-label">In crisis right now?</span>
+      <p>Call or text <strong>988</strong> (Suicide and Crisis Lifeline), available 24/7 for any mental health emergency, not only suicidal thoughts. Text <strong>HOME to 741741</strong> (Crisis Text Line) if you can't speak. Call <strong>911</strong> if you are in immediate physical danger. You do not need to have a plan or be at the "worst point" to reach out. If you're struggling and not sure what to do next, these lines are for that.</p>
+    </div>
+
+    <div class="tldr">
+      <span class="tldr-label">TL;DR</span>
+      <ul>
+        <li><strong>988</strong> is the national mental health crisis line. Call or text, free, 24/7. You don't have to be suicidal to use it. Distress and confusion count.</li>
+        <li>If you're not in crisis but need support, <em>community mental health centers</em> offer sliding-scale or free care regardless of insurance status. Your county likely has one.</li>
+        <li>Finding a therapist is easier with a tool like the <em>SAMHSA Treatment Locator</em> (findtreatment.gov) or your insurance's provider directory. Both let you filter by location, specialty, and cost.</li>
+        <li>Under the <em>Mental Health Parity and Addiction Equity Act</em>, most insurance plans must cover mental health the same way they cover physical health. You can appeal coverage denials.</li>
+        <li>If you're uninsured, options exist: Medicaid, Federally Qualified Health Centers, university training clinics, and sliding-scale practices are all paths in.</li>
+      </ul>
+    </div>
+
+    <h2 id="crisis-resources">If You're in Crisis</h2>
+    <p>A mental health crisis is any moment when distress is severe enough that you can't manage it on your own: suicidal thoughts, a panic attack that won't stop, psychosis, or being so overwhelmed you don't know what to do next. All of the following are built for these moments.</p>
+
+    <ul>
+      <li><strong>988 Suicide and Crisis Lifeline:</strong> Call or text 988, free, 24/7. Available for any mental health crisis, not only suicidal thoughts. You can ask for a Spanish-language counselor or one trained to support LGBTQ+ callers. Veterans: press 1 after dialing.</li>
+      <li><strong>Crisis Text Line:</strong> Text HOME to 741741. Free, text-based support available 24/7. Good option when you can't or don't want to speak out loud.</li>
+      <li><strong>911:</strong> If you or someone else is in immediate physical danger. In many areas you can also text 911.</li>
+      <li><strong>Crisis stabilization units:</strong> Walk-in or short-stay facilities for mental health crises, often faster and more appropriate than the emergency room. Call 211 or 988 to find one near you.</li>
+      <li><strong>Emergency rooms:</strong> ERs can evaluate and stabilize a mental health crisis. They are not the only option and often not the fastest, but they are available everywhere and can hold you safely if needed.</li>
+    </ul>
+
+    <div class="callout tip">
+      <span class="callout-label">A note on 988</span>
+      <p>Many people avoid calling 988 because they feel their situation isn't "bad enough." There is no threshold. The line is for anyone who is struggling and uncertain what to do. Counselors will not dispatch police to your location unless you are in imminent danger and consent to it or are unresponsive.</p>
+    </div>
+
+  </div>
+
+  <!-- ── TIER 2: Navigation ── -->
+  <div class="tier-divider" aria-hidden="true">
+    <div class="tier-divider-line"></div>
+    <span class="tier-divider-label">Not in crisis? Looking for ongoing support.</span>
+    <div class="tier-divider-line"></div>
+  </div>
+
+  <div id="navigation">
+
+    <h2 id="what-kind-of-help">Understanding What Kind of Help You Need</h2>
+    <p>Mental health care covers a wide range. Before you can find the right resource, it helps to have a rough sense of which direction to go.</p>
+
+    <div class="term-grid">
+      <div class="term-card">
+        <div class="term-name">Therapy / Counseling</div>
+        <div class="term-def">Talk-based sessions with a licensed therapist, psychologist, or counselor. Used to work through specific problems, develop coping skills, process trauma, or address ongoing conditions like depression or anxiety. Usually 45–60 minutes, weekly or biweekly.</div>
+      </div>
+      <div class="term-card">
+        <div class="term-name">Psychiatry</div>
+        <div class="term-def">A medical doctor (MD or DO) who specializes in mental health. Psychiatrists can diagnose conditions and prescribe medication. Appointments are often shorter and more focused on medication management. Many people see both a therapist and a psychiatrist.</div>
+      </div>
+      <div class="term-card">
+        <div class="term-name">Community Mental Health</div>
+        <div class="term-def">County or nonprofit-operated centers that provide therapy, psychiatry, case management, and crisis services, often on a sliding scale or free. These are designed to serve people who might not otherwise have access, including those without insurance.</div>
+      </div>
+      <div class="term-card">
+        <div class="term-name">Peer Support</div>
+        <div class="term-def">Programs run by people with lived experience of mental health challenges. Not a replacement for clinical care, but a real complement to it. NAMI (National Alliance on Mental Illness) runs many free peer support programs.</div>
+      </div>
+    </div>
+
+    <p>If you're not sure what you need, starting with your primary care doctor or a community mental health center is a reasonable first step. Both can assess what level of care fits your situation and refer you from there.</p>
+
+
+    <h2 id="finding-a-therapist">How to Find a Therapist</h2>
+    <p>The most common obstacle is not knowing where to look. These tools let you filter by location, specialty, and payment situation before you ever make a call.</p>
+
+    <div class="resource-grid">
+      <div class="resource-card">
+        <div class="resource-card-name">SAMHSA Treatment Locator</div>
+        <div class="resource-card-desc">The federal government's official finder for mental health and substance use services. Searchable by zip code, filterable by type of care, payment options, and population served. Visit <a href="https://findtreatment.gov" target="_blank" rel="noopener">findtreatment.gov</a>.</div>
+        <span class="resource-card-tag">Free to use</span>
+      </div>
+      <div class="resource-card">
+        <div class="resource-card-name">Your Insurance's Provider Directory</div>
+        <div class="resource-card-desc">Every insurance plan is required to maintain a directory of in-network mental health providers. Log into your plan's website, or call the member services number on your insurance card, and ask for a list of in-network therapists near you.</div>
+        <span class="resource-card-tag">In-network = lower cost</span>
+      </div>
+      <div class="resource-card">
+        <div class="resource-card-name">Open Path Collective</div>
+        <div class="resource-card-desc">A network of therapists who offer reduced-fee sessions to people who can't afford standard rates. Sessions and membership fees vary — confirm current pricing on their site. Useful if you're uninsured or underinsured.</div>
+        <span class="resource-card-tag">Sliding scale</span>
+      </div>
+      <div class="resource-card">
+        <div class="resource-card-name">Psychology Today Therapist Finder</div>
+        <div class="resource-card-desc">A large directory with detailed profiles. Filter by issue, insurance accepted, therapy approach, and cost. Good for seeing who's available before you call, but verify insurance acceptance directly with the provider.</div>
+        <span class="resource-card-tag">Directory</span>
+      </div>
+    </div>
+
+    <h3>What to ask when you call</h3>
+    <p>When you contact a therapist's office for the first time, you don't need to explain your whole situation. A few practical questions will tell you most of what you need to know:</p>
+    <ul>
+      <li>Are you accepting new clients?</li>
+      <li>Do you accept [your insurance], and are you in-network?</li>
+      <li>What is your fee per session, and do you offer a sliding scale?</li>
+      <li>Do you have experience working with [your specific concern: anxiety, trauma, etc.]?</li>
+      <li>What is your current waitlist, if any?</li>
+    </ul>
+    <p>If a therapist isn't available or isn't the right fit, ask if they can refer you to a colleague. Therapists talk to each other and often know who has openings.</p>
+
+
+    <h2 id="affordable-options">Affordable and Free Options</h2>
+    <p>Cost is the most common reason people delay or avoid mental health care. These options exist specifically for that.</p>
+
+    <h3>Community Mental Health Centers</h3>
+    <p>Every state has a network of publicly funded mental health authorities and community mental health centers. These organizations provide therapy, psychiatric services, crisis response, and case management regardless of your ability to pay. Fees are typically based on a sliding scale tied to income, and no one is turned away for inability to pay.</p>
+    <p>To find yours, search "[your county] behavioral health" or "[your county] mental health authority," or call 211. The <strong>Heart of Texas Behavioral Health Network</strong> in central Texas is a good example of what these organizations look like. Most regions have an equivalent. Look for language like "behavioral health network," "mental health authority," or "community mental health center" in your area.</p>
+
+    <h3>Federally Qualified Health Centers (FQHCs)</h3>
+    <p>FQHCs are federally funded clinics required to serve everyone regardless of ability to pay, using a sliding fee scale. Many offer integrated behavioral health, where a counselor is part of the same care team as your primary care provider. Find one at <a href="https://findahealthcenter.hrsa.gov" target="_blank" rel="noopener">findahealthcenter.hrsa.gov</a>.</p>
+
+    <h3>University and Training Clinics</h3>
+    <p>Universities with psychology or counseling programs often operate training clinics where graduate students provide therapy under close supervision from licensed professionals. Sessions are typically much lower cost than private practice, often $10–$30. The care is well-supervised and evidence-based. Search "[nearest university] counseling training clinic."</p>
+
+    <h3>Medicaid</h3>
+    <p>If your income qualifies, Medicaid covers mental health services including therapy and psychiatry at no or very low cost. In most states you can enroll year-round. Visit your state's Medicaid website or healthcare.gov to check eligibility. Former foster youth are eligible in most states up to age 26 regardless of income.</p>
+
+    <h3>Employee Assistance Programs (EAPs)</h3>
+    <p>Many employers offer EAPs as a benefit. They typically include a set number of free therapy sessions (often 3–8) through a contracted provider network. The service is confidential and your employer does not see who uses it or why. Check your employee handbook or ask HR whether your workplace has one.</p>
+
+
+    <h2 id="using-insurance">Using Insurance for Mental Health</h2>
+    <p>Mental health benefits can be confusing, but the law is on your side. Here's what you should know.</p>
+
+    <h3>Mental Health Parity</h3>
+    <p>The <strong>Mental Health Parity and Addiction Equity Act (MHPAEA)</strong> requires most insurance plans to cover mental health and substance use services no more restrictively than they cover medical and surgical services. Your deductible, copay, and coverage limits for therapy should be comparable to what you'd pay for a specialist visit or physical therapy. If your plan is treating mental health care differently (higher copays, stricter visit limits), that may be a violation you can appeal.</p>
+
+    <h3>How to verify your coverage</h3>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h4>Call your insurance's member services line</h4>
+          <p>The number is on the back of your insurance card. Ask specifically: "Does my plan cover outpatient mental health therapy? What is my copay or coinsurance? Do I need a referral?" Get a reference number for the call.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h4>Ask for in-network providers</h4>
+          <p>Request a list of in-network therapists in your zip code. Alternatively, use your plan's online directory, but always confirm with the provider directly. Directories are often out of date.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h4>Understand your deductible</h4>
+          <p>If you haven't met your deductible for the year, you may pay full cost per session until you hit it. Ask the provider what they charge per session and how your deductible applies. Once your deductible is met, you typically pay only your copay or coinsurance.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <h4>Know how to appeal a denial</h4>
+          <p>If a claim is denied, you have the right to appeal. Your insurer is required to provide a written explanation of the denial. Your therapist's office can often help with the process; they deal with this routinely.</p>
+        </div>
+      </div>
+    </div>
+
+    <h3>Out-of-network reimbursement</h3>
+    <p>Some plans with out-of-network benefits will reimburse a portion of what you pay an out-of-network therapist. This is called a "superbill" arrangement: the therapist gives you a detailed receipt, and you submit it to your insurance for partial reimbursement. Ask your therapist if they provide superbills and what the process looks like.</p>
+
+
+    <h2 id="school-resources">School and Campus Resources</h2>
+    <p>If you're currently enrolled in a college, community college, or university, you likely have access to mental health services through your school, often at no additional cost beyond your tuition and fees.</p>
+    <ul>
+      <li><strong>College counseling centers:</strong> Most colleges and universities have a counseling center that provides free or low-cost individual therapy, group therapy, crisis support, and referrals. These services are confidential. Wait times can be long at larger schools, so reach out early in the semester rather than waiting for a crisis.</li>
+      <li><strong>Student health services:</strong> Can provide initial mental health evaluations, short-term counseling, and referrals to outside providers. Also a starting point for getting a psychiatric evaluation or medication.</li>
+      <li><strong>Peer support programs:</strong> Many campuses have trained peer counselors or mental health advocates who can walk you through what resources are available and help lower the initial hurdle of getting started.</li>
+      <li><strong>Online telehealth through your school:</strong> Some institutions contract with services like TimelyCare or SilverCloud by Amwell that give students access to telehealth therapy and wellness tools beyond regular counseling center hours.</li>
+    </ul>
+
+
+    <h2 id="digital-options">Digital and App-Based Support</h2>
+    <p>Telehealth and mental health apps can be genuinely useful, but they're not all the same thing and they're not all suited for the same situations.</p>
+
+    <h3>What telehealth is good for</h3>
+    <p>Teletherapy (live video or phone sessions with a licensed therapist) provides the same quality of care as in-person therapy for many conditions, particularly anxiety, depression, and stress. It's often more accessible and flexible. Major platforms connect you to licensed therapists in your state, and many accept insurance. Verify insurance acceptance and licensure before committing to any platform.</p>
+
+    <h3>Mental health apps</h3>
+    <p>Apps that teach CBT (Cognitive Behavioral Therapy) skills, mindfulness, and mood tracking can supplement professional care. They are not a substitute for therapy and are not the right response to serious mental health conditions on their own. The strongest evidence is behind CBT-based skills apps and guided meditation tools.</p>
+
+    <div class="callout">
+      <span class="callout-label">A caution on app-based platforms</span>
+      <p>Not all platforms that market themselves as "therapy" use licensed therapists or provide the same level of care as traditional outpatient treatment. Before subscribing to any platform, verify: Are the providers licensed in your state? What are the credentials of whoever you'll be matched with? What happens in a crisis? These are fair questions to ask before you pay.</p>
+    </div>
+
+
+    <h2 id="what-to-expect">What to Expect When You Start</h2>
+    <p>Most people have never been to therapy and don't know what to expect. Here's what the process actually looks like.</p>
+
+    <p><strong>The first session</strong> is usually an intake or assessment. The therapist will ask about what brought you in, your history, and what you're hoping to work on. You don't need to have everything figured out or know exactly what's wrong. "I've been struggling and I'm not sure why" is a perfectly valid starting point.</p>
+
+    <p><strong>Fit matters.</strong> If a therapist doesn't feel right after two or three sessions, it's okay to look for someone else. Therapeutic alliance (the working relationship between you and your therapist) is one of the strongest predictors of good outcomes. Switching is normal and not a failure.</p>
+
+    <p><strong>Progress is not linear.</strong> Some sessions feel like breakthroughs. Others feel flat or even harder than before you started. This is expected. The measure of progress over weeks and months is more reliable than how any single session feels.</p>
+
+    <p><strong>Confidentiality:</strong> What you share in therapy is confidential with narrow exceptions. Therapists are legally required to break confidentiality if they believe you are in imminent danger to yourself or others, or if there is suspected abuse of a minor or vulnerable adult. Outside of those situations, nothing you say can be shared without your written consent.</p>
+
+
+    <div class="disclaimer-bar"><strong>Disclaimer:</strong> This page is for informational and navigational purposes only. It is not a substitute for professional mental health assessment or treatment. Resource availability, eligibility, and contact information vary by location and change over time. Always verify current details through official program websites or by calling 211 or 988. If you are in crisis, contact 988 or 911 immediately.</div>
+
+    <div class="related">
+      <div class="related-label">Keep reading</div>
+      <div class="related-links">
+        <a class="related-link" href="life/managing-emotions.html">Managing Emotions &amp; Anxiety</a>
+        <a class="related-link" href="urgent-resources.html">Urgent Resources</a>
+        <a class="related-link" href="finance/health-insurance.html">Health Insurance 101</a>
+        <a class="related-link" href="life/money-tight.html">When Money Is Tight</a>
+      </div>
+    </div>
+
+  </div><!-- /navigation tier -->
+
+</article>
+
+<footer>
+  <a class="footer-logo" href="index.html">The <span>Map.</span></a>
+  <div class="footer-disclaimer">Free to use. Built with care. Not professional advice. <a href="disclosures.html">Full disclosures.</a></div>
+</footer>
+
+<div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Search">
+  <div class="search-modal">
+    <div class="search-input-row">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <input class="search-input" id="searchInput" type="search" placeholder="Search topics…" autocomplete="off" autocorrect="off" spellcheck="false"/>
+      <button class="search-close" id="searchClose" aria-label="Close search">Esc</button>
+    </div>
+    <div class="search-results" id="searchResults" role="listbox"></div>
+    <div class="search-footer" aria-hidden="true">
+      <span class="search-footer-hint"><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
+      <span class="search-footer-hint"><kbd>↵</kbd> open</span>
+      <span class="search-footer-hint"><kbd>Esc</kbd> close</span>
+    </div>
+  </div>
+</div>
+<script src="search-index.js"></script>
+<script src="shared.js"></script>
+</body>
+</html>

@@ -329,8 +329,8 @@
   if (navEl && !navEl.querySelector('.nav-crisis')) {
     var crisisLink = document.createElement('a');
     crisisLink.className = 'nav-crisis';
-    crisisLink.textContent = 'Urgent Resources';
-    crisisLink.setAttribute('href', rootPrefix + 'urgent-resources.html');
+    crisisLink.textContent = 'Crisis Resources';
+    crisisLink.setAttribute('href', rootPrefix + 'mental-health-navigation.html');
     navEl.appendChild(crisisLink);
   }
 

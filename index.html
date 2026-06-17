@@ -868,6 +868,100 @@
     .nav-crisis:hover { opacity: 1; background: rgba(212,114,90,0.1); }
 
 
+    /* ── Mental Health Section ── */
+    .mh-crisis-strip {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      background: var(--surface);
+      border: 1px solid rgba(212, 114, 90, 0.2);
+      border-left: 3px solid var(--terracotta);
+      border-radius: 0 12px 12px 0;
+      padding: 1.5rem 2rem;
+      margin-bottom: 1.5rem;
+      transition: background 0.4s, border-color 0.4s;
+    }
+    .mh-crisis-body { flex: 1; min-width: 0; }
+    .mh-crisis-numbers {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-top: 0.6rem;
+    }
+    .mh-crisis-number {
+      display: flex;
+      align-items: baseline;
+      gap: 0.4rem;
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+    }
+    .mh-crisis-number strong {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 1.0625rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .mh-crisis-cta { flex-shrink: 0; white-space: nowrap; }
+
+    .mh-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    .mh-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      transition: background 0.3s, border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    }
+    .mh-card:hover {
+      background: var(--surface-mid);
+      border-color: var(--border-hover);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+    }
+    .mh-card-icon { font-size: 1.5rem; line-height: 1; margin-bottom: 0.25rem; }
+    .mh-card-title {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      transition: color 0.4s;
+    }
+    .mh-card:hover .mh-card-title { color: var(--clay); }
+    .mh-card-desc {
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+      transition: color 0.4s;
+    }
+    .mh-card-link {
+      margin-top: auto;
+      padding-top: 0.75rem;
+      font-size: 0.75rem;
+      color: var(--clay);
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .mh-card-link::after { content: '→'; font-size: 0.7rem; color: var(--terracotta); }
+
+    @media (max-width: 768px) {
+      .mh-crisis-strip { flex-direction: column; align-items: flex-start; gap: 1rem; }
+      .mh-cards { grid-template-columns: 1fr; }
+    }
+    @media (min-width: 769px) and (max-width: 900px) {
+      .mh-cards { grid-template-columns: repeat(2, 1fr); }
+      .mh-cards .mh-card:last-child { grid-column: 1 / -1; }
+    }
+
     /* ── Animations ── */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(20px); }
@@ -1164,6 +1258,7 @@
         <span></span><span></span><span></span>
       </button>
     </div>
+    <a class="nav-crisis" href="mental-health-navigation.html" aria-label="Mental health and crisis resources">Crisis Resources</a>
   </nav>
 <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
   <div class="mobile-menu-links">
@@ -1173,6 +1268,7 @@
       <a href="contact.html">Contact</a>
       <a href="about.html">About Me</a>
       <a href="glossary.html">Glossary</a>
+      <a href="mental-health-navigation.html" style="color: var(--terracotta);">Crisis Resources</a>
   </div>
   <div class="mobile-menu-footer">
     <button class="theme-toggle" id="themeToggleMobile" aria-label="Toggle theme">
@@ -1397,6 +1493,48 @@
         <p class="program-strip-desc">An open call for young adults in Mexia to share their own experiences — in their words, in any format — for an anonymous gallery on this site. Pilot submissions open October 5, 2026.</p>
       </div>
       <a href="tell-your-story/" class="btn-secondary program-strip-cta">Learn more →</a>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Mental Health Navigation -->
+  <div class="section-wrap" id="mental-health">
+    <p class="section-label">Mental Health</p>
+    <h2 class="section-title fade-in">You don't have to figure this out alone.</h2>
+    <p class="section-sub fade-in">Whether you're in crisis or just looking for support, here's how to find help and navigate the system.</p>
+
+    <div class="mh-crisis-strip fade-in" role="complementary" aria-label="Crisis hotlines">
+      <div class="mh-crisis-body">
+        <p class="section-label" style="margin-bottom: 0.5rem;">If you need help right now</p>
+        <div class="mh-crisis-numbers">
+          <span class="mh-crisis-number"><strong>988</strong>: Call or text, 24/7 crisis line</span>
+          <span class="mh-crisis-number"><strong>211</strong>: Local resources (food, shelter, health)</span>
+          <span class="mh-crisis-number"><strong>741741</strong>: Text HOME for text-based support</span>
+        </div>
+      </div>
+      <a href="mental-health-navigation.html#crisis" class="btn-secondary mh-crisis-cta">Full crisis guide →</a>
+    </div>
+
+    <div class="mh-cards">
+      <a class="mh-card fade-in" href="mental-health-navigation.html#crisis">
+        <span class="mh-card-icon">🆘</span>
+        <div class="mh-card-title">In Crisis</div>
+        <p class="mh-card-desc">What to do in a mental health emergency, what 988 is for, and what to expect from a crisis line call.</p>
+        <span class="mh-card-link">Read the crisis guide</span>
+      </a>
+      <a class="mh-card fade-in" href="mental-health-navigation.html#navigation">
+        <span class="mh-card-icon">🧭</span>
+        <div class="mh-card-title">Finding Support</div>
+        <p class="mh-card-desc">How to find a therapist, what affordable and free options look like, and how to use your insurance for mental health.</p>
+        <span class="mh-card-link">Navigate mental health care</span>
+      </a>
+      <a class="mh-card fade-in" href="life/managing-emotions.html">
+        <span class="mh-card-icon">🌿</span>
+        <div class="mh-card-title">Coping Skills</div>
+        <p class="mh-card-desc">Practical, evidence-based techniques for managing anxiety, stress, and difficult emotions day-to-day.</p>
+        <span class="mh-card-link">Managing emotions &amp; anxiety</span>
+      </a>
     </div>
   </div>
 
