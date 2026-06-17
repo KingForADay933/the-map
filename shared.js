@@ -258,12 +258,12 @@
           return parts.length > 0 ? '../'.repeat(parts.length) : '';
         })();
 
-        // Urgent Resources at top of menu
+        // Crisis Resources at top of menu
         if (!mobileLinks.querySelector('.mobile-crisis-link')) {
           var mobileCrisis = document.createElement('a');
           mobileCrisis.className = 'mobile-crisis-link';
-          mobileCrisis.href = mobilePrefix + 'urgent-resources.html';
-          mobileCrisis.textContent = 'Urgent Resources';
+          mobileCrisis.href = mobilePrefix + 'mental-health-navigation.html';
+          mobileCrisis.textContent = 'Crisis Resources';
           mobileCrisis.addEventListener('click', closeMobileMenu);
           mobileLinks.insertBefore(mobileCrisis, mobileLinks.firstChild);
         }
